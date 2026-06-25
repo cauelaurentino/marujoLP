@@ -1,0 +1,693 @@
+/* --- Variáveis de Identidade Visual --- */
+:root {
+    --bg-black: #0F0F0F;
+    --bg-gray-dark: #1A1A1A;
+    --card-bg: #2B2B2B;
+    --gold-main: #D4AF37;
+    --gold-light: #F5D67A;
+    --text-white: #FFFFFF;
+    --text-muted: #BBBBBB;
+    
+    /* Fontes alteradas para Poppins (Sem serifa, visual informal e moderno) */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    
+    --transition: 0.3s ease-in-out;
+}
+
+/* --- Reset & Configurações Globais --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--gold-light);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Botões --- */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: var(--font-body);
+}
+
+.btn-gold {
+    background-color: var(--gold-main);
+    color: var(--bg-black);
+}
+
+.btn-gold:hover {
+    background-color: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold-outline {
+    background-color: transparent;
+    border: 2px solid var(--gold-main);
+    color: var(--gold-main);
+}
+
+.btn-gold-outline:hover {
+    background-color: var(--gold-main);
+    color: var(--bg-black);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    background-color: var(--gold-main);
+    color: var(--bg-black);
+    padding: 10px;
+}
+
+.btn-block:hover {
+    background-color: var(--gold-light);
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    background-color: var(--gold-main);
+    color: var(--bg-black);
+}
+.btn-large:hover {
+    background-color: var(--gold-light);
+    transform: scale(1.05);
+}
+
+/* --- Header --- */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold-main);
+    letter-spacing: 1px;
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu a {
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-menu a:hover {
+    color: var(--gold-main);
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* --- Hero Section (Altura Automática sem cortes) --- */
+.hero {
+    position: relative;
+    width: 100%;
+    height: auto; /* A altura agora é automática, sem cortes */
+    overflow: hidden;
+    margin-top: 70px; /* Mantém o espaçamento do menu fixo */
+}
+
+.hero-carousel {
+    position: relative; /* Mudou de absolute para relative */
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+.hero-carousel .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-carousel .slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* O "pulo do gato": o primeiro slide dita a altura do banner para o navegador */
+.hero-carousel .slide:first-child {
+    position: relative;
+}
+
+.hero-carousel picture,
+.hero-carousel img {
+    display: block;
+    width: 100%;
+    height: auto; /* Removemos o object-fit. A imagem agora dita a proporção! */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(15, 15, 15, 0.212) 0%, rgba(15, 15, 15, 0.397) 100%);
+    z-index: 2;
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 50px; /* Posiciona o botão logo acima dos indicadores */
+    left: 50%;
+    transform: translateX(-50%); /* Mantém o botão perfeitamente centralizado */
+    z-index: 3;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Controles do Banner */
+.hero-controls button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--gold-main);
+    color: var(--gold-main);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 4;
+    transition: var(--transition);
+}
+
+.hero-controls button:hover {
+    background: var(--gold-main);
+    color: var(--bg-black);
+}
+
+.hero-prev { left: 20px; }
+.hero-next { right: 20px; }
+
+.hero-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+}
+
+.hero-indicators .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.hero-indicators .dot.active {
+    background-color: var(--gold-main);
+    transform: scale(1.2);
+}
+
+/* --- Seções Padrões --- */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* --- Produtos --- */
+.produtos-section {
+    padding: 80px 0;
+    background-color: var(--bg-gray-dark);
+}
+
+.categoria-bloco {
+    margin-bottom: 60px;
+}
+
+.categoria-bloco h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--gold-main);
+    padding-left: 15px;
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carrossel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 15px;
+    scrollbar-width: none;
+}
+
+.carrossel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.produto-card {
+    flex: 0 0 280px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.produto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+.img-container {
+    height: 280px;
+    background-color: #111;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.produto-info {
+    padding: 20px;
+}
+
+.produto-info h4 {
+    color: var(--text-white);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.produto-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+/* --- Setas do Carrossel de Produtos --- */
+.carrossel-btn {
+    background-color: rgba(15, 15, 15, 0.85); /* Fundo semi-transparente para não tapar o produto */
+    color: var(--gold-main);
+    border: 1px solid var(--gold-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    transition: var(--transition);
+    
+    /* Flexbox para garantir que a setinha fique perfeitamente no meio do círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrossel-btn:hover {
+    background-color: var(--gold-main);
+    color: var(--bg-black);
+}
+
+/* Posição padrão (Mobile): Ficam um pouco para dentro para não sumirem da tela */
+.carrossel-btn.prev { left: 5px; }
+.carrossel-btn.next { right: 5px; }
+
+/* Posição Desktop: Jogamos as setas para fora dos cards, já que há mais espaço */
+@media(min-width: 768px) {
+    .carrossel-btn.prev { left: -20px; }
+    .carrossel-btn.next { right: -20px; }
+}
+/* --- Diferenciais --- */
+.diferenciais {
+    padding: 80px 0;
+    background-color: var(--bg-black);
+}
+
+.diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.dif-card {
+    background-color: var(--card-bg);
+    padding: 40px 20px;
+    border-radius: 8px;
+    border-bottom: 3px solid var(--gold-main);
+    transition: var(--transition);
+}
+
+.dif-card:hover {
+    transform: translateY(-10px);
+}
+
+.dif-card i {
+    font-size: 2.5rem;
+    color: var(--gold-main);
+    margin-bottom: 20px;
+}
+
+.dif-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-white);
+}
+
+.dif-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- Localização --- */
+.localizacao {
+    padding: 80px 0;
+    background-color: var(--bg-gray-dark);
+}
+
+.loc-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.loc-info {
+    flex: 1;
+    min-width: 300px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loc-info i {
+    font-size: 3rem;
+    color: var(--gold-main);
+    margin-bottom: 20px;
+}
+
+.loc-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.loc-info p {
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.loc-map {
+    flex: 1;
+    min-width: 300px;
+    min-height: 400px;
+}
+
+/* --- CTA Final --- */
+.cta-final {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #0F0F0F 0%, #2B2B2B 100%);
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--bg-black);
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer h4 {
+    margin-bottom: 20px;
+    color: var(--text-white);
+    font-size: 1.1rem;
+}
+
+.footer-contact p, .footer-address p {
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.footer-contact i {
+    color: var(--gold-main);
+    margin-right: 8px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* --- Flutuantes (WhatsApp & Balão) --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366;
+    color: #FFF;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 1000;
+    transition: var(--transition);
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #1ebe57;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.smart-balloon {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--gold-main);
+    color: var(--text-white);
+    padding: 12px 20px;
+    border-radius: 20px 20px 0 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 999;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+.smart-balloon.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-black);
+        padding: 20px 0;
+        border-bottom: 1px solid var(--gold-main);
+    }
+    
+    .nav-menu.active {
+        display: block;
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .header-cta {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    .hero {
+        height: auto; /* Substitua o 50vh por auto */
+        margin-top: 70px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+    
+    .smart-balloon {
+        bottom: 80px;
+        right: 20px;
+    }
+}
