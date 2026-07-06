@@ -101,105 +101,77 @@
         <div class="container">
             <div class="section-title">
                 <h2>Nossos Produtos</h2>
-                <p>Estilo para todas as ocasiões.</p>
+                <p>Vista atitude,<br>Navegue no estilo.</p>
             </div>
 
-            <div class="categoria-bloco">
+            <nav class="sumario-categorias">
+                <a href="#camisas" class="sumario-item">Camisas da Seleção</a>
+                <a href="#oversized" class="sumario-item">Camisetas Oversized</a>
+                <a href="#moda-infantil" class="sumario-item">Roupas Infantis</a>
+                <a href="#infantil" class="sumario-item">Calças Masculinas</a>
+                <a href="#infantil" class="sumario-item">Cuecas e Carteiras</a>
+            </nav>
+
+            <div class="categoria-bloco" id="camisas">
                 <h3>Camisas da Seleção Brasileira</h3>
+
+                <div class="filtro-container">
+                    <label for="filtro-camisas">Filtrar por:</label>
+                    <select id="filtro-camisas" class="categoria-filtro" data-categoria="camisas">
+                        <option value="todos">Todos</option>
+                        <option value="menor-preco">Menor para o maior valor</option>
+                        <option value="tailandesa">Tailandesa</option>
+                        <option value="peruana">Peruana</option>
+                    </select>
+                </div>
+
                 <div class="carousel-wrapper">
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="carrossel-track">
-                        <div class="produto-card">
-                            <div class="img-container"><img src="img/produtos/camisa-brasil-amarela.png" alt="Camisa Seleção"></div>
-                            <div class="produto-info">
-                                <h4>Camisa Brasil Titular</h4>
-                                <p>Alta qualidade, padrão original.</p>
-                                <a href="https://wa.me/5512991037973" class="btn btn-block wa-link"
-                                    data-msg="Olá! Tenho interesse na Camisa Brasil Titular."><i
-                                        class="fab fa-whatsapp"></i> Comprar</a>
-                            </div>
-                        </div>
-                        <div class="produto-card">
-                            <div class="img-container"><img src="img/produtos/camisa-brasil-azul.png" alt="Camisa Seleção"></div>
-                            <div class="produto-info">
-                                <h4>Camisa Brasil Alternativa</h4>
-                                <p>Design exclusivo e moderno.</p>
-                                <a href="https://wa.me/5512991037973" class="btn btn-block wa-link"
-                                    data-msg="Olá! Tenho interesse na Camisa Brasil Alternativa."><i
-                                        class="fab fa-whatsapp"></i> Comprar</a>
-                            </div>
-                        </div>
-                    </div>
+
+                    <div class="carrossel-track"></div>
+
                     <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
 
-            <div class="categoria-bloco">
+            <div class="categoria-bloco" id="oversized">
                 <h3>Camisas Oversized</h3>
+
+                <div class="filtro-container">
+                    <label for="filtro-oversized">Filtrar por:</label>
+                    <select id="filtro-oversized" class="categoria-filtro" data-categoria="oversized">
+                        <option value="todos">Todos</option>
+                        <option value="menor-preco">Menor para o maior valor</option>
+                        <option value="malha-americana">Malha Americana</option>
+                    </select>
+                </div>
+
                 <div class="carousel-wrapper">
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="carrossel-track">
-                        <div class="produto-card">
-                            <div class="img-container"><img src="img/produtos/camisa-quick-marrom.png" alt="Oversized Black"></div>
-                            <div class="produto-info">
-                                <h4>QuickSilver Style Marrom</h4>
-                                <p>Caimento perfeito, estilo oversized casual.</p>
-                                <a href="https://wa.me/+5512991037973" class="btn btn-block wa-link"
-                                    data-msg="Olá! Tenho interesse na camisa QuickSilver Style Marrom."><i
-                                        class="fab fa-whatsapp"></i> Comprar</a>
-                            </div>
-                        </div>
-                        <div class="produto-card">
-                            <div class="img-container"><img src="img/produtos/camisa-quick-cinza.png" alt="Oversized Earth"></div>
-                            <div class="produto-info">
-                                <h4>QuickSilver Logo Cinza</h4>
-                                <p>Caimento perfeito, estilo oversized casual.</p>
-                                <a href="https://wa.me/5512991037973" class="btn btn-block wa-link"
-                                    data-msg="Olá! Tenho interesse na camisa QuickSilver Logo Cinza."><i
-                                        class="fab fa-whatsapp"></i> Comprar</a>
-                            </div>
-                        </div>
-                    </div>
+
+                    <div class="carrossel-track"></div>
+
                     <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
 
-            <div class="categoria-bloco">
-                <h3>Bags</h3>
-                <div class="carousel-wrapper">
-                    <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="carrossel-track">
-                        <div class="produto-card">
-                            <div class="img-container"><img src="img/produtos/bag-nike-preta.png" alt="Shoulder Bag"></div>
-                            <div class="produto-info">
-                                <h4>Shoulder Bag Nike</h4>
-                                <p>Praticidade com visual premium.</p>
-                                <a href="https://wa.me/5512991037973" class="btn btn-block wa-link"
-                                    data-msg="Olá! Tenho interesse na Shoulder Bag Nike."><i
-                                        class="fab fa-whatsapp"></i> Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-
-            <div class="categoria-bloco">
+            <div class="categoria-bloco" id="moda-infantil">
                 <h3>Moda Infantil</h3>
+
+                <div class="filtro-container">
+                    <label for="filtro-oversized">Filtrar por:</label>
+                    <select id="filtro-oversized" class="categoria-filtro" data-categoria="moda-infantil">
+                        <option value="todos">Todos</option>
+                        <option value="menor-preco">Menor para o maior valor</option>
+                        <option value="kits">Kits Marujo</option>
+                    </select>
+                </div>
+
                 <div class="carousel-wrapper">
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="carrossel-track">
-                        <div class="produto-card">
-                            <div class="img-container"><img src="img/produtos/camisa-brasil-azul-infantil.png" alt="Conjunto Infantil"></div>
-                            <div class="produto-info">
-                                <h4>Camisa Brasil Azul Infantil</h4>
-                                <p>Estilo desde os primeiros passos.</p>
-                                <a href="https://wa.me/5512991037973" class="btn btn-block wa-link"
-                                    data-msg="Olá! Tenho interesse na Camisa Brasil Azul Infantil"><i
-                                        class="fab fa-whatsapp"></i> Comprar</a>
-                            </div>
-                        </div>
-                    </div>
+
+                    <div class="carrossel-track"></div>
+
                     <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
@@ -210,7 +182,8 @@
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
                     <div class="carrossel-track">
                         <div class="produto-card">
-                            <div class="img-container"><img src="img/produtos/bone-new-era.png" alt="Boné Trucker"></div>
+                            <div class="img-container"><img src="img/produtos/bone-new-era.png" alt="Boné Trucker">
+                            </div>
                             <div class="produto-info">
                                 <h4>Boné New Era Marrom</h4>
                                 <p>O detalhe que faltava no seu estilo.</p>
