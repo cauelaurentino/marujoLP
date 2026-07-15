@@ -1,7 +1,7 @@
 // ==========================================
 // CONFIGURAÇÕES DA LOJA (EDITE AQUI)
 // ==========================================
-const whatsappNumber = "5512991037973";
+const whatsappNumber = "5512988168291";
 
 // Banco de dados de produtos ampliado com os novos campos de controle
 const produtos = {
@@ -14,8 +14,7 @@ const produtos = {
         descricao: "Camisa da Seleção Brasileira com tecido respirável. Alta qualidade, padrão original para você torcer com estilo.",
         fotos: [
             "img/produtos/camisa-brasil-amarela.png",
-            "img/produtos/camisa-brasil-amarela.png", // Foto extra 1
-            "img/produtos/camisa-brasil-amarela.png"  // Foto extra 2
+            "img/produtos/camisabrasil2.jpg"  // Foto extra 2
         ],
         mensagemZap: "Olá! Tenho interesse na Camisa Brasil Titular."
     },
