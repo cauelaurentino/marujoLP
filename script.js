@@ -5,18 +5,56 @@ const whatsappNumber = "5512988168291";
 
 // Banco de dados de produtos ampliado com os novos campos de controle
 const produtos = {
-    "camisa-brasil-titular": {
-        titulo: "Camisa Brasil Titular",
-        preco: "R$ 149,90",
-        precoNum: 149.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "camisas",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "selecoes", "tailandesa"], // Suas tags personalizadas de filtro
-        descricao: "Camisa da Seleção Brasileira com tecido respirável. Alta qualidade, padrão original para você torcer com estilo.",
+    "bobojaco-nike": {
+        titulo: "Bobojaco Nike Preto",
+        preco: "R$ 299,90",
+        precoNum: 299.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "nike"], // Suas tags personalizadas de filtro
+        descricao: "Blusa estilo bobojaco Nike preta, com tecido em estilo camurça, ideal para o curtir o frio em estilo",
         fotos: [
-            "img/produtos/camisa-brasil-amarela.png",
-            "img/produtos/camisabrasil2.jpg"  // Foto extra 2
+            "img/produtos/PHOTO-2026-08-03-14-08-36_4.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na Camisa Brasil Titular."
+        mensagemZap: "Olá! Tenho interesse na Blusa bobojado da Nike preta."
+    },
+
+    "bobojaco-boss": {
+        titulo: "Bobojaco Boss Marrom",
+        preco: "R$ 349,90",
+        precoNum: 349.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "boss"], // Suas tags personalizadas de filtro
+        descricao: "Blusa estilo bobojaco Boss Marrom, com tecido em estilo tectel, ideal para o curtir o frio em estilo",
+        fotos: [
+            "img/produtos/PHOTO-2026-08-03-14-08-36_7.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na Blusa bobojado da Boss Marrom."
+    },
+
+    "bobojaco-camuflado-1": {
+        titulo: "Bobojaco Camuflado Claro",
+        preco: "R$ 199,90",
+        precoNum: 199.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "camuflado"], // Suas tags personalizadas de filtro
+        descricao: "Blusa estilo bobojaco camuflada, com tecido em estilo tectel, ideal para o curtir o frio em estilo",
+        fotos: [
+            "img/produtos/PHOTO-2026-08-03-14-08-36_3.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na Blusa bobojado camuflado."
+    },
+
+    "bobojaco-camuflado-2": {
+        titulo: "Bobojaco Camuflado Escuro",
+        preco: "R$ 199,90",
+        precoNum: 199.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "camuflado"], // Suas tags personalizadas de filtro
+        descricao: "Blusa estilo bobojaco camuflada, com tecido em estilo tectel, ideal para o curtir o frio em estilo",
+        fotos: [
+            "img/produtos/PHOTO-2026-08-03-14-08-36_6.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na Blusa bobojado camuflado."
     },
 
     "camisa-brasil-azul": {
