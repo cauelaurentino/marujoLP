@@ -5,6 +5,70 @@ const whatsappNumber = "5512988168291";
 
 // Banco de dados de produtos ampliado com os novos campos de controle
 const produtos = {
+    "sueter-nike-verde": {
+        titulo: "Suete Nike Verde",
+        preco: "R$ 39,90",
+        precoNum: 39.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "nike"], // Suas tags personalizadas de filtro
+        descricao: "Sueter casual infantil Nike verde, produto feito em algodão",
+        fotos: [
+            "img/produtos/39FC8F1F-C06D-4934-B1F2-0E71F28C2287.jpg",
+            "img/produtos/b879b85e-7648-4c53-a8ad-f2073889c0f7.JPG",
+            "img/produtos/E22E8397-06B8-4E7E-B4C5-0367263033B6.jpg",
+            "img/produtos/E33C4BAC-BCF3-4079-97C3-C7D4E9E1AF77.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
+    },
+
+    "conjunto-lacoste-infantil": {
+        titulo: "Conjunto Lacoste Listrado Infantil",
+        preco: "R$ 99,90",
+        precoNum: 99.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "lacoste"], // Suas tags personalizadas de filtro
+        descricao: "Conjunto infantil listrado da marca Lacoste, ideal para os pequenos curtirem com estilo",
+        fotos: [
+            "img/produtos/D5E4F082-0DE7-4511-BCBC-DE1306CD6649.jpg",
+            "img/produtos/D2C9175F-D962-4BC8-A787-3FB27A952025.jpg",
+            "img/produtos/39964019-36FC-48A5-89C1-DEDEEE3A546B.jpg",
+            "img/produtos/9C693B27-D627-433E-9C1D-F1FA4E9DF32E.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
+    },
+
+    "conjunto-moletom-lacoste-infantil": {
+        titulo: "Conjunto Moletom Lacoste Preto Infaltil",
+        preco: "R$ 99,90",
+        precoNum: 99.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "lacoste"], // Suas tags personalizadas de filtro
+        descricao: "Conjunto infantil preto da marca Lacoste, ideal para os pequenos curtirem o inverno com estilo",
+        fotos: [
+            "img/produtos/6ADE7189-C162-400A-ACE5-53371D4676C0.jpg",
+            "img/produtos/5CE8FAF3-D65F-4A45-A3D5-5CFE4FB1B7A6.jpg",
+            "img/produtos/87FB69A0-210E-4FBF-98EC-6FD27F4A34B7.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
+    },
+
+    "sueter-nike-branco": {
+        titulo: "Sueter Nike Branco",
+        preco: "R$ 39,90",
+        precoNum: 39.90,              // Campo numérico para ordenação de menor/maior preço
+        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
+        filtros: ["todos", "nike"], // Suas tags personalizadas de filtro
+        descricao: "Sueter casual infantil Nike branco, produto feito em algodão",
+        fotos: [
+            "img/produtos/44A1A531-E0A9-4608-983E-7BCFE2E58C9D.jpg",
+            "img/produtos/C2C68CF9-8494-4CD0-8A2A-07D121685A6A.jpg",
+            "img/produtos/20fc2843-d590-4371-be6e-8a872cf04011.jpg",
+            "img/produtos/11AD0B40-21FE-41EA-AA13-6748C9913844.jpg"
+            
+        ],
+        mensagemZap: "Olá! Tenho interesse no sueter Nike branco infantil."
+    },
+
     "bobojaco-nike": {
         titulo: "Bobojaco Nike Preto",
         preco: "R$ 299,90",
@@ -91,28 +155,6 @@ const produtos = {
         descricao: "Caimento perfeito, estilo oversized casual.",
         fotos: ["img/produtos/camisa-quick-cinza.png"],
         mensagemZap: "Olá! Tenho interesse na camisa QuickSilver Logo Cinza."
-    },
-
-    "kit-infatil": {
-        titulo: "Kit Marujo Infantil",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
-        categoria: "moda-infantil", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "kits"], // 💡 Filtro exclusivo deste produto
-        descricao: "Outift ja combinado, estilo para as crianças.",
-        fotos: ["img/produtos/bag-nike-preta.png"],
-        mensagemZap: "Olá! Tenho interesse no Kit Marujo Infantil"
-    },
-
-    "camisa-azul-brasil-infantil": {
-        titulo: "Camisa Brasil Azul Infantil",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
-        categoria: "moda-infantil", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo para as crianças.",
-        fotos: ["img/produtos/camisa-brasil-azul-infantil.png"],
-        mensagemZap: "Olá! Tenho interesse na Camisa Brasil Azul Infantil."
     }
 };
 
