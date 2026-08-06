@@ -5,6 +5,106 @@ const whatsappNumber = "5512988168291";
 
 // Banco de dados de produtos ampliado com os novos campos de controle
 const produtos = {
+
+    "polo-boss-preta": {
+        titulo: "Polo Boss Preta",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.20.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.19 (1).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.18.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.18 (1).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.19.jpeg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "camisa-lacoste-logo-marrom": {
+        titulo: "Camisa Lacoste Marrom",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
+            "img/produtos/fotoetiqueta.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (1).jpeg"
+
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "camisa-lacoste-logo-marrom": {
+        titulo: "Camisa Lacoste Marrom",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (1).jpeg"
+
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "camisa-lacoste-logo-marrom": {
+        titulo: "Camisa Lacoste Marrom",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg"
+
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "camisa-boss-preta-listrada": {
+        titulo: "Camisa Boss Preta Listrada",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "boss"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (3).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (1).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (2).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09.jpeg"
+
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Boss preta."
+    },
+
+    "camisa-diesel-vermelha": {
+        titulo: "Camisa Diesel Vermelha",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (3).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (1).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (2).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08.jpeg"
+
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Diesel vermelha."
+    },
+
     "sueter-nike-verde": {
         titulo: "Suete Nike Verde",
         preco: "R$ 39,90",
@@ -64,7 +164,7 @@ const produtos = {
             "img/produtos/C2C68CF9-8494-4CD0-8A2A-07D121685A6A.jpg",
             "img/produtos/20fc2843-d590-4371-be6e-8a872cf04011.jpg",
             "img/produtos/11AD0B40-21FE-41EA-AA13-6748C9913844.jpg"
-            
+
         ],
         mensagemZap: "Olá! Tenho interesse no sueter Nike branco infantil."
     },
@@ -119,31 +219,6 @@ const produtos = {
             "img/produtos/PHOTO-2026-08-03-14-08-36_6.jpg"
         ],
         mensagemZap: "Olá! Tenho interesse na Blusa bobojado camuflado."
-    },
-
-    "camisa-brasil-azul": {
-        titulo: "Camisa Brasil Azul",
-        preco: "R$ 129,90",
-        precoNum: 129.90,
-        categoria: "camisas",
-        filtros: ["todos", "oversized", "peruana"],
-        descricao: "Caimento perfeito, estilo oversized casual. Ideal para aproveitar os jogos.",
-        fotos: [
-            "img/produtos/camisa-brasil-azul.png",
-            "img/produtos/camisa-quick-1.jpg"   // Foto extra 1
-        ],
-        mensagemZap: "Olá! Tenho interesse na camisa QuickSilver Style Marrom."
-    },
-
-    "quicksilver-marrom": {
-        titulo: "QuickSilver Style Marrom",
-        preco: "R$ 139,90",
-        precoNum: 139.90,
-        categoria: "oversized", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo oversized casual. Ideal para o dia a dia.",
-        fotos: ["img/produtos/camisa-quick-marrom.png"],
-        mensagemZap: "Olá! Tenho interesse na camisa QuickSilver Style Marrom."
     },
 
     "quicksilver-cinza": {
