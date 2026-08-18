@@ -5,6 +5,346 @@ const whatsappNumber = "5512988168291";
 
 // Banco de dados de produtos ampliado com os novos campos de controle
 const produtos = {
+    "sueter-nike-branco": {
+        titulo: "Sueter Nike Branco",
+        preco: "R$ 39,90",
+        precoNum: 39.90,
+        categoria: "moda-infantil",
+        filtros: ["todos", "nike"],
+        descricao: "Suéter infantil Nike branco, uma peça casual e confortável, ideal para compor looks estilosos no dia a dia",
+        fotos: [
+            "img/produtos/infantis/ef1e8006-197f-43b6-8bd4-61992d77ef66.JPG",
+            "img/produtos/infantis/eb38d6b2-05b2-4b70-8fca-b9bd473bf20c.JPG",
+            "img/produtos/infantis/20fc2843-d590-4371-be6e-8a872cf04011.JPG",
+            "img/produtos/infantis/f436f47d-a220-46c2-8309-2efb821f1f37.JPG"
+        ],
+        mensagemZap: "Olá! Tenho interesse no sueter Nike branco infantil."
+    },
+
+    "conjunto-lacoste-infantil": {
+        titulo: "Conjunto Lacoste Preto Listrado Infantil",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
+        categoria: "moda-infantil",
+        filtros: ["todos", "lacoste"],
+        descricao: "Conjunto infantil Lacoste preto com listras, uma opção confortável e estilosa para os pequenos usarem no dia a dia",
+        fotos: [
+            "img/produtos/infantis/d6c8bf20-025d-499b-be74-8ece93686c4d.JPG",
+            "img/produtos/infantis/fe03ad36-5daa-43c7-af42-afb141fe256f.JPG",
+            "img/produtos/infantis/6c7ee5eb-ae25-4c05-bbb2-3c50589c5d89.JPG",
+            "img/produtos/infantis/c303cdbd-8c5d-4c70-8911-dc2ef5b28df9.JPG"
+        ],
+        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
+    },
+
+    "sueter-nike-verde": {
+        titulo: "Suete Nike Verde",
+        preco: "R$ 39,90",
+        precoNum: 39.90,
+        categoria: "moda-infantil",
+        filtros: ["todos", "nike"],
+        descricao: "Suéter infantil Nike verde, com estilo casual e confortável, perfeito para deixar os looks dos pequenos ainda mais modernos",
+        fotos: [
+            "img/produtos/infantis/3adf64dc-a996-4b17-8cf3-751655a86049.JPG",
+            "img/produtos/infantis/2bc26e3f-8264-4ab4-aa43-bedab561806d.JPG",
+            "img/produtos/infantis/b879b85e-7648-4c53-a8ad-f2073889c0f7.JPG",
+            "img/produtos/infantis/c5243b9c-cc8c-44aa-95c2-4707c94e6cdd.JPG"
+        ],
+        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
+    },
+
+    "conjunto-moletom-lacoste-infantil": {
+        titulo: "Conjunto Moletom Lacoste Preto Infaltil",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
+        categoria: "moda-infantil",
+        filtros: ["todos", "lacoste"],
+        descricao: "Conjunto de moletom infantil Lacoste preto, confortável e quentinho, ideal para os dias frios com muito estilo",
+        fotos: [
+            "img/produtos/infantis/3bda7411-ff41-44c6-ad57-ef9acc2b6c6a.JPG",
+            "img/produtos/infantis/4f6429a8-83fc-442e-b339-0254b7483daa.JPG",
+            "img/produtos/infantis/6be385ca-9ce9-4193-bba4-4bb115a8982d.JPG",
+            "img/produtos/infantis/e646f0d5-bc93-4437-906b-f29f9c9d322a.JPG",
+            "img/produtos/infantis/f0c35e9a-5070-4de6-ae59-98dcd85b7149.JPG",
+            "img/produtos/infantis/f32471ba-33f5-42dd-929f-d5bf31fbaa6f.JPG"
+        ],
+        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
+    },
+
+    "infantil2": {
+        titulo: "Conjunto Lacoste Branco Listrado Infantil",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
+        categoria: "moda-infantil",
+        filtros: ["todos", "lacoste"],
+        descricao: "Conjunto infantil Lacoste branco com detalhes listrados, uma combinação leve e elegante para os pequenos",
+        fotos: [
+            "img/produtos/infantis/119632b6-0dea-4acc-b89d-cc08f0fc1da0.JPG",
+            "img/produtos/infantis/e4425e6b-3308-4788-bb9e-9adeef23fb28.JPG",
+            "img/produtos/infantis/0b3cb820-9f5b-4555-a734-d5f9830bfab0.JPG",
+            "img/produtos/infantis/c01ae756-410a-479a-a991-a610e22cd594.JPG",
+            "img/produtos/infantis/1c75991f-780f-42ed-b350-e18b6509e940.JPG",
+            "img/produtos/infantis/cf4f52ab-141f-410a-b0e5-f6dae35c2af9.JPG"
+        ],
+        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
+    },
+
+    "infantil1": {
+        titulo: "Conjunto Lacoste Branco Listrado Infantil",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
+        categoria: "moda-infantil",
+        filtros: ["todos", "lacoste"],
+        descricao: "Conjunto infantil Lacoste branco listrado, com visual moderno e versátil para criar looks confortáveis e cheios de estilo",
+        fotos: [
+            "img/produtos/infantis/20e528b8-cc0b-4c17-abb0-d1b1dc5389c5.JPG",
+            "img/produtos/infantis/40af6def-143b-4ee1-b3d1-f3faddf08f41.JPG",
+            "img/produtos/infantis/7fd7c9f7-be01-4429-84a4-549620607e9e.JPG",
+            "img/produtos/infantis/9e2a2684-f339-42b8-9840-06d9f7057bf4.JPG"
+        ],
+        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
+    },
+
+    "casaco7": {
+        titulo: "Corta Vento Adidas",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "adidas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: [
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_8.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_11.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_12.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "casaco6": {
+        titulo: "Jaqueta Tommy Hilfiger",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "tommy"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: [
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_10.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_9.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_5.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_3.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "casaco5": {
+        titulo: "Moletom Hurley",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "hurley"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: [
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_6.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_7.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_4.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_2.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_1.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "casaco4": {
+        titulo: "Moletom Quicksilver",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "Quicksilver"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: [
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_9.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_8.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_14.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_4.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "casaco3": {
+        titulo: "Sueter Lacoste cinza",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
+        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: [
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_15.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_13.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_11.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "casaco2": {
+        titulo: "Sueter Lacoste preto",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
+        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: [
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_5.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_16.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_3.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_4.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "casaco1": {
+        titulo: "Sueter Lacoste preto",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
+        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: [
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_7.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_2.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_6.jpg",
+            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_1.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+    },
+
+    "bermuda3": {
+        titulo: "Bermuda Jeans Diesel",
+        preco: "R$ 79,90",
+        precoNum: 79.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "bermudas", "diesel"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_29.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_33.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_32.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_26.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse nas bermudas da Use Marujo."
+    },
+
+    "calca5": {
+        titulo: "Calça Preta",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_4.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_2.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_15.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+    },
+
+
+    "calca4": {
+        titulo: "Calça Preta",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_21.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_23.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_1.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_6.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_13.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+    },
+
+    "calca3": {
+        titulo: "Calça Jeans",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_12.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_24.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_25.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_30.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_34.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+    },
+
+    "calca2": {
+        titulo: "Calça Modelo Tectel",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_7.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_22.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_9.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_14.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_19.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_20.jpg"
+
+        ],
+        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+    },
+
+    "calca1": {
+        titulo: "Calça Modelo Rasgada",
+        preco: "R$ 149,90",
+        precoNum: 149.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_31.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_16.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_17.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_18.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_28.jpg"
+
+        ],
+        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+    },
+
+    "bermuda2": {
+        titulo: "Bermuda Marrom",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "bermudas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_3.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_5.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_10.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_11.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_27.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse nas bermudas da Use Marujo."
+    },
+
+    "bermuda1": {
+        titulo: "Bermuda Use Marujo",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
+        filtros: ["todos", "bermudas"], // 💡 Filtro exclusivo deste produto
+        descricao: "Caimento perfeito, estilo autêntico.",
+        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25_2.jpg",
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25_1.jpg"
+        ],
+        mensagemZap: "Olá! Tenho interesse nas bermudas da Use Marujo."
+    },
 
     "polo-boss-preta": {
         titulo: "Polo Boss Preta",
@@ -103,70 +443,6 @@ const produtos = {
 
         ],
         mensagemZap: "Olá! Tenho interesse na camisa Diesel vermelha."
-    },
-
-    "sueter-nike-verde": {
-        titulo: "Suete Nike Verde",
-        preco: "R$ 39,90",
-        precoNum: 39.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "nike"], // Suas tags personalizadas de filtro
-        descricao: "Sueter casual infantil Nike verde, produto feito em algodão",
-        fotos: [
-            "img/produtos/39FC8F1F-C06D-4934-B1F2-0E71F28C2287.jpg",
-            "img/produtos/b879b85e-7648-4c53-a8ad-f2073889c0f7.JPG",
-            "img/produtos/E22E8397-06B8-4E7E-B4C5-0367263033B6.jpg",
-            "img/produtos/E33C4BAC-BCF3-4079-97C3-C7D4E9E1AF77.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
-    },
-
-    "conjunto-lacoste-infantil": {
-        titulo: "Conjunto Lacoste Listrado Infantil",
-        preco: "R$ 99,90",
-        precoNum: 99.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "lacoste"], // Suas tags personalizadas de filtro
-        descricao: "Conjunto infantil listrado da marca Lacoste, ideal para os pequenos curtirem com estilo",
-        fotos: [
-            "img/produtos/D5E4F082-0DE7-4511-BCBC-DE1306CD6649.jpg",
-            "img/produtos/D2C9175F-D962-4BC8-A787-3FB27A952025.jpg",
-            "img/produtos/39964019-36FC-48A5-89C1-DEDEEE3A546B.jpg",
-            "img/produtos/9C693B27-D627-433E-9C1D-F1FA4E9DF32E.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
-    },
-
-    "conjunto-moletom-lacoste-infantil": {
-        titulo: "Conjunto Moletom Lacoste Preto Infaltil",
-        preco: "R$ 99,90",
-        precoNum: 99.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "lacoste"], // Suas tags personalizadas de filtro
-        descricao: "Conjunto infantil preto da marca Lacoste, ideal para os pequenos curtirem o inverno com estilo",
-        fotos: [
-            "img/produtos/6ADE7189-C162-400A-ACE5-53371D4676C0.jpg",
-            "img/produtos/5CE8FAF3-D65F-4A45-A3D5-5CFE4FB1B7A6.jpg",
-            "img/produtos/87FB69A0-210E-4FBF-98EC-6FD27F4A34B7.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
-    },
-
-    "sueter-nike-branco": {
-        titulo: "Sueter Nike Branco",
-        preco: "R$ 39,90",
-        precoNum: 39.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "moda-infantil",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "nike"], // Suas tags personalizadas de filtro
-        descricao: "Sueter casual infantil Nike branco, produto feito em algodão",
-        fotos: [
-            "img/produtos/44A1A531-E0A9-4608-983E-7BCFE2E58C9D.jpg",
-            "img/produtos/C2C68CF9-8494-4CD0-8A2A-07D121685A6A.jpg",
-            "img/produtos/20fc2843-d590-4371-be6e-8a872cf04011.jpg",
-            "img/produtos/11AD0B40-21FE-41EA-AA13-6748C9913844.jpg"
-
-        ],
-        mensagemZap: "Olá! Tenho interesse no sueter Nike branco infantil."
     },
 
     "bobojaco-nike": {
