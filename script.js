@@ -159,7 +159,7 @@ const produtos = {
         preco: "R$ 149,90",
         precoNum: 149.90,
         categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "Quicksilver"], // 💡 Filtro exclusivo deste produto
+        filtros: ["todos", "quicksilver"], // 💡 Filtro exclusivo deste produto
         descricao: "Caimento perfeito, estilo autêntico.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_9.jpg",

@@ -1016,12 +1016,12 @@ ul {
 /* =========================================
    SUMÁRIO DE CATEGORIAS (MENU ANIMADO)
 ========================================= */
-#categorias {
+#categorias, #moda-infantil, #cuecasecarteiras {
     scroll-margin-top: 25px; /* Faz a rolagem parar um pouco antes, dando o espaço do menu fixo */
 }
 
-#camisas {
-    scroll-margin-top: 95px; /* Faz a rolagem parar um pouco antes, dando o espaço do menu fixo */
+#blusas, #camisas, #calcasebermudas {
+    scroll-margin-top: 100px;
 }
 
 #oversized, #moda-infantil {
