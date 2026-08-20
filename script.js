@@ -5,6 +5,74 @@ const whatsappNumber = "5512988168291";
 
 // Banco de dados de produtos ampliado com os novos campos de controle
 const produtos = {
+
+    "bermudaquick": {
+        titulo: "Bermuda Quicksilver Tectel",
+        preco: "R$ 79,90",
+        precoNum: 79.90,
+        categoria: "calcasebermudas",
+        filtros: ["todos", "quicksilver"],
+        descricao: "Bermuda Tectel 5D, simbolo emborrachado e mudança na estampa quando esta molhado!",
+        fotos: [
+            "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.38.jpeg",
+            "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.38 (1).jpeg",
+            "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.39.jpeg"
+        ],
+        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+    },
+
+    "camisa4": {
+        titulo: "Camisa Dior Cinza",
+        preco: "R$ 79,90",
+        precoNum: 79.90,
+        categoria: "camisas",
+        filtros: ["todos", "dior"],
+        descricao: "Camisa Dior cinza malha suedine, ideal para manter o equilíbrio entre conforto e estilo!",
+        fotos: [
+            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.21.43.jpeg"
+        ],
+        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+    },
+
+    "camisa3": {
+        titulo: "Camisa Armani Exchange",
+        preco: "R$ 129,90",
+        precoNum: 129.90,
+        categoria: "camisas",
+        filtros: ["todos", "armani"],
+        descricao: "Camisa Armani Exchange preta malha algodão pima, ideal para manter o equilíbrio entre conforto e estilo!",
+        fotos: [
+            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.21.31.jpeg"
+        ],
+        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+    },
+    
+    "camisa2": {
+        titulo: "Camisa Oakley Cinza",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas",
+        filtros: ["todos", "oakley"],
+        descricao: "Camisa Oakley cinza malha 100% algodão, ideal para manter o equilíbrio entre conforto e estilo!",
+        fotos: [
+            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.20.50.jpeg"
+        ],
+        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+    },
+
+    "camisa1": {
+        titulo: "Camisa Oakley Vermelha",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas",
+        filtros: ["todos", "oakley"],
+        descricao: "Camisa Oakley vermelha malha 100% algodão, ideal para manter o equilíbrio entre conforto e estilo!",
+        fotos: [
+            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.20.46.jpeg"
+        ],
+        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+    },
+
     "sueter-nike-branco": {
         titulo: "Sueter Nike Branco",
         preco: "R$ 39,90",
