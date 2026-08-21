@@ -11,14 +11,14 @@ const produtos = {
         preco: "R$ 79,90",
         precoNum: 79.90,
         categoria: "calcasebermudas",
-        filtros: ["todos", "quicksilver"],
-        descricao: "Bermuda Tectel 5D, simbolo emborrachado e mudança na estampa quando esta molhado!",
+        filtros: ["todos", "bermudas", "quicksilver"],
+        descricao: "Bermuda Quicksilver Tectel, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.38.jpeg",
             "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.38 (1).jpeg",
             "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.39.jpeg"
         ],
-        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Quicksilver Tectel que vi no site da Use Marujo."
     },
 
     "camisa4": {
@@ -27,11 +27,11 @@ const produtos = {
         precoNum: 79.90,
         categoria: "camisas",
         filtros: ["todos", "dior"],
-        descricao: "Camisa Dior cinza malha suedine, ideal para manter o equilíbrio entre conforto e estilo!",
+        descricao: "Camisa Dior Cinza, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.21.43.jpeg"
         ],
-        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Dior Cinza que vi no site da Use Marujo."
     },
 
     "camisa3": {
@@ -40,24 +40,24 @@ const produtos = {
         precoNum: 129.90,
         categoria: "camisas",
         filtros: ["todos", "armani"],
-        descricao: "Camisa Armani Exchange preta malha algodão pima, ideal para manter o equilíbrio entre conforto e estilo!",
+        descricao: "Camisa Armani Exchange, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.21.31.jpeg"
         ],
-        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Armani Exchange que vi no site da Use Marujo."
     },
-    
+
     "camisa2": {
         titulo: "Camisa Oakley Cinza",
         preco: "R$ 49,90",
         precoNum: 49.90,
         categoria: "camisas",
         filtros: ["todos", "oakley"],
-        descricao: "Camisa Oakley cinza malha 100% algodão, ideal para manter o equilíbrio entre conforto e estilo!",
+        descricao: "Camisa Oakley Cinza, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.20.50.jpeg"
         ],
-        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Oakley Cinza que vi no site da Use Marujo."
     },
 
     "camisa1": {
@@ -66,27 +66,27 @@ const produtos = {
         precoNum: 49.90,
         categoria: "camisas",
         filtros: ["todos", "oakley"],
-        descricao: "Camisa Oakley vermelha malha 100% algodão, ideal para manter o equilíbrio entre conforto e estilo!",
+        descricao: "Camisa Oakley Vermelha, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.20.46.jpeg"
         ],
-        mensagemZap: "Olá! Tenho interesse em uma das camisas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Oakley Vermelha que vi no site da Use Marujo."
     },
 
     "sueter-nike-branco": {
-        titulo: "Sueter Nike Branco",
+        titulo: "Sueter Nike Branco Infantil",
         preco: "R$ 39,90",
         precoNum: 39.90,
         categoria: "moda-infantil",
         filtros: ["todos", "nike"],
-        descricao: "Suéter infantil Nike branco, uma peça casual e confortável, ideal para compor looks estilosos no dia a dia",
+        descricao: "Sueter Nike Branco Infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/ef1e8006-197f-43b6-8bd4-61992d77ef66.JPG",
             "img/produtos/infantis/eb38d6b2-05b2-4b70-8fca-b9bd473bf20c.JPG",
             "img/produtos/infantis/20fc2843-d590-4371-be6e-8a872cf04011.JPG",
             "img/produtos/infantis/f436f47d-a220-46c2-8309-2efb821f1f37.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no sueter Nike branco infantil."
+        mensagemZap: "Olá! Tenho interesse no(a) Sueter Nike Branco Infantil que vi no site da Use Marujo."
     },
 
     "conjunto-lacoste-infantil": {
@@ -95,39 +95,39 @@ const produtos = {
         precoNum: 99.90,
         categoria: "moda-infantil",
         filtros: ["todos", "lacoste"],
-        descricao: "Conjunto infantil Lacoste preto com listras, uma opção confortável e estilosa para os pequenos usarem no dia a dia",
+        descricao: "Conjunto Lacoste Preto Listrado Infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/d6c8bf20-025d-499b-be74-8ece93686c4d.JPG",
             "img/produtos/infantis/fe03ad36-5daa-43c7-af42-afb141fe256f.JPG",
             "img/produtos/infantis/6c7ee5eb-ae25-4c05-bbb2-3c50589c5d89.JPG",
             "img/produtos/infantis/c303cdbd-8c5d-4c70-8911-dc2ef5b28df9.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
+        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Lacoste Preto Listrado Infantil que vi no site da Use Marujo."
     },
 
     "sueter-nike-verde": {
-        titulo: "Suete Nike Verde",
+        titulo: "Sueter Nike Verde Infantil",
         preco: "R$ 39,90",
         precoNum: 39.90,
         categoria: "moda-infantil",
         filtros: ["todos", "nike"],
-        descricao: "Suéter infantil Nike verde, com estilo casual e confortável, perfeito para deixar os looks dos pequenos ainda mais modernos",
+        descricao: "Sueter Nike Verde Infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/3adf64dc-a996-4b17-8cf3-751655a86049.JPG",
             "img/produtos/infantis/2bc26e3f-8264-4ab4-aa43-bedab561806d.JPG",
             "img/produtos/infantis/b879b85e-7648-4c53-a8ad-f2073889c0f7.JPG",
             "img/produtos/infantis/c5243b9c-cc8c-44aa-95c2-4707c94e6cdd.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
+        mensagemZap: "Olá! Tenho interesse no(a) Sueter Nike Verde Infantil que vi no site da Use Marujo."
     },
 
     "conjunto-moletom-lacoste-infantil": {
-        titulo: "Conjunto Moletom Lacoste Preto Infaltil",
+        titulo: "Conjunto Moletom Lacoste Preto Infantil",
         preco: "R$ 99,90",
         precoNum: 99.90,
         categoria: "moda-infantil",
         filtros: ["todos", "lacoste"],
-        descricao: "Conjunto de moletom infantil Lacoste preto, confortável e quentinho, ideal para os dias frios com muito estilo",
+        descricao: "Conjunto Moletom Lacoste Preto Infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/3bda7411-ff41-44c6-ad57-ef9acc2b6c6a.JPG",
             "img/produtos/infantis/4f6429a8-83fc-442e-b339-0254b7483daa.JPG",
@@ -136,7 +136,7 @@ const produtos = {
             "img/produtos/infantis/f0c35e9a-5070-4de6-ae59-98dcd85b7149.JPG",
             "img/produtos/infantis/f32471ba-33f5-42dd-929f-d5bf31fbaa6f.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no conjunto Lacoste infantil preto."
+        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Moletom Lacoste Preto Infantil que vi no site da Use Marujo."
     },
 
     "infantil2": {
@@ -145,7 +145,7 @@ const produtos = {
         precoNum: 99.90,
         categoria: "moda-infantil",
         filtros: ["todos", "lacoste"],
-        descricao: "Conjunto infantil Lacoste branco com detalhes listrados, uma combinação leve e elegante para os pequenos",
+        descricao: "Conjunto Lacoste Branco Listrado Infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/119632b6-0dea-4acc-b89d-cc08f0fc1da0.JPG",
             "img/produtos/infantis/e4425e6b-3308-4788-bb9e-9adeef23fb28.JPG",
@@ -154,64 +154,64 @@ const produtos = {
             "img/produtos/infantis/1c75991f-780f-42ed-b350-e18b6509e940.JPG",
             "img/produtos/infantis/cf4f52ab-141f-410a-b0e5-f6dae35c2af9.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
+        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Lacoste Branco Listrado Infantil que vi no site da Use Marujo."
     },
 
     "infantil1": {
-        titulo: "Conjunto Lacoste Branco Listrado Infantil",
+        titulo: "Conjunto Nike Branco Infantil",
         preco: "R$ 99,90",
         precoNum: 99.90,
         categoria: "moda-infantil",
-        filtros: ["todos", "lacoste"],
-        descricao: "Conjunto infantil Lacoste branco listrado, com visual moderno e versátil para criar looks confortáveis e cheios de estilo",
+        filtros: ["todos", "nike"],
+        descricao: "Conjunto Nike Branco Infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/20e528b8-cc0b-4c17-abb0-d1b1dc5389c5.JPG",
             "img/produtos/infantis/40af6def-143b-4ee1-b3d1-f3faddf08f41.JPG",
             "img/produtos/infantis/7fd7c9f7-be01-4429-84a4-549620607e9e.JPG",
             "img/produtos/infantis/9e2a2684-f339-42b8-9840-06d9f7057bf4.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no sueter Nike verde infantil."
+        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Nike Branco Infantil que vi no site da Use Marujo."
     },
 
     "casaco7": {
         titulo: "Corta Vento Adidas",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "adidas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
+        categoria: "blusas",
+        filtros: ["todos", "adidas"],
+        descricao: "Corta Vento Adidas, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_8.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_11.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_12.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Corta Vento Adidas que vi no site da Use Marujo."
     },
 
     "casaco6": {
         titulo: "Jaqueta Tommy Hilfiger",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "tommy"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
+        categoria: "blusas",
+        filtros: ["todos", "tommy"],
+        descricao: "Jaqueta Tommy Hilfiger, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_10.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_9.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_5.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_3.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Jaqueta Tommy Hilfiger que vi no site da Use Marujo."
     },
 
     "casaco5": {
         titulo: "Moletom Hurley",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "hurley"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
+        categoria: "blusas",
+        filtros: ["todos", "hurley"],
+        descricao: "Moletom Hurley, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_6.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_7.jpg",
@@ -219,215 +219,221 @@ const produtos = {
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_2.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_1.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Moletom Hurley que vi no site da Use Marujo."
     },
 
     "casaco4": {
         titulo: "Moletom Quicksilver",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "quicksilver"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
+        categoria: "blusas",
+        filtros: ["todos", "quicksilver"],
+        descricao: "Moletom Quicksilver, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_9.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_8.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_14.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_4.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Moletom Quicksilver que vi no site da Use Marujo."
     },
 
     "casaco3": {
         titulo: "Sueter Lacoste cinza",
         preco: "R$ 99,90",
         precoNum: 99.90,
-        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
+        categoria: "blusas",
+        filtros: ["todos", "lacoste"],
+        descricao: "Sueter Lacoste cinza, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_15.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_13.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_11.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Sueter Lacoste cinza que vi no site da Use Marujo."
     },
 
     "casaco2": {
         titulo: "Sueter Lacoste preto",
         preco: "R$ 99,90",
         precoNum: 99.90,
-        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
+        categoria: "blusas",
+        filtros: ["todos", "lacoste"],
+        descricao: "Sueter Lacoste preto, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_5.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_16.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_3.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_4.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Sueter Lacoste preto que vi no site da Use Marujo."
     },
 
     "casaco1": {
         titulo: "Sueter Lacoste preto",
         preco: "R$ 99,90",
         precoNum: 99.90,
-        categoria: "blusas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
+        categoria: "blusas",
+        filtros: ["todos", "lacoste"],
+        descricao: "Sueter Lacoste preto, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_7.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_2.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_6.jpg",
             "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_1.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Sueter Lacoste preto que vi no site da Use Marujo."
     },
 
     "bermuda3": {
         titulo: "Bermuda Jeans Diesel",
         preco: "R$ 79,90",
         precoNum: 79.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "bermudas", "diesel"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_29.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "bermudas", "diesel"],
+        descricao: "Bermuda Jeans Diesel, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_29.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_33.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_32.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_26.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse nas bermudas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Jeans Diesel que vi no site da Use Marujo."
     },
 
     "calca5": {
-        titulo: "Calça Preta",
+        titulo: "Calça Moletom Preta",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "calcas"],
+        descricao: "Calça Moletom Preta, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_4.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_2.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_15.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Calça Moletom Preta que vi no site da Use Marujo."
     },
-
 
     "calca4": {
         titulo: "Calça Preta",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_21.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "calcas"],
+        descricao: "Calça Preta, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_21.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_23.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_1.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_6.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_13.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Calça Preta que vi no site da Use Marujo."
     },
 
     "calca3": {
         titulo: "Calça Jeans",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_12.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "calcas"],
+        descricao: "Calça Jeans, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_12.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_24.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_25.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_30.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_34.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Calça Jeans que vi no site da Use Marujo."
     },
 
     "calca2": {
-        titulo: "Calça Modelo Tectel",
+        titulo: "Calça Nike Modelo Tectel",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_7.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "nike", "calcas"],
+        descricao: "Calça Nike Modelo Tectel, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_7.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_22.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_9.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_14.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_19.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_20.jpg"
-
         ],
-        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Calça Nike Modelo Tectel que vi no site da Use Marujo."
     },
 
     "calca1": {
         titulo: "Calça Modelo Rasgada",
         preco: "R$ 149,90",
         precoNum: 149.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "calcas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_31.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "calcas"],
+        descricao: "Calça Modelo Rasgada, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_31.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_16.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_17.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_18.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_28.jpg"
-
         ],
-        mensagemZap: "Olá! Tenho interesse nas calças da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Calça Modelo Rasgada que vi no site da Use Marujo."
     },
 
     "bermuda2": {
         titulo: "Bermuda Marrom",
         preco: "R$ 49,90",
         precoNum: 49.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "bermudas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_3.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "bermudas"],
+        descricao: "Bermuda Marrom, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_3.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_5.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_10.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_11.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_27.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse nas bermudas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Marrom que vi no site da Use Marujo."
     },
 
     "bermuda1": {
-        titulo: "Bermuda Use Marujo",
+        titulo: "Bermuda Azul",
         preco: "R$ 49,90",
         precoNum: 49.90,
-        categoria: "calcasebermudas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "bermudas"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25.jpg",
+        categoria: "calcasebermudas",
+        filtros: ["todos", "bermudas"],
+        descricao: "Bermuda Azul, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25_2.jpg",
             "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25_1.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse nas bermudas da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Azul que vi no site da Use Marujo."
     },
 
     "polo-boss-preta": {
         titulo: "Polo Boss Preta",
         preco: "R$ 49,90",
         precoNum: 49.90,
-        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.20.jpeg",
+        categoria: "camisas",
+        filtros: ["todos", "boss"],
+        descricao: "Polo Boss Preta, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.20.jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.19 (1).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.18.jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.18 (1).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.19.jpeg"
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Polo Boss Preta que vi no site da Use Marujo."
     },
 
     "camisa-lacoste-logo-marrom": {
@@ -452,128 +458,148 @@ const produtos = {
         titulo: "Camisa Lacoste Marrom",
         preco: "R$ 49,90",
         precoNum: 49.90,
-        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
+        categoria: "camisas",
+        filtros: ["todos", "lacoste"],
+        descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
+            "img/produtos/fotoetiqueta.jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (1).jpeg"
-
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Lacoste Marrom que vi no site da Use Marujo."
     },
 
     "camisa-lacoste-logo-marrom": {
         titulo: "Camisa Lacoste Marrom",
         preco: "R$ 49,90",
         precoNum: 49.90,
-        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
+        categoria: "camisas",
+        filtros: ["todos", "lacoste"],
+        descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg",
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (1).jpeg"
+        ],
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Lacoste Marrom que vi no site da Use Marujo."
+    },
+
+    "camisa-lacoste-logo-marrom": {
+        titulo: "Camisa Lacoste Marrom",
+        preco: "R$ 49,90",
+        precoNum: 49.90,
+        categoria: "camisas",
+        filtros: ["todos", "lacoste"],
+        descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg"
-
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Lacoste Marrom que vi no site da Use Marujo."
     },
 
     "camisa-boss-preta-listrada": {
         titulo: "Camisa Boss Preta Listrada",
         preco: "R$ 49,90",
         precoNum: 49.90,
-        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "boss"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (3).jpeg",
+        categoria: "camisas",
+        filtros: ["todos", "boss"],
+        descricao: "Camisa Boss Preta Listrada, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (3).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (1).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (2).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09.jpeg"
-
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Boss preta."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Boss Preta Listrada que vi no site da Use Marujo."
     },
 
     "camisa-diesel-vermelha": {
         titulo: "Camisa Diesel Vermelha",
         preco: "R$ 49,90",
         precoNum: 49.90,
-        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (3).jpeg",
+        categoria: "camisas",
+        filtros: ["todos"],
+        descricao: "Camisa Diesel Vermelha, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (3).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (1).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (2).jpeg",
             "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08.jpeg"
-
         ],
-        mensagemZap: "Olá! Tenho interesse na camisa Diesel vermelha."
+        mensagemZap: "Olá! Tenho interesse no(a) Camisa Diesel Vermelha que vi no site da Use Marujo."
     },
 
     "bobojaco-nike": {
         titulo: "Bobojaco Nike Preto",
         preco: "R$ 299,90",
-        precoNum: 299.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "nike"], // Suas tags personalizadas de filtro
-        descricao: "Blusa estilo bobojaco Nike preta, com tecido em estilo camurça, ideal para o curtir o frio em estilo",
+        precoNum: 299.90,
+        categoria: "blusas",
+        filtros: ["todos", "nike"],
+        descricao: "Bobojaco Nike Preto, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/PHOTO-2026-08-03-14-08-36_4.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na Blusa bobojado da Nike preta."
+        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Nike Preto que vi no site da Use Marujo."
     },
 
     "bobojaco-boss": {
         titulo: "Bobojaco Boss Marrom",
         preco: "R$ 349,90",
-        precoNum: 349.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "boss"], // Suas tags personalizadas de filtro
-        descricao: "Blusa estilo bobojaco Boss Marrom, com tecido em estilo tectel, ideal para o curtir o frio em estilo",
+        precoNum: 349.90,
+        categoria: "blusas",
+        filtros: ["todos", "boss"],
+        descricao: "Bobojaco Boss Marrom, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/PHOTO-2026-08-03-14-08-36_7.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na Blusa bobojado da Boss Marrom."
+        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Boss Marrom que vi no site da Use Marujo."
     },
 
     "bobojaco-camuflado-1": {
         titulo: "Bobojaco Camuflado Claro",
         preco: "R$ 199,90",
-        precoNum: 199.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "camuflado"], // Suas tags personalizadas de filtro
-        descricao: "Blusa estilo bobojaco camuflada, com tecido em estilo tectel, ideal para o curtir o frio em estilo",
+        precoNum: 199.90,
+        categoria: "blusas",
+        filtros: ["todos", "camuflado"],
+        descricao: "Bobojaco Camuflado Claro, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/PHOTO-2026-08-03-14-08-36_3.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na Blusa bobojado camuflado."
+        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Camuflado Claro que vi no site da Use Marujo."
     },
 
     "bobojaco-camuflado-2": {
         titulo: "Bobojaco Camuflado Escuro",
         preco: "R$ 199,90",
-        precoNum: 199.90,              // Campo numérico para ordenação de menor/maior preço
-        categoria: "blusas",          // ID da seção/categoria à qual o produto pertence
-        filtros: ["todos", "camuflado"], // Suas tags personalizadas de filtro
-        descricao: "Blusa estilo bobojaco camuflada, com tecido em estilo tectel, ideal para o curtir o frio em estilo",
+        precoNum: 199.90,
+        categoria: "blusas",
+        filtros: ["todos", "camuflado"],
+        descricao: "Bobojaco Camuflado Escuro, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/PHOTO-2026-08-03-14-08-36_6.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse na Blusa bobojado camuflado."
+        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Camuflado Escuro que vi no site da Use Marujo."
     },
 
     "quicksilver-cinza": {
         titulo: "QuickSilver Logo Cinza",
         preco: "R$ 129,90",
         precoNum: 129.90,
-        categoria: "oversized", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "malha-americana"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo oversized casual.",
-        fotos: ["img/produtos/camisa-quick-cinza.png"],
-        mensagemZap: "Olá! Tenho interesse na camisa QuickSilver Logo Cinza."
+        categoria: "oversized",
+        filtros: ["todos", "malha-americana"],
+        descricao: "QuickSilver Logo Cinza, uma peça versátil e estilosa para o dia a dia.",
+        fotos: [
+            "img/produtos/camisa-quick-cinza.png"
+        ],
+        mensagemZap: "Olá! Tenho interesse no(a) QuickSilver Logo Cinza que vi no site da Use Marujo."
     }
 };
 
