@@ -91,8 +91,8 @@ const produtos = {
 
     "conjunto-lacoste-infantil": {
         titulo: "Conjunto Lacoste Preto Listrado Infantil",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
+        preco: "R$ 119,90",
+        precoNum: 119.90,
         categoria: "moda-infantil",
         filtros: ["todos", "lacoste"],
         descricao: "Conjunto Lacoste Preto Listrado Infantil, uma peça versátil e estilosa para o dia a dia.",
@@ -175,8 +175,8 @@ const produtos = {
 
     "casaco7": {
         titulo: "Corta Vento Adidas",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
+        preco: "R$ 69,90",
+        precoNum: 69.90,
         categoria: "blusas",
         filtros: ["todos", "adidas"],
         descricao: "Corta Vento Adidas, uma peça versátil e estilosa para o dia a dia.",
@@ -191,8 +191,8 @@ const produtos = {
 
     "casaco6": {
         titulo: "Jaqueta Tommy Hilfiger",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
+        preco: "R$ 399,90",
+        precoNum: 399.90,
         categoria: "blusas",
         filtros: ["todos", "tommy"],
         descricao: "Jaqueta Tommy Hilfiger, uma peça versátil e estilosa para o dia a dia.",
@@ -421,8 +421,8 @@ const produtos = {
 
     "polo-boss-preta": {
         titulo: "Polo Boss Preta",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        preco: "R$ 79,90",
+        precoNum: 79.90,
         categoria: "camisas",
         filtros: ["todos", "boss"],
         descricao: "Polo Boss Preta, uma peça versátil e estilosa para o dia a dia.",
@@ -438,8 +438,8 @@ const produtos = {
 
     "camisa-lacoste-logo-marrom": {
         titulo: "Camisa Lacoste Marrom",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        preco: "R$ 69,90",
+        precoNum: 69.90,
         categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
         filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
         descricao: "Caimento perfeito, estilo autêntico.",
@@ -537,19 +537,6 @@ const produtos = {
         mensagemZap: "Olá! Tenho interesse no(a) Camisa Diesel Vermelha que vi no site da Use Marujo."
     },
 
-    "bobojaco-nike": {
-        titulo: "Bobojaco Nike Preto",
-        preco: "R$ 299,90",
-        precoNum: 299.90,
-        categoria: "blusas",
-        filtros: ["todos", "nike"],
-        descricao: "Bobojaco Nike Preto, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/PHOTO-2026-08-03-14-08-36_4.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Nike Preto que vi no site da Use Marujo."
-    },
-
     "bobojaco-boss": {
         titulo: "Bobojaco Boss Marrom",
         preco: "R$ 349,90",
@@ -558,35 +545,10 @@ const produtos = {
         filtros: ["todos", "boss"],
         descricao: "Bobojaco Boss Marrom, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
-            "img/produtos/PHOTO-2026-08-03-14-08-36_7.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Boss Marrom que vi no site da Use Marujo."
-    },
-
-    "bobojaco-camuflado-1": {
-        titulo: "Bobojaco Camuflado Claro",
-        preco: "R$ 199,90",
-        precoNum: 199.90,
-        categoria: "blusas",
-        filtros: ["todos", "camuflado"],
-        descricao: "Bobojaco Camuflado Claro, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
+            "img/produtos/PHOTO-2026-08-03-14-08-36_7.jpg",
             "img/produtos/PHOTO-2026-08-03-14-08-36_3.jpg"
         ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Camuflado Claro que vi no site da Use Marujo."
-    },
-
-    "bobojaco-camuflado-2": {
-        titulo: "Bobojaco Camuflado Escuro",
-        preco: "R$ 199,90",
-        precoNum: 199.90,
-        categoria: "blusas",
-        filtros: ["todos", "camuflado"],
-        descricao: "Bobojaco Camuflado Escuro, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/PHOTO-2026-08-03-14-08-36_6.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Camuflado Escuro que vi no site da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Boss Marrom que vi no site da Use Marujo."
     },
 
     "quicksilver-cinza": {
