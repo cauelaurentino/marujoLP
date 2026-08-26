@@ -74,19 +74,19 @@ const produtos = {
     },
 
     "sueter-nike-branco": {
-        titulo: "Sueter Nike Branco Infantil",
-        preco: "R$ 39,90",
-        precoNum: 39.90,
+        titulo: "Camiseta Canelada Manga Longa Branca Infantil",
+        preco: "R$ 59,90",
+        precoNum: 59.90,
         categoria: "moda-infantil",
         filtros: ["todos", "nike"],
-        descricao: "Sueter Nike Branco Infantil, uma peça versátil e estilosa para o dia a dia.",
+        descricao: "Camiseta canelada manga longa infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/ef1e8006-197f-43b6-8bd4-61992d77ef66.JPG",
             "img/produtos/infantis/eb38d6b2-05b2-4b70-8fca-b9bd473bf20c.JPG",
             "img/produtos/infantis/20fc2843-d590-4371-be6e-8a872cf04011.JPG",
             "img/produtos/infantis/f436f47d-a220-46c2-8309-2efb821f1f37.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no(a) Sueter Nike Branco Infantil que vi no site da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Camiseta canelada manga longa infantil que vi no site da Use Marujo."
     },
 
     "conjunto-lacoste-infantil": {
@@ -106,25 +106,25 @@ const produtos = {
     },
 
     "sueter-nike-verde": {
-        titulo: "Sueter Nike Verde Infantil",
-        preco: "R$ 39,90",
-        precoNum: 39.90,
+        titulo: "Camiseta Canelada Manga Longa Verde Infantil",
+        preco: "R$ 59,90",
+        precoNum: 59.90,
         categoria: "moda-infantil",
         filtros: ["todos", "nike"],
-        descricao: "Sueter Nike Verde Infantil, uma peça versátil e estilosa para o dia a dia.",
+        descricao: "Camiseta Canelada Manga Longa Verde Infantil, uma peça versátil e estilosa para o dia a dia.",
         fotos: [
             "img/produtos/infantis/3adf64dc-a996-4b17-8cf3-751655a86049.JPG",
             "img/produtos/infantis/2bc26e3f-8264-4ab4-aa43-bedab561806d.JPG",
             "img/produtos/infantis/b879b85e-7648-4c53-a8ad-f2073889c0f7.JPG",
             "img/produtos/infantis/c5243b9c-cc8c-44aa-95c2-4707c94e6cdd.JPG"
         ],
-        mensagemZap: "Olá! Tenho interesse no(a) Sueter Nike Verde Infantil que vi no site da Use Marujo."
+        mensagemZap: "Olá! Tenho interesse no(a) Camiseta Canelada Manga Longa Verde Infantil que vi no site da Use Marujo."
     },
 
     "conjunto-moletom-lacoste-infantil": {
         titulo: "Conjunto Moletom Lacoste Preto Infantil",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
+        preco: "R$ 119,90",
+        precoNum: 119.90,
         categoria: "moda-infantil",
         filtros: ["todos", "lacoste"],
         descricao: "Conjunto Moletom Lacoste Preto Infantil, uma peça versátil e estilosa para o dia a dia.",
@@ -141,8 +141,8 @@ const produtos = {
 
     "infantil2": {
         titulo: "Conjunto Lacoste Branco Listrado Infantil",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
+        preco: "R$ 119,90",
+        precoNum: 119.90,
         categoria: "moda-infantil",
         filtros: ["todos", "lacoste"],
         descricao: "Conjunto Lacoste Branco Listrado Infantil, uma peça versátil e estilosa para o dia a dia.",
@@ -159,8 +159,8 @@ const produtos = {
 
     "infantil1": {
         titulo: "Conjunto Nike Branco Infantil",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
+        preco: "R$ 119,90",
+        precoNum: 119.90,
         categoria: "moda-infantil",
         filtros: ["todos", "nike"],
         descricao: "Conjunto Nike Branco Infantil, uma peça versátil e estilosa para o dia a dia.",
@@ -288,8 +288,8 @@ const produtos = {
 
     "bermuda3": {
         titulo: "Bermuda Jeans Diesel",
-        preco: "R$ 79,90",
-        precoNum: 79.90,
+        preco: "R$ 139,90",
+        precoNum: 139.90,
         categoria: "calcasebermudas",
         filtros: ["todos", "bermudas", "diesel"],
         descricao: "Bermuda Jeans Diesel, uma peça versátil e estilosa para o dia a dia.",
@@ -304,8 +304,8 @@ const produtos = {
 
     "calca5": {
         titulo: "Calça Moletom Preta",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
+        preco: "R$ 79,90",
+        precoNum: 79.90,
         categoria: "calcasebermudas",
         filtros: ["todos", "calcas"],
         descricao: "Calça Moletom Preta, uma peça versátil e estilosa para o dia a dia.",
@@ -354,8 +354,8 @@ const produtos = {
 
     "calca2": {
         titulo: "Calça Nike Modelo Tectel",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
+        preco: "R$ 79,90",
+        precoNum: 79.90,
         categoria: "calcasebermudas",
         filtros: ["todos", "nike", "calcas"],
         descricao: "Calça Nike Modelo Tectel, uma peça versátil e estilosa para o dia a dia.",
@@ -388,9 +388,9 @@ const produtos = {
     },
 
     "bermuda2": {
-        titulo: "Bermuda Marrom",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        titulo: "Bermuda Sarja",
+        preco: "R$ 99,90",
+        precoNum: 99.90,
         categoria: "calcasebermudas",
         filtros: ["todos", "bermudas"],
         descricao: "Bermuda Marrom, uma peça versátil e estilosa para o dia a dia.",
@@ -405,9 +405,9 @@ const produtos = {
     },
 
     "bermuda1": {
-        titulo: "Bermuda Azul",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        titulo: "Bermuda de Linho Azul Bebê",
+        preco: "R$ 79,90",
+        precoNum: 79.90,
         categoria: "calcasebermudas",
         filtros: ["todos", "bermudas"],
         descricao: "Bermuda Azul, uma peça versátil e estilosa para o dia a dia.",
@@ -456,8 +456,8 @@ const produtos = {
 
     "camisa-lacoste-logo-marrom": {
         titulo: "Camisa Lacoste Marrom",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        preco: "R$ 69,90",
+        precoNum: 69.90,
         categoria: "camisas",
         filtros: ["todos", "lacoste"],
         descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
@@ -474,25 +474,8 @@ const produtos = {
 
     "camisa-lacoste-logo-marrom": {
         titulo: "Camisa Lacoste Marrom",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
-        categoria: "camisas",
-        filtros: ["todos", "lacoste"],
-        descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (1).jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Lacoste Marrom que vi no site da Use Marujo."
-    },
-
-    "camisa-lacoste-logo-marrom": {
-        titulo: "Camisa Lacoste Marrom",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        preco: "R$ 69,90",
+        precoNum: 69.90,
         categoria: "camisas",
         filtros: ["todos", "lacoste"],
         descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
@@ -507,8 +490,8 @@ const produtos = {
 
     "camisa-boss-preta-listrada": {
         titulo: "Camisa Boss Preta Listrada",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        preco: "R$ 69,90",
+        precoNum: 69.90,
         categoria: "camisas",
         filtros: ["todos", "boss"],
         descricao: "Camisa Boss Preta Listrada, uma peça versátil e estilosa para o dia a dia.",
@@ -523,8 +506,8 @@ const produtos = {
 
     "camisa-diesel-vermelha": {
         titulo: "Camisa Diesel Vermelha",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
+        preco: "R$ 69,90",
+        precoNum: 69.90,
         categoria: "camisas",
         filtros: ["todos"],
         descricao: "Camisa Diesel Vermelha, uma peça versátil e estilosa para o dia a dia.",
