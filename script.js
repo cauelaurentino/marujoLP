@@ -1,595 +1,207 @@
 // ==========================================
-// CONFIGURAÇÕES DA LOJA (EDITE AQUI)
+// CONFIGURAÇÕES DA LOJA E FIREBASE
 // ==========================================
 const whatsappNumber = "5512988168291";
 
-// Banco de dados de produtos ampliado com os novos campos de controle
-const produtos = {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-    "bermudaquick": {
-        titulo: "Bermuda Quicksilver Tectel",
-        preco: "R$ 79,90",
-        precoNum: 79.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "bermudas", "quicksilver"],
-        descricao: "Bermuda Quicksilver Tectel, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.38.jpeg",
-            "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.38 (1).jpeg",
-            "img/produtos/calcasebermudas/WhatsApp Image 2026-08-19 at 20.48.39.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Quicksilver Tectel que vi no site da Use Marujo."
-    },
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDhOdVX9pxPzOpfOJZfsfjfjh_N0AUPA9k",
+    authDomain: "usemarujo-bb701.firebaseapp.com",
+    projectId: "usemarujo-bb701",
+    storageBucket: "usemarujo-bb701.firebasestorage.app",
+    messagingSenderId: "268367201875",
+    appId: "1:268367201875:web:368ca1268dcd4b92bfa8a6",
+    measurementId: "G-5YTJTJC80L"
+  };
 
-    "camisa4": {
-        titulo: "Camisa Dior Cinza",
-        preco: "R$ 79,90",
-        precoNum: 79.90,
-        categoria: "camisas",
-        filtros: ["todos", "dior"],
-        descricao: "Camisa Dior Cinza, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.21.43.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Dior Cinza que vi no site da Use Marujo."
-    },
+// Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 
-    "camisa3": {
-        titulo: "Camisa Armani Exchange",
-        preco: "R$ 129,90",
-        precoNum: 129.90,
-        categoria: "camisas",
-        filtros: ["todos", "armani"],
-        descricao: "Camisa Armani Exchange, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.21.31.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Armani Exchange que vi no site da Use Marujo."
-    },
+  // ADICIONE ESTA LINHA:
+  const db = getFirestore(app);
 
-    "camisa2": {
-        titulo: "Camisa Oakley Cinza",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
-        categoria: "camisas",
-        filtros: ["todos", "oakley"],
-        descricao: "Camisa Oakley Cinza, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.20.50.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Oakley Cinza que vi no site da Use Marujo."
-    },
+// Armazenamento global em memória dos produtos vindos do banco
+let produtos = {};
 
-    "camisa1": {
-        titulo: "Camisa Oakley Vermelha",
-        preco: "R$ 49,90",
-        precoNum: 49.90,
-        categoria: "camisas",
-        filtros: ["todos", "oakley"],
-        descricao: "Camisa Oakley Vermelha, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/camisas/WhatsApp Image 2026-08-19 at 20.20.46.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Oakley Vermelha que vi no site da Use Marujo."
-    },
-
-    "sueter-nike-branco": {
-        titulo: "Camiseta Canelada Manga Longa Branca Infantil",
-        preco: "R$ 59,90",
-        precoNum: 59.90,
-        categoria: "moda-infantil",
-        filtros: ["todos", "nike"],
-        descricao: "Camiseta canelada manga longa infantil, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/infantis/ef1e8006-197f-43b6-8bd4-61992d77ef66.JPG",
-            "img/produtos/infantis/eb38d6b2-05b2-4b70-8fca-b9bd473bf20c.JPG",
-            "img/produtos/infantis/20fc2843-d590-4371-be6e-8a872cf04011.JPG",
-            "img/produtos/infantis/f436f47d-a220-46c2-8309-2efb821f1f37.JPG"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camiseta canelada manga longa infantil que vi no site da Use Marujo."
-    },
-
-    "conjunto-lacoste-infantil": {
-        titulo: "Conjunto Lacoste Preto Listrado Infantil",
-        preco: "R$ 119,90",
-        precoNum: 119.90,
-        categoria: "moda-infantil",
-        filtros: ["todos", "lacoste"],
-        descricao: "Conjunto Lacoste Preto Listrado Infantil, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/infantis/d6c8bf20-025d-499b-be74-8ece93686c4d.JPG",
-            "img/produtos/infantis/fe03ad36-5daa-43c7-af42-afb141fe256f.JPG",
-            "img/produtos/infantis/6c7ee5eb-ae25-4c05-bbb2-3c50589c5d89.JPG",
-            "img/produtos/infantis/c303cdbd-8c5d-4c70-8911-dc2ef5b28df9.JPG"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Lacoste Preto Listrado Infantil que vi no site da Use Marujo."
-    },
-
-    "sueter-nike-verde": {
-        titulo: "Camiseta Canelada Manga Longa Verde Infantil",
-        preco: "R$ 59,90",
-        precoNum: 59.90,
-        categoria: "moda-infantil",
-        filtros: ["todos", "nike"],
-        descricao: "Camiseta Canelada Manga Longa Verde Infantil, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/infantis/3adf64dc-a996-4b17-8cf3-751655a86049.JPG",
-            "img/produtos/infantis/2bc26e3f-8264-4ab4-aa43-bedab561806d.JPG",
-            "img/produtos/infantis/b879b85e-7648-4c53-a8ad-f2073889c0f7.JPG",
-            "img/produtos/infantis/c5243b9c-cc8c-44aa-95c2-4707c94e6cdd.JPG"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camiseta Canelada Manga Longa Verde Infantil que vi no site da Use Marujo."
-    },
-
-    "conjunto-moletom-lacoste-infantil": {
-        titulo: "Conjunto Moletom Lacoste Preto Infantil",
-        preco: "R$ 119,90",
-        precoNum: 119.90,
-        categoria: "moda-infantil",
-        filtros: ["todos", "lacoste"],
-        descricao: "Conjunto Moletom Lacoste Preto Infantil, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/infantis/3bda7411-ff41-44c6-ad57-ef9acc2b6c6a.JPG",
-            "img/produtos/infantis/4f6429a8-83fc-442e-b339-0254b7483daa.JPG",
-            "img/produtos/infantis/6be385ca-9ce9-4193-bba4-4bb115a8982d.JPG",
-            "img/produtos/infantis/e646f0d5-bc93-4437-906b-f29f9c9d322a.JPG",
-            "img/produtos/infantis/f0c35e9a-5070-4de6-ae59-98dcd85b7149.JPG",
-            "img/produtos/infantis/f32471ba-33f5-42dd-929f-d5bf31fbaa6f.JPG"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Moletom Lacoste Preto Infantil que vi no site da Use Marujo."
-    },
-
-    "infantil2": {
-        titulo: "Conjunto Lacoste Branco Listrado Infantil",
-        preco: "R$ 119,90",
-        precoNum: 119.90,
-        categoria: "moda-infantil",
-        filtros: ["todos", "lacoste"],
-        descricao: "Conjunto Lacoste Branco Listrado Infantil, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/infantis/119632b6-0dea-4acc-b89d-cc08f0fc1da0.JPG",
-            "img/produtos/infantis/e4425e6b-3308-4788-bb9e-9adeef23fb28.JPG",
-            "img/produtos/infantis/0b3cb820-9f5b-4555-a734-d5f9830bfab0.JPG",
-            "img/produtos/infantis/c01ae756-410a-479a-a991-a610e22cd594.JPG",
-            "img/produtos/infantis/1c75991f-780f-42ed-b350-e18b6509e940.JPG",
-            "img/produtos/infantis/cf4f52ab-141f-410a-b0e5-f6dae35c2af9.JPG"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Lacoste Branco Listrado Infantil que vi no site da Use Marujo."
-    },
-
-    "infantil1": {
-        titulo: "Conjunto Nike Branco Infantil",
-        preco: "R$ 119,90",
-        precoNum: 119.90,
-        categoria: "moda-infantil",
-        filtros: ["todos", "nike"],
-        descricao: "Conjunto Nike Branco Infantil, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/infantis/20e528b8-cc0b-4c17-abb0-d1b1dc5389c5.JPG",
-            "img/produtos/infantis/40af6def-143b-4ee1-b3d1-f3faddf08f41.JPG",
-            "img/produtos/infantis/7fd7c9f7-be01-4429-84a4-549620607e9e.JPG",
-            "img/produtos/infantis/9e2a2684-f339-42b8-9840-06d9f7057bf4.JPG"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Conjunto Nike Branco Infantil que vi no site da Use Marujo."
-    },
-
-    "casaco7": {
-        titulo: "Corta Vento Adidas",
-        preco: "R$ 69,90",
-        precoNum: 69.90,
-        categoria: "blusas",
-        filtros: ["todos", "adidas"],
-        descricao: "Corta Vento Adidas, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_8.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_11.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_12.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Corta Vento Adidas que vi no site da Use Marujo."
-    },
-
-    "casaco6": {
-        titulo: "Jaqueta Tommy Hilfiger",
-        preco: "R$ 399,90",
-        precoNum: 399.90,
-        categoria: "blusas",
-        filtros: ["todos", "tommy"],
-        descricao: "Jaqueta Tommy Hilfiger, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_10.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_9.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_5.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_3.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Jaqueta Tommy Hilfiger que vi no site da Use Marujo."
-    },
-
-    "casaco5": {
-        titulo: "Moletom Hurley",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
-        categoria: "blusas",
-        filtros: ["todos", "hurley"],
-        descricao: "Moletom Hurley, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_6.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_7.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_4.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_2.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-52_1.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Moletom Hurley que vi no site da Use Marujo."
-    },
-
-    "casaco4": {
-        titulo: "Moletom Quicksilver",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
-        categoria: "blusas",
-        filtros: ["todos", "quicksilver"],
-        descricao: "Moletom Quicksilver, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_9.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_8.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_14.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_4.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Moletom Quicksilver que vi no site da Use Marujo."
-    },
-
-    "casaco3": {
-        titulo: "Sueter Lacoste cinza",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
-        categoria: "blusas",
-        filtros: ["todos", "lacoste"],
-        descricao: "Sueter Lacoste cinza, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_15.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_13.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_11.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Sueter Lacoste cinza que vi no site da Use Marujo."
-    },
-
-    "casaco2": {
-        titulo: "Sueter Lacoste preto",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
-        categoria: "blusas",
-        filtros: ["todos", "lacoste"],
-        descricao: "Sueter Lacoste preto, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_5.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_16.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_3.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_4.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Sueter Lacoste preto que vi no site da Use Marujo."
-    },
-
-    "casaco1": {
-        titulo: "Sueter Lacoste preto",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
-        categoria: "blusas",
-        filtros: ["todos", "lacoste"],
-        descricao: "Sueter Lacoste preto, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_7.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_2.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_6.jpg",
-            "img/produtos/blusas/PHOTO-2026-08-10-15-49-07_1.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Sueter Lacoste preto que vi no site da Use Marujo."
-    },
-
-    "bermuda3": {
-        titulo: "Bermuda Jeans Diesel",
-        preco: "R$ 139,90",
-        precoNum: 139.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "bermudas", "diesel"],
-        descricao: "Bermuda Jeans Diesel, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_29.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_33.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_32.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_26.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Jeans Diesel que vi no site da Use Marujo."
-    },
-
-    "calca5": {
-        titulo: "Calça Moletom Preta",
-        preco: "R$ 79,90",
-        precoNum: 79.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "calcas"],
-        descricao: "Calça Moletom Preta, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_4.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_2.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_15.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Calça Moletom Preta que vi no site da Use Marujo."
-    },
-
-    "calca4": {
-        titulo: "Calça Preta",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "calcas"],
-        descricao: "Calça Preta, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_21.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_23.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_1.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_6.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_13.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Calça Preta que vi no site da Use Marujo."
-    },
-
-    "calca3": {
-        titulo: "Calça Jeans",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "calcas"],
-        descricao: "Calça Jeans, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_12.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_24.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_25.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_30.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_34.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Calça Jeans que vi no site da Use Marujo."
-    },
-
-    "calca2": {
-        titulo: "Calça Nike Modelo Tectel",
-        preco: "R$ 79,90",
-        precoNum: 79.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "nike", "calcas"],
-        descricao: "Calça Nike Modelo Tectel, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_7.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_22.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_9.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_14.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_19.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_20.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Calça Nike Modelo Tectel que vi no site da Use Marujo."
-    },
-
-    "calca1": {
-        titulo: "Calça Modelo Rasgada",
-        preco: "R$ 149,90",
-        precoNum: 149.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "calcas"],
-        descricao: "Calça Modelo Rasgada, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_31.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_16.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_17.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_18.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_28.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Calça Modelo Rasgada que vi no site da Use Marujo."
-    },
-
-    "bermuda2": {
-        titulo: "Bermuda Sarja",
-        preco: "R$ 99,90",
-        precoNum: 99.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "bermudas"],
-        descricao: "Bermuda Marrom, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_3.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_5.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_10.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_11.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-43-29_27.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Marrom que vi no site da Use Marujo."
-    },
-
-    "bermuda1": {
-        titulo: "Bermuda de Linho Azul Bebê",
-        preco: "R$ 79,90",
-        precoNum: 79.90,
-        categoria: "calcasebermudas",
-        filtros: ["todos", "bermudas"],
-        descricao: "Bermuda Azul, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25_2.jpg",
-            "img/produtos/calcasebermudas/PHOTO-2026-08-10-16-41-25_1.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bermuda Azul que vi no site da Use Marujo."
-    },
-
-    "polo-boss-preta": {
-        titulo: "Polo Boss Preta",
-        preco: "R$ 79,90",
-        precoNum: 79.90,
-        categoria: "camisas",
-        filtros: ["todos", "boss"],
-        descricao: "Polo Boss Preta, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.20.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.19 (1).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.18.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.18 (1).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.19.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Polo Boss Preta que vi no site da Use Marujo."
-    },
-
-    "camisa-lacoste-logo-marrom": {
-        titulo: "Camisa Lacoste Marrom",
-        preco: "R$ 69,90",
-        precoNum: 69.90,
-        categoria: "camisas", // 💡 Deve ser igual ao data-categoria do HTML
-        filtros: ["todos", "lacoste"], // 💡 Filtro exclusivo deste produto
-        descricao: "Caimento perfeito, estilo autêntico.",
-        fotos: ["img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
-            "img/produtos/fotoetiqueta.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (1).jpeg"
-
-        ],
-        mensagemZap: "Olá! Tenho interesse na camisa Lacose marrom."
-    },
-
-    "camisa-lacoste-logo-marrom": {
-        titulo: "Camisa Lacoste Marrom",
-        preco: "R$ 69,90",
-        precoNum: 69.90,
-        categoria: "camisas",
-        filtros: ["todos", "lacoste"],
-        descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
-            "img/produtos/fotoetiqueta.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (1).jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Lacoste Marrom que vi no site da Use Marujo."
-    },
-
-    "camisa-lacoste-logo-marrom": {
-        titulo: "Camisa Lacoste Marrom",
-        preco: "R$ 69,90",
-        precoNum: 69.90,
-        categoria: "camisas",
-        filtros: ["todos", "lacoste"],
-        descricao: "Camisa Lacoste Marrom, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.15 (1).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.14.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12.jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.18.12 (2).jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Lacoste Marrom que vi no site da Use Marujo."
-    },
-
-    "camisa-boss-preta-listrada": {
-        titulo: "Camisa Boss Preta Listrada",
-        preco: "R$ 69,90",
-        precoNum: 69.90,
-        categoria: "camisas",
-        filtros: ["todos", "boss"],
-        descricao: "Camisa Boss Preta Listrada, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (3).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (1).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09 (2).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.09.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Boss Preta Listrada que vi no site da Use Marujo."
-    },
-
-    "camisa-diesel-vermelha": {
-        titulo: "Camisa Diesel Vermelha",
-        preco: "R$ 69,90",
-        precoNum: 69.90,
-        categoria: "camisas",
-        filtros: ["todos"],
-        descricao: "Camisa Diesel Vermelha, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (3).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (1).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08 (2).jpeg",
-            "img/produtos/WhatsApp Image 2026-08-05 at 20.17.08.jpeg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Camisa Diesel Vermelha que vi no site da Use Marujo."
-    },
-
-    "bobojaco-boss": {
-        titulo: "Bobojaco Boss Marrom",
-        preco: "R$ 349,90",
-        precoNum: 349.90,
-        categoria: "blusas",
-        filtros: ["todos", "boss"],
-        descricao: "Bobojaco Boss Marrom, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/PHOTO-2026-08-03-14-08-36_7.jpg",
-            "img/produtos/PHOTO-2026-08-03-14-08-36_3.jpg"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) Bobojaco Boss Marrom que vi no site da Use Marujo."
-    },
-
-    "quicksilver-cinza": {
-        titulo: "QuickSilver Logo Cinza",
-        preco: "R$ 129,90",
-        precoNum: 129.90,
-        categoria: "oversized",
-        filtros: ["todos", "malha-americana"],
-        descricao: "QuickSilver Logo Cinza, uma peça versátil e estilosa para o dia a dia.",
-        fotos: [
-            "img/produtos/camisa-quick-cinza.png"
-        ],
-        mensagemZap: "Olá! Tenho interesse no(a) QuickSilver Logo Cinza que vi no site da Use Marujo."
+// Função para buscar os produtos no Firestore
+async function carregarProdutosDoBanco() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "produtos"));
+        produtos = {};
+        querySnapshot.forEach((docSnapshot) => {
+            produtos[docSnapshot.id] = docSnapshot.data();
+        });
+        
+        // Inicializa a renderização das categorias assim que os dados chegarem
+        inicializarLoja();
+    } catch (error) {
+        console.error("Erro ao carregar produtos:", error);
     }
-};
+}
 
 // ==========================================
-// 🚀 LÓGICA DE FILTROS E INJEÇÃO AUTOMÁTICA (INDEX)
+// LÓGICA DE FILTROS E INJEÇÃO AUTOMÁTICA
 // ==========================================
 function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos", ordenarPorPreco = false) {
     const grid = document.querySelector(`#${categoriaId} .carrossel-track`);
     if (!grid) return;
 
-    // Limpa a track para re-renderizar os produtos filtrados
     grid.innerHTML = "";
 
-    // 1. Filtra apenas os produtos que pertencem a esta categoria específica (ex: 'camisas' ou 'oversized')
     let listaFiltrada = Object.keys(produtos)
         .map(id => ({ id, ...produtos[id] }))
         .filter(p => p.categoria === categoriaId);
 
-    // 2. Se o filtro selecionado NÃO for "todos", filtra pela tag específica (ex: 'tailandesa', 'peruana')
     if (filtroSelecionado !== "todos") {
         listaFiltrada = listaFiltrada.filter(p => p.filtros && p.filtros.includes(filtroSelecionado));
     }
 
-    // 3. Ordena por menor preço se o usuário escolheu essa opção
     if (ordenarPorPreco) {
         listaFiltrada.sort((a, b) => a.precoNum - b.precoNum);
     }
 
-    // 4. Renderiza os cards na tela
     listaFiltrada.forEach(p => {
         const card = document.createElement("div");
         card.className = "produto-card";
         card.innerHTML = `
-    <div class="img-container">
-        <img src="${p.fotos[0]}" alt="${p.titulo}">
-    </div>
-    <div class="produto-info">
-        <h4>${p.titulo}</h4>
-        <p class="preco">${p.preco}</p>
-        <a href="produto.html?id=${p.id}" class="btn btn-block">Ver Detalhes</a>
-    </div>
-`;
+            <div class="img-container">
+                <img src="${p.fotos[0]}" alt="${p.titulo}">
+            </div>
+            <div class="produto-info">
+                <h4>${p.titulo}</h4>
+                <p class="preco">${p.preco}</p>
+                <a href="produto.html?id=${p.id}" class="btn btn-block">Ver Detalhes</a>
+            </div>
+        `;
         grid.appendChild(card);
     });
 }
+
+function inicializarLoja() {
+    const dropdowns = document.querySelectorAll(".categoria-filtro");
+
+    dropdowns.forEach(select => {
+        const categoriaId = select.getAttribute("data-categoria");
+
+        if (categoriaId) {
+            renderizarProdutosPorCategoria(categoriaId, "todos", false);
+        }
+
+        select.addEventListener("change", (e) => {
+            const valorOpcao = e.target.value;
+            if (valorOpcao === "menor-preco") {
+                renderizarProdutosPorCategoria(categoriaId, "todos", true);
+            } else {
+                renderizarProdutosPorCategoria(categoriaId, valorOpcao, false);
+            }
+        });
+    });
+
+    // Se estiver na página de detalhes do produto
+    if (window.location.href.toLowerCase().includes("produto.html")) {
+        carregarDetalhesDoProduto();
+    }
+}
+
+// ==========================================
+// LÓGICA DA PÁGINA DE PRODUTOS DETALHADA
+// ==========================================
+function carregarDetalhesDoProduto() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const produtoId = urlParams.get('id');
+
+    if (produtoId && produtos[produtoId]) {
+        const prod = produtos[produtoId];
+
+        if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = prod.titulo;
+        if (document.getElementById('prod-preco')) document.getElementById('prod-preco').innerText = prod.preco;
+        if (document.getElementById('prod-desc')) document.getElementById('prod-desc').innerText = prod.descricao;
+
+        const btnZap = document.getElementById('prod-btn-zap');
+        if (btnZap) {
+            btnZap.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prod.mensagemZap)}`;
+        }
+
+        const galeriaSlides = document.getElementById("prod-galeria-slides");
+        if (galeriaSlides && prod.fotos) {
+            galeriaSlides.innerHTML = "";
+            prod.fotos.forEach((foto, index) => {
+                const slide = document.createElement("div");
+                slide.className = `prod-slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `<img src="${foto}" alt="Foto ${index + 1}">`;
+                galeriaSlides.appendChild(slide);
+            });
+
+            const slidesProd = galeriaSlides.querySelectorAll(".prod-slide");
+            let currentProdSlide = 0;
+
+            function mudarSlideProduto(direcao) {
+                if (slidesProd.length <= 1) return;
+                slidesProd[currentProdSlide].classList.remove("active");
+                currentProdSlide = (currentProdSlide + direcao + slidesProd.length) % slidesProd.length;
+                slidesProd[currentProdSlide].classList.add("active");
+            }
+
+            const btnPrev = document.querySelector(".prod-carousel-btn.prev");
+            const btnNext = document.querySelector(".prod-carousel-btn.next");
+
+            if (btnPrev && btnNext) {
+                if (slidesProd.length > 1) {
+                    btnPrev.onclick = () => mudarSlideProduto(-1);
+                    btnNext.onclick = () => mudarSlideProduto(1);
+                } else {
+                    btnPrev.style.display = "none";
+                    btnNext.style.display = "none";
+                }
+            }
+        }
+
+        const gridSemelhantes = document.getElementById("produtos-semelhantes-grid");
+        if (gridSemelhantes) {
+            gridSemelhantes.innerHTML = "";
+            const semelhantes = Object.keys(produtos)
+                .map(id => ({ id, ...produtos[id] }))
+                .filter(p => p.categoria === prod.categoria && p.id !== produtoId);
+
+            if (semelhantes.length === 0) {
+                gridSemelhantes.innerHTML = "<p class='txt-muted'>Nenhum produto semelhante encontrado.</p>";
+            } else {
+                semelhantes.forEach(p => {
+                    const card = document.createElement("div");
+                    card.className = "produto-card";
+                    card.innerHTML = `
+                        <div class="produto-img">
+                            <a href="produto.html?id=${p.id}">
+                            <img src="${p.fotos[0]}" alt="${p.titulo}">
+                        </div>
+                        <div class="produto-info">
+                            <h4>${p.titulo}</h4>
+                            <p class="preco">${p.preco}</p>
+                            Ver Detalhes</a>
+                        </div>
+                    `;
+                    gridSemelhantes.appendChild(card);
+                });
+            }
+        }
+    } else {
+        if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = "Produto não encontrado";
+    }
+}
+
+// Dispara a busca no banco ao carregar a página
+document.addEventListener("DOMContentLoaded", carregarProdutosDoBanco);
+
+// ==========================================
+// 🚀 LÓGICA DE FILTROS E INJEÇÃO AUTOMÁTICA (INDEX)
+// ==========================================
 
 // Inicializador dos dropdowns de filtros na página Index
 document.addEventListener("DOMContentLoaded", () => {
