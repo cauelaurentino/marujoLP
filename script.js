@@ -5,11 +5,8 @@ const whatsappNumber = "5512988168291";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";  // TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyDhOdVX9pxPzOpfOJZfsfjfjh_N0AUPA9k",
     authDomain: "usemarujo-bb701.firebaseapp.com",
@@ -20,18 +17,37 @@ const firebaseConfig = {
     measurementId: "G-5YTJTJC80L"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-// ADICIONE ESTA LINHA:
 const db = getFirestore(app);
 
-// Armazenamento global em memória dos produtos vindos do banco
+// Armazenamento global em memória
 let produtos = {};
 
-// Função para buscar os produtos no Firestore
+// ==========================================
+// SISTEMA DE CACHE LOCAL DE PRODUTOS (INSTANTÂNEO)
+// ==========================================
 async function carregarProdutosDoBanco() {
+    const CACHE_KEY = "usemarujo_produtos_cache";
+    const CACHE_TIME_KEY = "usemarujo_produtos_time";
+    const TEMPO_EXPIRACAO = 15 * 60 * 1000; // 15 Minutos
+
+    const cacheSalvo = localStorage.getItem(CACHE_KEY);
+    const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
+    const agora = Date.now();
+
+    // Se o cache existir e for recente, carrega instantaneamente
+    if (cacheSalvo && cacheTime && (agora - parseInt(cacheTime, 10) < TEMPO_EXPIRACAO)) {
+        try {
+            produtos = JSON.parse(cacheSalvo);
+            inicializarLoja();
+            return;
+        } catch (e) {
+            console.warn("Cache corrompido, buscando dados novos do banco...");
+        }
+    }
+
+    // Se o cache expirou ou não existe, consulta o Firestore
     try {
         const querySnapshot = await getDocs(collection(db, "produtos"));
         produtos = {};
@@ -39,7 +55,10 @@ async function carregarProdutosDoBanco() {
             produtos[docSnapshot.id] = docSnapshot.data();
         });
 
-        // Inicializa a renderização das categorias assim que os dados chegarem
+        // Grava no cache do navegador
+        localStorage.setItem(CACHE_KEY, JSON.stringify(produtos));
+        localStorage.setItem(CACHE_TIME_KEY, agora.toString());
+
         inicializarLoja();
     } catch (error) {
         console.error("Erro ao carregar produtos:", error);
@@ -47,7 +66,7 @@ async function carregarProdutosDoBanco() {
 }
 
 // ==========================================
-// LÓGICA DE FILTROS E INJEÇÃO AUTOMÁTICA
+// LÓGICA DE FILTROS E RENDERIZAÇÃO
 // ==========================================
 function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos", ordenarPorPreco = false) {
     const grid = document.querySelector(`#${categoriaId} .carrossel-track`);
@@ -55,35 +74,29 @@ function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos"
 
     grid.innerHTML = "";
 
-    // Mapeia os produtos e filtra pela categoria
     let listaFiltrada = Object.keys(produtos)
         .map(id => ({ id, ...produtos[id] }))
         .filter(p => p.categoria === categoriaId);
 
-    // Aplica o filtro de tags (se houver)
     if (filtroSelecionado !== "todos") {
         listaFiltrada = listaFiltrada.filter(p => p.filtros && p.filtros.includes(filtroSelecionado));
     }
 
-    // ORDENAÇÃO: Se escolheu menor preço, ordena por preço. Senão, usa a ORDEM definida no Admin!
     if (ordenarPorPreco) {
         listaFiltrada.sort((a, b) => a.precoNum - b.precoNum);
     } else {
         listaFiltrada.sort((a, b) => (a.ordem || 0) - (b.ordem || 0));
     }
 
-    // Renderiza os cards na tela
     listaFiltrada.forEach(p => {
         const imagemCapa = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/300x400?text=Sem+Foto";
-
-        // Verifica se existem tamanhos cadastrados para este produto
         const tamanhosTexto = p.tamanhos ? ` - ${p.tamanhos}` : "";
 
         const card = document.createElement("div");
         card.className = "produto-card";
         card.innerHTML = `
             <div class="img-container">
-                <img src="${imagemCapa}" alt="${p.titulo}">
+                <img src="${imagemCapa}" alt="${p.titulo}" loading="lazy" decoding="async">
             </div>
             <div class="produto-info">
                 <h4>${p.titulo}</h4>
@@ -105,27 +118,23 @@ function inicializarLoja() {
             renderizarProdutosPorCategoria(categoriaId, "todos", false);
         }
 
-        select.addEventListener("change", (e) => {
+        select.onchange = (e) => {
             const valorOpcao = e.target.value;
             if (valorOpcao === "menor-preco") {
                 renderizarProdutosPorCategoria(categoriaId, "todos", true);
             } else {
                 renderizarProdutosPorCategoria(categoriaId, valorOpcao, false);
             }
-        });
+        };
     });
 
-    // Se estiver na página de detalhes do produto
     if (window.location.href.toLowerCase().includes("produto.html")) {
         carregarDetalhesDoProduto();
     }
 }
 
 // ==========================================
-// LÓGICA DA PÁGINA DE PRODUTOS DETALHADA
-// ==========================================
-// ==========================================
-// LÓGICA DA PÁGINA DE PRODUTOS DETALHADA
+// LÓGICA DA PÁGINA DE DETALHES DO PRODUTO
 // ==========================================
 function carregarDetalhesDoProduto() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -134,24 +143,19 @@ function carregarDetalhesDoProduto() {
     if (produtoId && produtos[produtoId]) {
         const prod = produtos[produtoId];
 
-        // Diagnóstico no console (F12)
-        console.log("Produto carregado:", prod);
-        console.log("Tamanhos do produto:", prod.tamanhos);
-
         if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = prod.titulo;
         if (document.getElementById('prod-preco')) document.getElementById('prod-preco').innerText = prod.preco;
         if (document.getElementById('prod-desc')) document.getElementById('prod-desc').innerText = prod.descricao;
 
-        // --- EXIBIÇÃO DOS TAMANHOS ---
         const blocoTamanhos = document.getElementById("bloco-tamanhos");
         const txtTamanhos = document.getElementById("prod-tamanhos");
 
         if (blocoTamanhos && txtTamanhos) {
             if (prod.tamanhos && prod.tamanhos.trim() !== "") {
                 txtTamanhos.innerText = prod.tamanhos;
-                blocoTamanhos.style.display = "block"; // Exibe o bloco
+                blocoTamanhos.style.display = "block";
             } else {
-                blocoTamanhos.style.display = "none";  // Oculta se estiver vazio
+                blocoTamanhos.style.display = "none";
             }
         }
 
@@ -166,7 +170,7 @@ function carregarDetalhesDoProduto() {
             prod.fotos.forEach((foto, index) => {
                 const slide = document.createElement("div");
                 slide.className = `prod-slide ${index === 0 ? 'active' : ''}`;
-                slide.innerHTML = `<img src="${foto}" alt="Foto ${index + 1}">`;
+                slide.innerHTML = `<img src="${foto}" alt="Foto ${index + 1}" loading="lazy" decoding="async">`;
                 galeriaSlides.appendChild(slide);
             });
 
@@ -187,6 +191,8 @@ function carregarDetalhesDoProduto() {
                 if (slidesProd.length > 1) {
                     btnPrev.onclick = () => mudarSlideProduto(-1);
                     btnNext.onclick = () => mudarSlideProduto(1);
+                    btnPrev.style.display = "block";
+                    btnNext.style.display = "block";
                 } else {
                     btnPrev.style.display = "none";
                     btnNext.style.display = "none";
@@ -210,12 +216,13 @@ function carregarDetalhesDoProduto() {
                     card.innerHTML = `
                         <div class="produto-img">
                             <a href="produto.html?id=${p.id}">
-                            <img src="${p.fotos[0]}" alt="${p.titulo}">
+                                <img src="${p.fotos[0]}" alt="${p.titulo}" loading="lazy" decoding="async">
+                            </a>
                         </div>
                         <div class="produto-info">
                             <h4>${p.titulo}</h4>
                             <p class="preco">${p.preco}</p>
-                            Ver Detalhes</a>
+                            <a href="produto.html?id=${p.id}">Ver Detalhes</a>
                         </div>
                     `;
                     gridSemelhantes.appendChild(card);
@@ -227,297 +234,113 @@ function carregarDetalhesDoProduto() {
     }
 }
 
-// Dispara a busca no banco ao carregar a página
+// Inicializador principal
 document.addEventListener("DOMContentLoaded", carregarProdutosDoBanco);
 
 // ==========================================
-// 🚀 LÓGICA DE FILTROS E INJEÇÃO AUTOMÁTICA (INDEX)
-// ==========================================
-
-// Inicializador dos dropdowns de filtros na página Index
-document.addEventListener("DOMContentLoaded", () => {
-    const dropdowns = document.querySelectorAll(".categoria-filtro");
-
-    dropdowns.forEach(select => {
-        const categoriaId = select.getAttribute("data-categoria");
-
-        // Renderização inicial padrão (mostra tudo da categoria)
-        if (categoriaId) {
-            renderizarProdutosPorCategoria(categoriaId, "todos", false);
-        }
-
-        // Monitora as escolhas do usuário no dropdown
-        select.addEventListener("change", (e) => {
-            const valorOpcao = e.target.value;
-            if (valorOpcao === "menor-preco") {
-                renderizarProdutosPorCategoria(categoriaId, "todos", true);
-            } else {
-                renderizarProdutosPorCategoria(categoriaId, valorOpcao, false);
-            }
-        });
-    });
-});
-
-// ==========================================
-// 🚀 LÓGICA DA PÁGINA DE PRODUTOS (GALERIA & SEMELHANTES)
-// ==========================================
-if (window.location.href.toLowerCase().includes("produto.html")) {
-    document.addEventListener("DOMContentLoaded", () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const produtoId = urlParams.get('id');
-
-        if (produtoId && produtos[produtoId]) {
-            const prod = produtos[produtoId];
-
-            // Injeta dados de texto principais
-            // Injeta dados de texto principais
-            if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = prod.titulo;
-            if (document.getElementById('prod-preco')) document.getElementById('prod-preco').innerText = prod.preco;
-            if (document.getElementById('prod-desc')) document.getElementById('prod-desc').innerText = prod.descricao;
-
-            // INJETA OS TAMANHOS (SE EXISTIREM)
-            const blocoTamanhos = document.getElementById("bloco-tamanhos");
-            const txtTamanhos = document.getElementById("prod-tamanhos");
-
-            if (blocoTamanhos && txtTamanhos) {
-                if (prod.tamanhos && prod.tamanhos.trim() !== "") {
-                    txtTamanhos.innerText = prod.tamanhos;
-                    blocoTamanhos.style.display = "block"; // Mostra na tela
-                } else {
-                    blocoTamanhos.style.display = "none"; // Esconde se não tiver tamanho
-                }
-            }
-
-            const btnZap = document.getElementById('prod-btn-zap');
-            if (btnZap) {
-                btnZap.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prod.mensagemZap)}`;
-            }
-
-            // --- NOVO: CARROSSEL INTERNO DE IMAGENS DO PRODUTO ---
-            const galeriaSlides = document.getElementById("prod-galeria-slides");
-            if (galeriaSlides && prod.fotos) {
-                galeriaSlides.innerHTML = "";
-                prod.fotos.forEach((foto, index) => {
-                    const slide = document.createElement("div");
-                    slide.className = `prod-slide ${index === 0 ? 'active' : ''}`;
-                    slide.innerHTML = `<img src="${foto}" alt="Foto ${index + 1}">`;
-                    galeriaSlides.appendChild(slide);
-                });
-
-                // Controles de navegação do carrossel do produto
-                const slidesProd = galeriaSlides.querySelectorAll(".prod-slide");
-                let currentProdSlide = 0;
-
-                function mudarSlideProduto(direcao) {
-                    if (slidesProd.length <= 1) return;
-                    slidesProd[currentProdSlide].classList.remove("active");
-                    currentProdSlide = (currentProdSlide + direcao + slidesProd.length) % slidesProd.length;
-                    slidesProd[currentProdSlide].classList.add("active");
-                }
-
-                const btnPrev = document.querySelector(".prod-carousel-btn.prev");
-                const btnNext = document.querySelector(".prod-carousel-btn.next");
-
-                if (btnPrev && btnNext) {
-                    if (slidesProd.length > 1) {
-                        btnPrev.addEventListener("click", () => mudarSlideProduto(-1));
-                        btnNext.addEventListener("click", () => mudarSlideProduto(1));
-                    } else {
-                        // Esconde as setas se houver apenas uma foto cadastrada
-                        btnPrev.style.display = "none";
-                        btnNext.style.display = "none";
-                    }
-                }
-            } else if (document.getElementById('prod-img-principal')) {
-                // Mantém compatibilidade caso o layout antigo ainda esteja ativo
-                document.getElementById('prod-img-principal').src = prod.fotos[0];
-            }
-
-            // --- NOVO: SEÇÃO DE PRODUTOS SEMELHANTES ---
-            const gridSemelhantes = document.getElementById("produtos-semelhantes-grid");
-            if (gridSemelhantes) {
-                gridSemelhantes.innerHTML = "";
-
-                // Filtra itens da mesma categoria, descartando o produto que já está aberto na tela
-                const semelhantes = Object.keys(produtos)
-                    .map(id => ({ id, ...produtos[id] }))
-                    .filter(p => p.categoria === prod.categoria && p.id !== produtoId);
-
-                if (semelhantes.length === 0) {
-                    gridSemelhantes.innerHTML = "<p class='txt-muted'>Nenhum produto semelhante encontrado.</p>";
-                } else {
-                    semelhantes.forEach(p => {
-                        const card = document.createElement("div");
-                        card.className = "produto-card";
-                        card.innerHTML = `
-                            <div class="produto-img">
-                                <a href="produto.html?id=${p.id}" class="btn btn-ver-detalhes">
-                                <img src="${p.fotos[0]}" alt="${p.titulo}">
-                            </div>
-                            <div class="produto-info">
-                                <h4>${p.titulo}</h4>
-                                <p class="preco">${p.preco}</p>
-                                Ver Detalhes</a>
-                            </div>
-                        `;
-                        gridSemelhantes.appendChild(card);
-                    });
-                }
-            }
-        } else {
-            if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = "Produto não encontrado";
-        }
-    });
-}
-
-// ==========================================
-// 1. GERAÇÃO DE LINKS DO WHATSAPP (GERAL)
+// OUTROS RECURSOS DA INTERFACE (WHATSAPP, MENU, HERO)
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
+    // Links WhatsApp
     const waLinks = document.querySelectorAll(".wa-link");
     waLinks.forEach(link => {
         const customMsg = link.getAttribute("data-msg") || "Olá! Gostaria de mais informações.";
         link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(customMsg)}`;
     });
-});
 
-// ==========================================
-// 2. MENU MOBILE TOGGLE
-// ==========================================
-const mobileToggle = document.querySelector('.mobile-toggle');
-const navMenu = document.querySelector('.nav-menu');
+    // Menu Mobile
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const navMenu = document.querySelector('.nav-menu');
 
-if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        const icon = mobileToggle.querySelector('i');
-        if (navMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    const navLinks = document.querySelectorAll(".nav-menu a");
-    navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
-            if (mobileToggle.querySelector("i")) {
-                mobileToggle.querySelector("i").className = "fas fa-bars";
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         });
-    });
-}
 
-// ==========================================
-// 3. CARROSSEL HERO (AUTOMÁTICO E MANUAL)
-// ==========================================
-const slides = document.querySelectorAll('.hero-carousel .slide');
-const dots = document.querySelectorAll('.hero-indicators .dot');
-const prevBtn = document.querySelector('.hero-prev');
-const nextBtn = document.querySelector('.hero-next');
-let currentSlide = 0;
-let slideInterval;
-
-if (slides.length > 0) {
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        currentSlide = (index + slides.length) % slides.length;
-
-        slides[currentSlide].classList.add('active');
-        if (dots.length > 0) dots[currentSlide].classList.add('active');
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("active");
+                if (mobileToggle.querySelector("i")) {
+                    mobileToggle.querySelector("i").className = "fas fa-bars";
+                }
+            });
+        });
     }
 
-    function nextSlide() {
-        showSlide(currentSlide + 1);
-    }
+    // Carrossel Hero
+    const slides = document.querySelectorAll('.hero-carousel .slide');
+    const dots = document.querySelectorAll('.hero-indicators .dot');
+    const prevBtn = document.querySelector('.hero-prev');
+    const nextBtn = document.querySelector('.hero-next');
+    let currentSlide = 0;
+    let slideInterval;
 
-    function prevSlide() {
-        showSlide(currentSlide - 1);
-    }
+    if (slides.length > 0) {
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
 
-    function startSlideShow() {
-        slideInterval = setInterval(nextSlide, 5000);
-    }
+            currentSlide = (index + slides.length) % slides.length;
 
-    function resetSlideShow() {
-        clearInterval(slideInterval);
+            slides[currentSlide].classList.add('active');
+            if (dots.length > 0) dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+
+        function startSlideShow() { slideInterval = setInterval(nextSlide, 5000); }
+        function resetSlideShow() { clearInterval(slideInterval); startSlideShow(); }
+
+        if (nextBtn && prevBtn) {
+            nextBtn.addEventListener('click', () => { nextSlide(); resetSlideShow(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); resetSlideShow(); });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                resetSlideShow();
+            });
+        });
+
         startSlideShow();
     }
 
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', () => { nextSlide(); resetSlideShow(); });
-        prevBtn.addEventListener('click', () => { prevSlide(); resetSlideShow(); });
-    }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            showSlide(index);
-            resetSlideShow();
-        });
-    });
-
-    startSlideShow();
-}
-
-// ==========================================
-// 4. CARROSSEL DE PRODUTOS (UNIVERSAL)
-// ==========================================
-document.addEventListener("DOMContentLoaded", function () {
+    // Navegação dos carrosséis universais
     const conteineresProdutos = document.querySelectorAll('.carrossel-track, .produtos-grid, .carrossel-container, .produtos-carrossel');
-
     conteineresProdutos.forEach((grid) => {
         const secaoPai = grid.parentElement;
-
         if (secaoPai) {
             const btnPrev = secaoPai.querySelector('.carrossel-btn.prev, .carrossel-prev, .prev-btn, .produtos-prev');
             const btnNext = secaoPai.querySelector('.carrossel-btn.next, .carrossel-next, .next-btn, .produtos-next');
 
             if (btnPrev && btnNext) {
                 const scrollStep = 320;
-
-                btnNext.addEventListener('click', () => {
-                    grid.scrollBy({ left: scrollStep, behavior: 'smooth' });
-                });
-
-                btnPrev.addEventListener('click', () => {
-                    grid.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-                });
+                btnNext.addEventListener('click', () => { grid.scrollBy({ left: scrollStep, behavior: 'smooth' }); });
+                btnPrev.addEventListener('click', () => { grid.scrollBy({ left: -scrollStep, behavior: 'smooth' }); });
             }
         }
     });
-});
-
-// ==========================================
-// 5. SISTEMA DE BALÃO INTELIGENTE
-// ==========================================
-const balloonMessages = [
-    "👋 Procurando o caimento perfeito? Fale conosco!",
-    "🔥 Frete fixo para a nossa região! Consulte no WhatsApp.",
-    "⚡ Peças limitadas! Não perca seu tamanho.",
-    "👕 Camisas premium com estampas exclusivas!",
-    "⚓ Vista Use Marujo e navegue no estilo!"
-];
-
-const smartBalloon = document.getElementById("smartBalloon");
-const balloonText = document.getElementById("balloonText");
-
-function showBalloon() {
+    
     if (smartBalloon && balloonText) {
-        const randomMsg = balloonMessages[Math.floor(Math.random() * balloonMessages.length)];
-        balloonText.innerText = randomMsg;
-        smartBalloon.classList.add("show");
-
         setTimeout(() => {
-            smartBalloon.classList.remove("show");
-        }, 6000);
+            const randomMsg = balloonMessages[Math.floor(Math.random() * balloonMessages.length)];
+            balloonText.innerText = randomMsg;
+            smartBalloon.classList.add("show");
+            setTimeout(() => { smartBalloon.classList.remove("show"); }, 6000);
+        }, 3000);
     }
-}
 
-// Ano atual do Rodapé
-const yearEl = document.getElementById("year");
-if (yearEl) yearEl.innerText = new Date().getFullYear();
+    // Ano atual no Footer
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.innerText = new Date().getFullYear();
+});

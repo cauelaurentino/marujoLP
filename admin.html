@@ -242,10 +242,12 @@
                 <label>Senha</label>
                 <input type="password" id="login-senha" required placeholder="******">
             </div>
-            <button type="submit" id="btn-entrar" class="btn" style="width: 100%; background: #d4af37; color: black; font-weight: bold; padding: 12px; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">
+            <button type="submit" id="btn-entrar" class="btn"
+                style="width: 100%; background: #d4af37; color: black; font-weight: bold; padding: 12px; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">
                 Entrar no Painel
             </button>
-            <p id="login-erro" style="color: #ff4d4d; margin-top: 12px; font-size: 14px; text-align: center; margin-bottom: 0;"></p>
+            <p id="login-erro"
+                style="color: #ff4d4d; margin-top: 12px; font-size: 14px; text-align: center; margin-bottom: 0;"></p>
         </form>
     </div>
 
@@ -253,11 +255,14 @@
     <!-- 2. PAINEL ADMIN (Exibido APENAS quando autenticado) -->
     <!-- ========================================== -->
     <div id="painel-admin" style="display: none;">
-        
+
         <!-- Barra Superior com Logout -->
-        <div style="max-width: 1000px; margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
-            <span style="color: #d4af37; font-weight: bold; font-size: 18px;"><i class="fa-solid fa-anchor"></i> USE MARUJO - Painel Admin</span>
-            <button id="btn-logout" style="background: #ff4d4d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+        <div
+            style="max-width: 1000px; margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
+            <span style="color: #d4af37; font-weight: bold; font-size: 18px;"><i class="fa-solid fa-anchor"></i> USE
+                MARUJO - Painel Admin</span>
+            <button id="btn-logout"
+                style="background: #ff4d4d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
                 <i class="fa-solid fa-right-from-bracket"></i> Sair
             </button>
         </div>
@@ -313,14 +318,17 @@
                     <div id="preview-container" class="preview-container"></div>
                 </div>
 
-                <button type="submit" id="btn-salvar" class="btn btn-gold btn-block" style="width: 100%; padding: 12px; background: #d4af37; color: black; font-weight: bold; border: none; border-radius: 5px; cursor: pointer;">Salvar no Firestore</button>
+                <button type="submit" id="btn-salvar" class="btn btn-gold btn-block"
+                    style="width: 100%; padding: 12px; background: #d4af37; color: black; font-weight: bold; border: none; border-radius: 5px; cursor: pointer;">Salvar
+                    no Firestore</button>
             </form>
             <div id="status" class="status-msg"></div>
         </div>
 
         <!-- Painel de Gerenciamento CRUD e Reordenação -->
         <div class="admin-container gerenciamento-container" style="margin-top: 40px; max-width: 1000px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
                 <h2 style="margin: 0;"><i class="fa-solid fa-boxes-stacked"></i> Gerenciar Produtos Cadastrados</h2>
                 <button id="btn-salvar-ordem" class="btn"
                     style="background: #25D366; color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 5px; cursor: not-allowed; opacity: 0.5;"
@@ -342,6 +350,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDhOdVX9pxPzOpfOJZfsfjfjh_N0AUPA9k",
@@ -356,6 +365,13 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
+        const storage = getStorage(app);
+
+        // Função para limpar o cache dos clientes quando o admin fizer alterações
+        function invalidarCacheLoja() {
+            localStorage.removeItem("usemarujo_produtos_cache");
+            localStorage.removeItem("usemarujo_produtos_time");
+        }
 
         // ==========================================
         // SISTEMA DE LOGIN E SEGURANÇA DA TELA
@@ -366,19 +382,17 @@
         const loginErro = document.getElementById("login-erro");
         const btnLogout = document.getElementById("btn-logout");
 
-        // Monitora em tempo real se o usuário está logado
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 painelLogin.style.display = "none";
                 painelAdmin.style.display = "block";
-                carregarProdutosAdmin(); // Carrega os produtos ao entrar
+                carregarProdutosAdmin();
             } else {
                 painelLogin.style.display = "block";
                 painelAdmin.style.display = "none";
             }
         });
 
-        // Ação de Login
         if (formLogin) {
             formLogin.addEventListener("submit", async (e) => {
                 e.preventDefault();
@@ -396,7 +410,6 @@
             });
         }
 
-        // Ação de Sair (Logout)
         if (btnLogout) {
             btnLogout.addEventListener("click", () => {
                 signOut(auth);
@@ -406,7 +419,7 @@
         // ==========================================
         // VARIÁVEIS GLOBAIS DE PRODUTOS E FOTOS
         // ==========================================
-        let listaFotosBase64 = [];
+        let listaFotos = []; // Armazena URLs públicas das imagens
         let produtoEditandoId = null;
         let produtosCarregados = [];
         let ordemAlterada = false;
@@ -418,64 +431,12 @@
         const btnSalvar = document.getElementById("btn-salvar");
 
         // ==========================================
-        // GERENCIAMENTO DE FOTOS
+        // GERENCIAMENTO E UPLOAD DE FOTOS (STORAGE)
         // ==========================================
         btnAddFoto.addEventListener("click", () => fotosInput.click());
 
-        fotosInput.addEventListener("change", async (e) => {
-            const files = Array.from(e.target.files);
-            if (listaFotosBase64.length + files.length > 5) {
-                alert("Atenção: O limite máximo é de 5 fotos por produto.");
-                fotosInput.value = "";
-                return;
-            }
-
-            const statusEl = document.getElementById("status");
-            statusEl.style.color = "#d4af37";
-
-            for (let i = 0; i < files.length; i++) {
-                statusEl.innerText = `Processando foto ${i + 1}...`;
-                const base64 = await compressAndConvertToBase64(files[i]);
-                listaFotosBase64.push(base64);
-            }
-            statusEl.innerText = "";
-            fotosInput.value = "";
-            renderizarPreview();
-        });
-
-        function renderizarPreview() {
-            previewContainer.innerHTML = "";
-            listaFotosBase64.forEach((foto, index) => {
-                const card = document.createElement("div");
-                card.className = "foto-preview-card";
-                card.innerHTML = `
-                    <div class="foto-tag">${index === 0 ? "1ª (Capa)" : `${index + 1}ª Foto`}</div>
-                    <img src="${foto}" alt="Foto ${index + 1}">
-                    <div class="foto-acoes">
-                        ${index > 0 ? `<button type="button" onclick="moverFotoForm(${index}, -1)">⬅️</button>` : '<span></span>'}
-                        <button type="button" class="btn-remove" onclick="removerFotoForm(${index})">❌</button>
-                        ${index < listaFotosBase64.length - 1 ? `<button type="button" onclick="moverFotoForm(${index}, 1)">➡️</button>` : '<span></span>'}
-                    </div>
-                `;
-                previewContainer.appendChild(card);
-            });
-        }
-
-        window.moverFotoForm = function (index, direcao) {
-            const novoIndex = index + direcao;
-            if (novoIndex >= 0 && novoIndex < listaFotosBase64.length) {
-                const itemRemovido = listaFotosBase64.splice(index, 1)[0];
-                listaFotosBase64.splice(novoIndex, 0, itemRemovido);
-                renderizarPreview();
-            }
-        };
-
-        window.removerFotoForm = function (index) {
-            listaFotosBase64.splice(index, 1);
-            renderizarPreview();
-        };
-
-        async function compressAndConvertToBase64(file, maxWidth = 700, quality = 0.55) {
+        // Compacta a imagem antes do upload (Gera Blob WebP leve)
+        function compressImageToBlob(file, maxWidth = 800, quality = 0.7) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
@@ -494,11 +455,84 @@
                         canvas.height = height;
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, width, height);
-                        resolve(canvas.toDataURL('image/webp', quality));
+                        canvas.toBlob((blob) => resolve(blob), 'image/webp', quality);
                     };
+                    img.onerror = (err) => reject(err);
                 };
+                reader.onerror = (err) => reject(err);
             });
         }
+
+        // Envia o arquivo para o Firebase Storage e retorna a URL pública
+        async function uploadFotoStorage(file) {
+            const blob = await compressImageToBlob(file);
+            const nomeLimpo = file.name.replace(/[^a-zA-Z0-9.]/g, "_");
+            const nomeArquivo = `produtos/${Date.now()}_${nomeLimpo}.webp`;
+            const storageRef = ref(storage, nomeArquivo);
+            await uploadBytes(storageRef, blob);
+            return await getDownloadURL(storageRef);
+        }
+
+        fotosInput.addEventListener("change", async (e) => {
+            const files = Array.from(e.target.files);
+            if (listaFotos.length + files.length > 5) {
+                alert("Atenção: O limite máximo é de 5 fotos por produto.");
+                fotosInput.value = "";
+                return;
+            }
+
+            const statusEl = document.getElementById("status");
+            statusEl.style.color = "#d4af37";
+
+            try {
+                for (let i = 0; i < files.length; i++) {
+                    statusEl.innerText = `Enviando foto ${i + 1} de ${files.length} para o servidor...`;
+                    const url = await uploadFotoStorage(files[i]);
+                    listaFotos.push(url);
+                }
+                statusEl.innerText = "Upload das fotos concluído com sucesso!";
+                statusEl.style.color = "#25D366";
+            } catch (err) {
+                console.error("Erro no upload:", err);
+                statusEl.style.color = "#ff4d4d";
+                statusEl.innerText = "Erro ao enviar foto: " + err.message;
+            } finally {
+                fotosInput.value = "";
+                renderizarPreview();
+            }
+        });
+
+        function renderizarPreview() {
+            previewContainer.innerHTML = "";
+            listaFotos.forEach((fotoUrl, index) => {
+                const card = document.createElement("div");
+                card.className = "foto-preview-card";
+                card.innerHTML = `
+                <div class="foto-tag">${index === 0 ? "1ª (Capa)" : `${index + 1}ª Foto`}</div>
+                <img src="${fotoUrl}" alt="Foto ${index + 1}" loading="lazy">
+                <div class="foto-acoes">
+                    ${index > 0 ? `<button type="button" onclick="moverFotoForm(${index}, -1)">⬅️</button>` : '<span></span>'}
+                    <button type="button" class="btn-remove" onclick="removerFotoForm(${index})">❌</button>
+                    ${index < listaFotos.length - 1 ? `<button type="button" onclick="moverFotoForm(${index}, 1)">➡️</button>` : '<span></span>'}
+                </div>
+            `;
+                previewContainer.appendChild(card);
+            });
+        }
+
+        window.moverFotoForm = function (index, direcao) {
+            const novoIndex = index + direcao;
+            if (novoIndex >= 0 && novoIndex < listaFotos.length) {
+                const itemRemovido = listaFotos.splice(index, 1)[0];
+                listaFotos.splice(novoIndex, 0, itemRemovido);
+                renderizarPreview();
+            }
+        };
+
+        window.removerFotoForm = function (index) {
+            listaFotos.splice(index, 1);
+            renderizarPreview();
+        };
 
         // ==========================================
         // SALVAR OU ATUALIZAR PRODUTO
@@ -507,7 +541,7 @@
             e.preventDefault();
             const statusEl = document.getElementById("status");
 
-            if (listaFotosBase64.length === 0) {
+            if (listaFotos.length === 0) {
                 alert("Adicione pelo menos 1 foto para o produto.");
                 return;
             }
@@ -533,7 +567,7 @@
                     filtros,
                     descricao,
                     tamanhos,
-                    fotos: listaFotosBase64,
+                    fotos: listaFotos,
                     mensagemZap: `Olá! Tenho interesse no(a) ${titulo} que vi no site da Use Marujo.`
                 };
 
@@ -549,9 +583,11 @@
                     statusEl.innerText = "Produto cadastrado com sucesso!";
                 }
 
+                invalidarCacheLoja(); // Garante atualização para os visitantes da loja
+
                 statusEl.style.color = "#25D366";
                 form.reset();
-                listaFotosBase64 = [];
+                listaFotos = [];
                 renderizarPreview();
                 carregarProdutosAdmin();
             } catch (err) {
@@ -564,7 +600,7 @@
         });
 
         // ==========================================
-        // LISTAGEM, EDITAÇÃO, EXCLUSÃO E ORDENAÇÃO (CRUD)
+        // LISTAGEM, EDIÇÃO, EXCLUSÃO E ORDENAÇÃO
         // ==========================================
         async function carregarProdutosAdmin() {
             const carrosseisDiv = document.getElementById("carrosseis-admin");
@@ -573,7 +609,7 @@
             try {
                 const querySnapshot = await getDocs(collection(db, "produtos"));
                 produtosCarregados = [];
-                
+
                 querySnapshot.forEach((docSnap) => {
                     produtosCarregados.push({ id: docSnap.id, ...docSnap.data() });
                 });
@@ -603,55 +639,55 @@
 
             Object.keys(categoriasFiltro).forEach(catId => {
                 const produtosCategoria = produtosCarregados.filter(p => p.categoria === catId);
-                
+
                 if (produtosCategoria.length > 0) {
                     const sec = document.createElement("div");
                     sec.className = "categoria-section";
-                    
+
                     let cardsHTML = produtosCategoria.map((p, index) => {
                         const imagemCapa = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/160x160?text=Sem+Foto";
                         const tituloProd = p.titulo || "Sem título";
                         const precoProd = p.preco || "R$ 0,00";
 
                         return `
-                            <div class="admin-card">
-                                <img src="${imagemCapa}" alt="${tituloProd}">
-                                <div class="admin-card-info">
-                                    <h4>${tituloProd}</h4>
-                                    <p>${precoProd}</p>
-                                </div>
-                                <div class="admin-card-acoes">
-                                    <button type="button" class="btn-acao btn-editar" onclick="carregarParaEdicao('${p.id}')"><i class="fas fa-edit"></i> Editar</button>
-                                    <button type="button" class="btn-acao btn-excluir" onclick="deletarProduto('${p.id}')"><i class="fas fa-trash"></i></button>
-                                </div>
-                                <div class="admin-card-ordem">
-                                    <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', -1)" ${index === 0 ? 'disabled style="opacity: 0.3"' : ''}>⬅️</button>
-                                    <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', 1)" ${index === produtosCategoria.length - 1 ? 'disabled style="opacity: 0.3"' : ''}>➡️</button>
-                                </div>
+                        <div class="admin-card">
+                            <img src="${imagemCapa}" alt="${tituloProd}" loading="lazy">
+                            <div class="admin-card-info">
+                                <h4>${tituloProd}</h4>
+                                <p>${precoProd}</p>
                             </div>
-                        `;
+                            <div class="admin-card-acoes">
+                                <button type="button" class="btn-acao btn-editar" onclick="carregarParaEdicao('${p.id}')"><i class="fas fa-edit"></i> Editar</button>
+                                <button type="button" class="btn-acao btn-excluir" onclick="deletarProduto('${p.id}')"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <div class="admin-card-ordem">
+                                <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', -1)" ${index === 0 ? 'disabled style="opacity: 0.3"' : ''}>⬅️</button>
+                                <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', 1)" ${index === produtosCategoria.length - 1 ? 'disabled style="opacity: 0.3"' : ''}>➡️</button>
+                            </div>
+                        </div>
+                    `;
                     }).join('');
 
                     sec.innerHTML = `
-                        <h3>${categoriasFiltro[catId]}</h3>
-                        <div class="admin-carrossel">
-                            ${cardsHTML}
-                        </div>
-                    `;
+                    <h3>${categoriasFiltro[catId]}</h3>
+                    <div class="admin-carrossel">
+                        ${cardsHTML}
+                    </div>
+                `;
                     carrosseisDiv.appendChild(sec);
                 }
             });
         }
 
-        window.moverPosicaoProdutoLocal = function(produtoId, direcao) {
+        window.moverPosicaoProdutoLocal = function (produtoId, direcao) {
             const indexGeral = produtosCarregados.findIndex(p => p.id === produtoId);
             if (indexGeral === -1) return;
-            
+
             const prodAtual = produtosCarregados[indexGeral];
             const produtosCategoria = produtosCarregados.filter(p => p.categoria === prodAtual.categoria);
             const indexNaCategoria = produtosCategoria.findIndex(p => p.id === produtoId);
             const indexVizinho = indexNaCategoria + direcao;
-            
+
             if (indexVizinho >= 0 && indexVizinho < produtosCategoria.length) {
                 const vizinho = produtosCategoria[indexVizinho];
                 const indexVizinhoGeral = produtosCarregados.findIndex(p => p.id === vizinho.id);
@@ -686,9 +722,8 @@
             }
         }
 
-        // Salvar Ordem no Firestore (Batch)
         const btnSalvarOrdem = document.getElementById("btn-salvar-ordem");
-        if(btnSalvarOrdem) {
+        if (btnSalvarOrdem) {
             btnSalvarOrdem.addEventListener("click", async () => {
                 if (!ordemAlterada) return;
 
@@ -697,15 +732,16 @@
 
                 try {
                     const batch = writeBatch(db);
-                    
+
                     produtosCarregados.forEach((prod, index) => {
-                        const novaOrdem = index * 10; 
+                        const novaOrdem = index * 10;
                         prod.ordem = novaOrdem;
                         batch.update(doc(db, "produtos", prod.id), { ordem: novaOrdem });
                     });
 
                     await batch.commit();
-                    
+                    invalidarCacheLoja();
+
                     ordemAlterada = false;
                     atualizarBotaoSalvarOrdem();
                 } catch (error) {
@@ -725,13 +761,13 @@
             document.getElementById("precoNum").value = prod.precoNum;
             document.getElementById("categoria").value = prod.categoria;
 
-            let filtrosClean = prod.filtros.filter(f => f !== "todos").join(", ");
+            let filtrosClean = prod.filtros ? prod.filtros.filter(f => f !== "todos").join(", ") : "";
             document.getElementById("filtros").value = filtrosClean;
 
             document.getElementById("tamanhos").value = prod.tamanhos || "";
             document.getElementById("descricao").value = prod.descricao || "";
 
-            listaFotosBase64 = [...prod.fotos];
+            listaFotos = [...(prod.fotos || [])];
             renderizarPreview();
 
             produtoEditandoId = id;
@@ -746,6 +782,7 @@
             if (confirm("Tem certeza que deseja excluir este produto da loja? Esta ação não pode ser desfeita.")) {
                 try {
                     await deleteDoc(doc(db, "produtos", id));
+                    invalidarCacheLoja();
                     alert("Produto excluído com sucesso!");
                     carregarProdutosAdmin();
                 } catch (err) {
@@ -753,7 +790,6 @@
                 }
             }
         };
-
     </script>
 </body>
 
