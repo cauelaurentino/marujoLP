@@ -6,11 +6,11 @@ const whatsappNumber = "5512988168291";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
     apiKey: "AIzaSyDhOdVX9pxPzOpfOJZfsfjfjh_N0AUPA9k",
     authDomain: "usemarujo-bb701.firebaseapp.com",
     projectId: "usemarujo-bb701",
@@ -18,14 +18,14 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
     messagingSenderId: "268367201875",
     appId: "1:268367201875:web:368ca1268dcd4b92bfa8a6",
     measurementId: "G-5YTJTJC80L"
-  };
+};
 
 // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
-  // ADICIONE ESTA LINHA:
-  const db = getFirestore(app);
+// ADICIONE ESTA LINHA:
+const db = getFirestore(app);
 
 // Armazenamento global em memória dos produtos vindos do banco
 let produtos = {};
@@ -38,7 +38,7 @@ async function carregarProdutosDoBanco() {
         querySnapshot.forEach((docSnapshot) => {
             produtos[docSnapshot.id] = docSnapshot.data();
         });
-        
+
         // Inicializa a renderização das categorias assim que os dados chegarem
         inicializarLoja();
     } catch (error) {
@@ -55,28 +55,39 @@ function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos"
 
     grid.innerHTML = "";
 
+    // Mapeia os produtos e filtra pela categoria
     let listaFiltrada = Object.keys(produtos)
         .map(id => ({ id, ...produtos[id] }))
         .filter(p => p.categoria === categoriaId);
 
+    // Aplica o filtro de tags (se houver)
     if (filtroSelecionado !== "todos") {
         listaFiltrada = listaFiltrada.filter(p => p.filtros && p.filtros.includes(filtroSelecionado));
     }
 
+    // ORDENAÇÃO: Se escolheu menor preço, ordena por preço. Senão, usa a ORDEM definida no Admin!
     if (ordenarPorPreco) {
         listaFiltrada.sort((a, b) => a.precoNum - b.precoNum);
+    } else {
+        listaFiltrada.sort((a, b) => (a.ordem || 0) - (b.ordem || 0));
     }
 
+    // Renderiza os cards na tela
     listaFiltrada.forEach(p => {
+        const imagemCapa = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/300x400?text=Sem+Foto";
+
+        // Verifica se existem tamanhos cadastrados para este produto
+        const tamanhosTexto = p.tamanhos ? ` - ${p.tamanhos}` : "";
+
         const card = document.createElement("div");
         card.className = "produto-card";
         card.innerHTML = `
             <div class="img-container">
-                <img src="${p.fotos[0]}" alt="${p.titulo}">
+                <img src="${imagemCapa}" alt="${p.titulo}">
             </div>
             <div class="produto-info">
                 <h4>${p.titulo}</h4>
-                <p class="preco">${p.preco}</p>
+                <p class="preco">${p.preco}${tamanhosTexto}</p>
                 <a href="produto.html?id=${p.id}" class="btn btn-block">Ver Detalhes</a>
             </div>
         `;
@@ -113,6 +124,9 @@ function inicializarLoja() {
 // ==========================================
 // LÓGICA DA PÁGINA DE PRODUTOS DETALHADA
 // ==========================================
+// ==========================================
+// LÓGICA DA PÁGINA DE PRODUTOS DETALHADA
+// ==========================================
 function carregarDetalhesDoProduto() {
     const urlParams = new URLSearchParams(window.location.search);
     const produtoId = urlParams.get('id');
@@ -120,9 +134,26 @@ function carregarDetalhesDoProduto() {
     if (produtoId && produtos[produtoId]) {
         const prod = produtos[produtoId];
 
+        // Diagnóstico no console (F12)
+        console.log("Produto carregado:", prod);
+        console.log("Tamanhos do produto:", prod.tamanhos);
+
         if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = prod.titulo;
         if (document.getElementById('prod-preco')) document.getElementById('prod-preco').innerText = prod.preco;
         if (document.getElementById('prod-desc')) document.getElementById('prod-desc').innerText = prod.descricao;
+
+        // --- EXIBIÇÃO DOS TAMANHOS ---
+        const blocoTamanhos = document.getElementById("bloco-tamanhos");
+        const txtTamanhos = document.getElementById("prod-tamanhos");
+
+        if (blocoTamanhos && txtTamanhos) {
+            if (prod.tamanhos && prod.tamanhos.trim() !== "") {
+                txtTamanhos.innerText = prod.tamanhos;
+                blocoTamanhos.style.display = "block"; // Exibe o bloco
+            } else {
+                blocoTamanhos.style.display = "none";  // Oculta se estiver vazio
+            }
+        }
 
         const btnZap = document.getElementById('prod-btn-zap');
         if (btnZap) {
@@ -239,9 +270,23 @@ if (window.location.href.toLowerCase().includes("produto.html")) {
             const prod = produtos[produtoId];
 
             // Injeta dados de texto principais
+            // Injeta dados de texto principais
             if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = prod.titulo;
             if (document.getElementById('prod-preco')) document.getElementById('prod-preco').innerText = prod.preco;
             if (document.getElementById('prod-desc')) document.getElementById('prod-desc').innerText = prod.descricao;
+
+            // INJETA OS TAMANHOS (SE EXISTIREM)
+            const blocoTamanhos = document.getElementById("bloco-tamanhos");
+            const txtTamanhos = document.getElementById("prod-tamanhos");
+
+            if (blocoTamanhos && txtTamanhos) {
+                if (prod.tamanhos && prod.tamanhos.trim() !== "") {
+                    txtTamanhos.innerText = prod.tamanhos;
+                    blocoTamanhos.style.display = "block"; // Mostra na tela
+                } else {
+                    blocoTamanhos.style.display = "none"; // Esconde se não tiver tamanho
+                }
+            }
 
             const btnZap = document.getElementById('prod-btn-zap');
             if (btnZap) {
