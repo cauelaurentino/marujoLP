@@ -1,46 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use Marujo | Moda Masculina</title>
+    <title>Use Marujo | Moda Masculina & Feminina</title>
     <meta name="description"
-        content="Loja de roupas masculinas em São José dos Campos. Camisas, oversized, bonés, bags e muito mais. Fale conosco pelo WhatsApp.">
+        content="Loja de roupas em São José dos Campos. Camisas, oversized, bags, feminino e muito mais. Fale conosco pelo WhatsApp.">
     <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <header class="header">
         <div class="header-container">
             <div class="logo">
                 <span class="logo-text"><i class="fa-solid fa-anchor"></i> USE MARUJO</span>
             </div>
-
             <nav class="nav-menu">
                 <ul>
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="feminino/index.html" class="link-feminino" style="color: var(--pink-accent);">Feminino</a></li>
                     <li><a href="#localizacao">Localização</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
-
             <div class="header-cta">
                 <a href="#" class="btn btn-gold wa-link" data-msg="Olá! Vim pelo site e gostaria de atendimento.">
                     <i class="fab fa-whatsapp"></i> Falar no WhatsApp
                 </a>
             </div>
-
             <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
         </div>
     </header>
@@ -49,62 +42,45 @@
         <div class="hero-carousel">
             <div class="slide active">
                 <picture>
-                    <!-- Imagem para Celular (telas até 768px) -->
                     <source media="(max-width: 768px)" srcset="img/artesbanner/bannerdiadascriancas.png">
-
-                    <!-- Imagem Padrão para Desktop e Tablet -->
                     <img src="img/artesbanner/bannerdiadascriancas2000x600.png" alt="Banner 1">
                 </picture>
             </div>
             <div class="slide">
                 <picture>
-                    <!-- Imagem para Celular (telas até 768px) -->
                     <source media="(max-width: 768px)" srcset="img/artesbanner/promo49.png">
-
-                    <!-- Imagem Padrão para Desktop e Tablet -->
                     <img src="img/artesbanner/banner2000x600.png" alt="Banner 3">
                 </picture>
             </div>
         </div>
-
         <div class="hero-controls">
             <button class="hero-prev"><i class="fas fa-chevron-left"></i></button>
             <button class="hero-next"><i class="fas fa-chevron-right"></i></button>
         </div>
-
         <div class="hero-indicators">
             <span class="dot active" data-index="0"></span>
             <span class="dot" data-index="1"></span>
-            <!--<span class="dot" data-index="2"></span>
-            <span class="dot" data-index="3"></span>
-            <span class="dot" data-index="4"></span>-->
         </div>
-
         <div class="hero-overlay"></div>
-
-        <!--<div class="hero-content">
-            <a href="#categorias" class="btn btn-gold-outline">Ver Catálogo</a>
-        </div>-->
     </section>
 
     <section id="categorias" class="produtos-section">
         <div class="container">
             <div class="section-title">
                 <h2>Nossos Produtos</h2>
-                <p>Vista atitude,<br>Navegue no estilo.</p>
+                <p>Vista atitude. Navegue no estilo.</p>
             </div>
 
             <nav class="sumario-categorias">
+                <a href="feminino/index.html" class="sumario-item" style="border-color: #E05D84; color: #E05D84;">Loja Feminina</a>
                 <a href="#blusas" class="sumario-item">Casacos e blusas</a>
                 <a href="#camisas" class="sumario-item">Camisas</a>
                 <a href="#moda-infantil" class="sumario-item">Roupas Infantis</a>
                 <a href="#calcasebermudas" class="sumario-item">Calças e Bermudas</a>
-                <!--<a href="#cuecasecarteiras" class="sumario-item">Cuecas e Carteiras</a>-->
             </nav>
 
             <div class="categoria-bloco" id="blusas">
                 <h3>Casacos e blusas</h3>
-
                 <div class="filtro-container">
                     <label for="filtro-blusas">Filtrar por:</label>
                     <select id="filtro-blusas" class="categoria-filtro" data-categoria="blusas">
@@ -119,19 +95,15 @@
                         <option value="tommy">Tommy Hilfiger</option>   
                     </select>
                 </div>
-
                 <div class="carousel-wrapper">
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-
                     <div class="carrossel-track"></div>
-
                     <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
 
             <div class="categoria-bloco" id="camisas">
                 <h3>Camisas</h3>
-
                 <div class="filtro-container">
                     <label for="filtro-camisas">Filtrar por:</label>
                     <select id="filtro-camisas" class="categoria-filtro" data-categoria="camisas">
@@ -146,44 +118,36 @@
                         <option value="nike">Nike</option>
                     </select>
                 </div>
-
                 <div class="carousel-wrapper">
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-
                     <div class="carrossel-track"></div>
-
                     <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
 
             <div class="categoria-bloco" id="moda-infantil">
                 <h3>Moda Infantil</h3>
-
                 <div class="filtro-container">
-                    <label for="filtro-oversized">Filtrar por:</label>
-                    <select id="filtro-oversized" class="categoria-filtro" data-categoria="moda-infantil">
+                    <label for="filtro-infantil">Filtrar por:</label>
+                    <select id="filtro-infantil" class="categoria-filtro" data-categoria="moda-infantil">
                         <option value="todos">Todos</option>
                         <option value="menor-preco">Menor para o maior valor</option>
                         <option value="lacoste">Lacoste</option>
                         <option value="nike">Nike</option>
                     </select>
                 </div>
-
                 <div class="carousel-wrapper">
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-
                     <div class="carrossel-track"></div>
-
                     <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
 
             <div class="categoria-bloco" id="calcasebermudas">
                 <h3>Calças e Bermudas</h3>
-
                 <div class="filtro-container">
-                    <label for="filtro-oversized">Filtrar por:</label>
-                    <select id="filtro-oversized" class="categoria-filtro" data-categoria="calcasebermudas">
+                    <label for="filtro-calcas">Filtrar por:</label>
+                    <select id="filtro-calcas" class="categoria-filtro" data-categoria="calcasebermudas">
                         <option value="todos">Todos</option>
                         <option value="menor-preco">Menor para o maior valor</option>
                         <option value="calcas">Calças</option>
@@ -192,16 +156,12 @@
                         <option value="nike">Nike</option>
                     </select>
                 </div>
-
                 <div class="carousel-wrapper">
                     <button class="carrossel-btn prev"><i class="fas fa-chevron-left"></i></button>
-
                     <div class="carrossel-track"></div>
-
                     <button class="carrossel-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -219,7 +179,7 @@
                 <div class="dif-card">
                     <i class="fas fa-tshirt"></i>
                     <h4>Estilo</h4>
-                    <p>Modelos modernos, atuais e masculinos.</p>
+                    <p>Modelos modernos, atuais e cheios de atitude.</p>
                 </div>
                 <div class="dif-card">
                     <i class="fas fa-headset"></i>
@@ -259,29 +219,18 @@
     <!-- SEÇÃO: POLÍTICA DE ENTREGAS -->
     <section id="entregas" class="entregas-section">
         <h2 class="titulo-secao">Política de Entregas</h2>
-
         <div class="entregas-card">
-            <!-- Metade 1: Motoboy -->
             <div class="entrega-info">
                 <h3>Vale do Paraíba e Região</h3>
-                <p>Realizamos entregas rápidas e seguras via <strong>Motoboy</strong> para toda a região do Vale do
-                    Paraíba.</p>
+                <p>Realizamos entregas rápidas e seguras via <strong>Motoboy</strong> para toda a região do Vale do Paraíba.</p>
             </div>
-
-            <!-- Linha divisória invisível no celular e visível no PC -->
             <div class="entrega-divisor"></div>
-
-            <!-- Metade 2: Correios -->
             <div class="entrega-info">
                 <h3>Todo o Brasil</h3>
-                <p>Não está na região? Sem problemas! Enviamos seus produtos para qualquer lugar do país através dos
-                    <strong>Correios</strong>.</p>
+                <p>Não está na região? Sem problemas! Enviamos seus produtos para qualquer lugar do país através dos <strong>Correios</strong>.</p>
             </div>
-
-            <!-- Rodapé do Card: Aviso do Frete -->
             <div class="frete-aviso">
-                <p>O valor do frete para ambas as modalidades é por conta do cliente.
-                </p>
+                <p>O valor do frete para ambas as modalidades é por conta do cliente.</p>
             </div>
         </div>
     </section>
@@ -305,7 +254,6 @@
                 <h4>Contato</h4>
                 <p><i class="fab fa-whatsapp"></i> 12 99103-7973</p>
                 <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/usemarujo31/"> @usemarujo31</a></p>
-
             </div>
             <div class="footer-address">
                 <h4>Endereço</h4>
@@ -327,5 +275,4 @@
 
     <script type="module" src="script.js"></script>
 </body>
-
 </html>

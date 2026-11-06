@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - Use Marujo Feminina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="theme-feminino">
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text"><i class="fa-solid fa-anchor"></i> USE MARUJO</span>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html#inicio">Início</a></li>
+                    <li><a href="index.html#categorias">Coleção</a></li>
+                    <li><a href="index.html#localizacao">Onde Estamos</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="#" class="btn btn-pink wa-link" data-msg="Olá! Gostaria de montar meu look.">
+                    <i class="fab fa-whatsapp"></i> Falar com Consultora
+                </a>
+            </div>
+            <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="produto-page-section">
+        <div class="container">
+            
+            <div class="produto-grid">
+                <div class="produto-galeria">
+                    <div class="prod-carousel-container">
+                        <button class="prod-carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <div id="prod-galeria-slides" class="prod-slides-wrapper">
+                            <!-- O script insere as fotos aqui -->
+                        </div>
+                        <button class="prod-carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="produto-info-detalhada">
+                    <h1 id="prod-titulo">Carregando...</h1>
+                    <div class="divisor-rose"></div>
+                    <h2 id="prod-preco" class="preco-destaque">--</h2>
+
+                    <div class="produto-descricao" id="bloco-tamanhos" style="display: none;">
+                        <h3>Tamanhos disponíveis:</h3>
+                        <p id="prod-tamanhos"></p>
+                    </div>
+
+                    <div class="produto-descricao">
+                        <h3>Sobre a Peça:</h3>
+                        <p id="prod-desc">Aguarde, carregando os detalhes...</p>
+                    </div>
+
+                    <div class="produto-acoes">
+                        <a id="prod-btn-zap" href="#" class="btn btn-block btn-pink">
+                            <i class="fab fa-whatsapp"></i> Comprar via WhatsApp
+                        </a>
+                        <a href="index.html#categorias" class="btn-voltar">
+                            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <section class="produtos-semelhantes-section">
+                <h2 class="titulo-semelhantes">Você também pode gostar</h2>
+                <div class="divisor-rose"></div>
+                <div id="produtos-semelhantes-grid">
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script type="module" src="../script.js"></script>
+</body>
+</html>

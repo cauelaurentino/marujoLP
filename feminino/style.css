@@ -1,0 +1,332 @@
+/* --- Variáveis de Identidade Visual Feminina --- */
+:root {
+    --bg-main: #FCF9F9; /* Fundo principal off-white */
+    --bg-sec: #FFFFFF; /* Fundo de cards branco puro */
+    --card-bg: #FFFFFF;
+    
+    /* Tons delicados de Rosa para substituir o Dourado */
+    --pink-main: #D47A8C; /* Rosa Velho sofisticado */
+    --pink-light: #F4B8C4; /* Rosa Claro para hover */
+    
+    --text-main: #4A4A4A; /* Cinza escuro para texto (mais leve que preto puro) */
+    --text-muted: #888888;
+
+    /* Fonte fina e elegante */
+    --font-heading: 'Raleway', sans-serif;
+    --font-body: 'Raleway', sans-serif;
+
+    --transition: 0.3s ease-in-out;
+}
+
+/* --- Reset & Configurações Globais --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--pink-main);
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* --- Botões --- */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: var(--font-body);
+}
+
+.btn-pink { background-color: var(--pink-main); color: #FFF; }
+.btn-pink:hover {
+    background-color: var(--pink-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 122, 140, 0.3);
+}
+
+.btn-pink-outline {
+    background-color: transparent;
+    border: 1px solid var(--pink-main);
+    color: var(--pink-main);
+}
+.btn-pink-outline:hover { background-color: var(--pink-main); color: #FFF; }
+
+.btn-block { display: block; width: 100%; background-color: var(--pink-main); color: #FFF; padding: 10px; }
+.btn-block:hover { background-color: var(--pink-light); }
+
+.btn-large { padding: 16px 40px; font-size: 1.1rem; background-color: var(--pink-main); color: #FFF; }
+.btn-large:hover { background-color: var(--pink-light); transform: scale(1.05); }
+
+/* --- Header --- */
+.header {
+    position: fixed; top: 0; width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(212, 122, 140, 0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.header-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; color: var(--text-main); letter-spacing: 1px; }
+
+.nav-menu ul { display: flex; gap: 30px; }
+.nav-menu a { font-weight: 400; transition: var(--transition); }
+.nav-menu a:hover { color: var(--pink-main); }
+.mobile-toggle { display: none; background: none; border: none; color: var(--pink-main); font-size: 1.5rem; cursor: pointer; }
+
+/* --- Hero Section --- */
+.hero { position: relative; width: 100%; height: auto; overflow: hidden; margin-top: 70px; }
+.hero-carousel { position: relative; width: 100%; height: auto; z-index: 1; }
+.hero-carousel .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; }
+.hero-carousel .slide.active { opacity: 1; z-index: 2; }
+.hero-carousel .slide:first-child { position: relative; }
+.hero-carousel img { display: block; width: 100%; height: auto; }
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 100%); z-index: 2; }
+
+.hero-controls button {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8); border: 1px solid var(--pink-main); color: var(--pink-main);
+    width: 45px; height: 45px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; z-index: 4; transition: var(--transition);
+}
+.hero-controls button:hover { background: var(--pink-main); color: #FFF; }
+.hero-prev { left: 20px; } .hero-next { right: 20px; }
+.hero-indicators { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 4; display: flex; gap: 10px; }
+.hero-indicators .dot { width: 10px; height: 10px; border-radius: 50%; background-color: rgba(212, 122, 140, 0.4); cursor: pointer; transition: var(--transition); }
+.hero-indicators .dot.active { background-color: var(--pink-main); transform: scale(1.2); }
+
+/* --- Seções Padrões --- */
+.section-title { text-align: center; margin-bottom: 40px; }
+.section-title h2 { font-size: 2.3rem; margin-bottom: 10px; color: var(--pink-main); font-weight: 400;}
+.section-title p { color: var(--text-muted); font-size: 1.1rem; }
+
+/* --- Produtos --- */
+.produtos-section { padding: 80px 0; background-color: var(--bg-sec); }
+.categoria-bloco { margin-bottom: 60px; }
+.categoria-bloco h3 { font-size: 1.6rem; margin-bottom: 20px; border-left: 2px solid var(--pink-main); padding-left: 15px; color: var(--text-main); font-weight: 500;}
+
+.carousel-wrapper { position: relative; display: flex; align-items: center; }
+.carrossel-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 15px; scrollbar-width: none; }
+.carrossel-track::-webkit-scrollbar { display: none; }
+
+.produto-card {
+    flex: 0 0 280px; background-color: var(--card-bg); border-radius: 4px; overflow: hidden;
+    scroll-snap-align: start; transition: var(--transition); border: 1px solid #F0F0F0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+.produto-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 122, 140, 0.15); border-color: rgba(212, 122, 140, 0.3); }
+
+.img-container { height: 350px; background-color: #F9F9F9; } /* Altura maior para roupas femininas */
+.img-container img { width: 100%; height: 100%; object-fit: cover; }
+.produto-info { padding: 20px; text-align: center; }
+.produto-info h4 { color: var(--text-main); font-size: 1.05rem; margin-bottom: 5px; font-weight: 500;}
+.produto-info .preco { font-size: 1.1rem; color: var(--pink-main); margin-bottom: 15px; font-weight: 600;}
+
+.carrossel-btn {
+    background-color: rgba(255, 255, 255, 0.9); color: var(--pink-main); border: 1px solid var(--pink-main);
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer; position: absolute; z-index: 10; transition: var(--transition);
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.carrossel-btn:hover { background-color: var(--pink-main); color: #FFF; }
+.carrossel-btn.prev { left: -15px; } .carrossel-btn.next { right: -15px; }
+
+/* --- Diferenciais --- */
+.diferenciais { padding: 80px 0; background-color: var(--bg-main); }
+.diferenciais-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+.dif-card { background-color: var(--card-bg); padding: 40px 20px; border-radius: 4px; border-bottom: 2px solid var(--pink-light); transition: var(--transition); box-shadow: 0 4px 15px rgba(0,0,0,0.03);}
+.dif-card:hover { transform: translateY(-10px); }
+.dif-card i { font-size: 2.2rem; color: var(--pink-main); margin-bottom: 20px; }
+.dif-card h4 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-main); font-weight: 500;}
+.dif-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+/* --- Localização e Entregas --- */
+.localizacao, .entregas-section { padding: 60px 0; background-color: var(--bg-sec); }
+.loc-content, .entregas-card { display: flex; flex-wrap: wrap; gap: 0; background-color: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid #F0F0F0;}
+.loc-info, .entrega-info { flex: 1; min-width: 300px; padding: 50px; display: flex; flex-direction: column; justify-content: center; text-align: center;}
+.loc-info i { font-size: 2.5rem; color: var(--pink-main); margin-bottom: 20px; }
+.loc-info h3, .entrega-info h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--pink-main); font-weight: 500;}
+.loc-info p, .entrega-info p { color: var(--text-muted); line-height: 1.8; }
+.loc-map { flex: 1; min-width: 300px; min-height: 400px; }
+.frete-aviso { width: 100%; background-color: var(--pink-light); text-align: center; padding: 20px; color: #FFF; font-weight: 500;}
+.frete-aviso p { margin:0; color: #FFF; }
+.entrega-divisor { width: 1px; background-color: rgba(0,0,0,0.05); margin: 20px 0; }
+
+/* --- CTA Final --- */
+.cta-final { padding: 100px 20px; background: linear-gradient(135deg, #FCF9F9 0%, #FFF0F5 100%); text-align: center; border-top: 1px solid rgba(212, 122, 140, 0.1); }
+.cta-content h2 { font-size: 2.3rem; margin-bottom: 20px; font-weight: 400;}
+.cta-content p { margin-bottom: 40px; font-size: 1.1rem; color: var(--text-muted); }
+
+/* --- Footer --- */
+.footer { background-color: #FAFAFA; padding: 60px 0 20px; border-top: 1px solid #EEE;}
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+.footer-brand h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--text-main); font-weight: 400;}
+.footer h4 { margin-bottom: 20px; color: var(--pink-main); font-size: 1.1rem; font-weight: 500;}
+.footer p, .footer-bottom { color: var(--text-muted); font-size: 0.9rem; }
+.footer-contact i { color: var(--pink-main); margin-right: 8px; }
+.footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #EAEAEA; }
+
+/* --- Sumário Categorias --- */
+.sumario-categorias { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin: 0 auto 60px auto; padding: 0 20px; }
+.sumario-item { color: var(--text-main); text-decoration: none; font-size: 1.1rem; padding: 10px 28px; font-weight: 500; border: 1px solid var(--pink-main); border-radius: 40px; background-color: var(--card-bg); transition: all 0.3s ease; }
+.sumario-item:hover { color: #FFF !important; background-color: var(--pink-main) !important; box-shadow: 0 0 15px rgba(212, 122, 140, 0.3); }
+/* Adicione esta linha para o efeito automático funcionar no JS */
+.sumario-item.active { color: #FFF !important; background-color: var(--pink-main) !important; box-shadow: 0 0 15px rgba(212, 122, 140, 0.3); }
+
+/* --- Flutuantes (WhatsApp & Balão) --- */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); z-index: 1000; transition: var(--transition); animation: pulse 2s infinite; }
+.whatsapp-float:hover { transform: scale(1.1); background-color: #1ebe57; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+.smart-balloon { position: fixed; bottom: 100px; right: 30px; background-color: var(--card-bg); border: 1px solid var(--pink-main); color: var(--text-main); padding: 12px 20px; border-radius: 20px 20px 0 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); z-index: 999; font-size: 0.9rem; opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; pointer-events: none; }
+.smart-balloon.show { opacity: 1; transform: translateY(0); }
+
+/* --- Dropdowns Filtro --- */
+.filtro-container { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.categoria-filtro { background-color: var(--card-bg); color: var(--text-main); border: 1px solid var(--pink-main); padding: 8px 40px 8px 15px; border-radius: 4px; font-family: var(--font-body); cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23D47A8C%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-size: 10px auto; background-position: right 15px center; }
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .nav-menu { display: none; position: absolute; top: 70px; left: 0; width: 100%; background-color: #FFF; padding: 20px 0; border-bottom: 1px solid var(--pink-main); }
+    .nav-menu.active { display: block; }
+    .nav-menu ul { flex-direction: column; align-items: center; gap: 20px; }
+    .header-cta { display: none; }
+    .mobile-toggle { display: block; }
+    .entrega-divisor { width: 100%; height: 1px; margin: 0; }
+    .carrossel-btn.prev { left: 5px; } .carrossel-btn.next { right: 5px; }
+    /* Adicione isso dentro do @media (max-width: 768px) */
+    .sumario-categorias { 
+        flex-direction: column; 
+        width: 100%;
+    }
+    
+    .sumario-item {
+        width: auto; /* Faz o botão ocupar a largura toda para ficar mais elegante */
+        text-align: center;
+    }
+}
+
+/* --- Produto Single (produto.html) --- */
+.produto-page-section { margin-top: 100px; padding: 40px 20px; }
+.produto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background-color: var(--card-bg); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #F0F0F0;}
+.produto-galeria .img-principal-wrapper { width: 100%; border-radius: 4px; overflow: hidden; background-color: #F9F9F9; }
+.produto-info-detalhada h1 { font-size: 2rem; color: var(--text-main); font-weight: 500;}
+.divisor-rosa { width: 50px; height: 3px; background-color: var(--pink-main); margin: 15px 0 20px 0; }
+.preco-destaque { font-size: 1.8rem; color: var(--pink-main); margin-bottom: 25px; font-weight: 600;}
+.produto-descricao h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 10px; font-weight: 500;}
+.produto-descricao p { color: var(--text-muted); line-height: 1.6; margin-bottom: 30px; }
+.btn-comprar-zap { background-color: #25D366; color: #ffffff !important; border: none; font-size: 1.2rem; padding: 15px; }
+.btn-comprar-zap:hover { background-color: #1ebe57; transform: translateY(-2px); }
+.btn-voltar { text-align: center; color: var(--pink-main); font-size: 1rem; padding: 10px; transition: 0.3s; font-weight: 500;}
+.btn-voltar:hover { color: var(--pink-light); }
+
+/* --- FUNDO SEMI-TRANSPARENTE PARA TODAS AS SETAS --- */
+.carrossel-btn,
+.hero-prev,
+.hero-next {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(2px) !important;
+}
+
+.carrossel-btn:hover,
+.hero-prev:hover,
+.hero-next:hover {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Ajuste de layout da página de produto para Mobile */
+@media (max-width: 768px) {
+    /* Altera o contentor principal para empilhar os itens verticalmente */
+    .produto-detalhes, 
+    .produto-container, 
+    .container-produto {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center;
+        padding: 15px;
+    }
+
+    /* Ajusta a imagem para ocupar um bom espaço no telemóvel sem espremer o texto */
+    #prod-img-principal {
+        width: 100% !important;
+        max-width: 320px !important; /* Tamanho ideal para telemóvel */
+        margin-bottom: 20px;
+    }
+
+    /* Faz a caixa de texto ocupar a largura toda e centraliza */
+    .produto-info, 
+    .info-produto {
+        width: 100% !important;
+        padding: 0 !important;
+        text-align: center;
+    }
+    
+    /* Centraliza o botão do WhatsApp */
+    .btn-block {
+        margin: 0 auto;
+    }
+}
+
+/* Ajuste do tamanho dos produtos no carrossel para Mobile (2.5 itens) */
+@media (max-width: 768px) {
+    /* Reduz o espaço entre os produtos para caberem melhor */
+    .carrossel-track {
+        gap: 10px;
+    }
+    
+    /* Define a largura para ocupar cerca de 36% do ecrã (cabe 2 inteiros e metade do 3º) */
+    .produto-card {
+        min-width: 36vw !important;
+        max-width: 36vw !important;
+    }
+
+    /* Ajusta a altura das imagens para não ficarem esticadas ou gigantes */
+    .produto-card .img-container {
+        height: 160px !important;
+    }
+    
+    .produto-card .img-container img,
+    .produto-card img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Reduz ligeiramente as fontes e margens para caber no novo tamanho */
+    .produto-info {
+        padding: 10px !important;
+    }
+
+    .produto-info h4 {
+        font-size: 13px !important;
+        margin-bottom: 5px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .produto-info .preco {
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .produto-info .btn {
+        font-size: 12px !important;
+        padding: 6px 4px !important;
+    }
+}
+

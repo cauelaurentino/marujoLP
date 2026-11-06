@@ -21,11 +21,16 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-// Armazenamento global em memória
+// ==========================================
+// VARIÁVEIS GLOBAIS
+// ==========================================
 let produtos = {};
 
+// Identifica se estamos na loja feminina pela URL
+const isFeminino = window.location.pathname.toLowerCase().includes("feminino");
+
 // ==========================================
-// SISTEMA DE CACHE LOCAL DE PRODUTOS (INSTANTÂNEO)
+// SISTEMA DE CACHE E BANCO DE DADOS
 // ==========================================
 async function carregarProdutosDoBanco() {
     const CACHE_KEY = "usemarujo_produtos_cache";
@@ -36,7 +41,6 @@ async function carregarProdutosDoBanco() {
     const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
     const agora = Date.now();
 
-    // Se o cache existir e for recente, carrega instantaneamente
     if (cacheSalvo && cacheTime && (agora - parseInt(cacheTime, 10) < TEMPO_EXPIRACAO)) {
         try {
             produtos = JSON.parse(cacheSalvo);
@@ -47,15 +51,14 @@ async function carregarProdutosDoBanco() {
         }
     }
 
-    // Se o cache expirou ou não existe, consulta o Firestore
     try {
         const querySnapshot = await getDocs(collection(db, "produtos"));
         produtos = {};
+        
         querySnapshot.forEach((docSnapshot) => {
             produtos[docSnapshot.id] = docSnapshot.data();
         });
 
-        // Grava no cache do navegador
         localStorage.setItem(CACHE_KEY, JSON.stringify(produtos));
         localStorage.setItem(CACHE_TIME_KEY, agora.toString());
 
@@ -74,9 +77,16 @@ function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos"
 
     grid.innerHTML = "";
 
+    // Filtra pela aba ativa: se estiver na página feminina, mostra apenas produtos da loja feminina
     let listaFiltrada = Object.keys(produtos)
         .map(id => ({ id, ...produtos[id] }))
         .filter(p => p.categoria === categoriaId);
+
+    if (isFeminino) {
+        listaFiltrada = listaFiltrada.filter(p => p.loja === "feminina");
+    } else {
+        listaFiltrada = listaFiltrada.filter(p => p.loja !== "feminina");
+    }
 
     if (filtroSelecionado !== "todos") {
         listaFiltrada = listaFiltrada.filter(p => p.filtros && p.filtros.includes(filtroSelecionado));
@@ -90,7 +100,14 @@ function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos"
 
     listaFiltrada.forEach(p => {
         const imagemCapa = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/300x400?text=Sem+Foto";
-        const tamanhosTexto = p.tamanhos ? ` - ${p.tamanhos}` : "";
+        const tamanhosTexto = (!isFeminino && p.tamanhos) ? ` - ${p.tamanhos}` : "";
+        
+        const btnClass = isFeminino ? "btn btn-block btn-pink" : "btn btn-block";
+        
+        // CORREÇÃO AQUI: Removemos a verificação isFeminino para a URL
+        // Como o ficheiro index.html está dentro da pasta feminino,
+        // o link relativo para produto.html funciona para ambas as lojas.
+        const urlProduto = `produto.html?id=${p.id}`;
 
         const card = document.createElement("div");
         card.className = "produto-card";
@@ -100,8 +117,8 @@ function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos"
             </div>
             <div class="produto-info">
                 <h4>${p.titulo}</h4>
-                <p class="preco">${p.preco}${tamanhosTexto}</p>
-                <a href="produto.html?id=${p.id}" class="btn btn-block">Ver Detalhes</a>
+                <p class="preco">${p.preco}</p>
+                <a href="${urlProduto}" class="${btnClass}">Ver Detalhes</a>
             </div>
         `;
         grid.appendChild(card);
@@ -113,22 +130,22 @@ function inicializarLoja() {
 
     dropdowns.forEach(select => {
         const categoriaId = select.getAttribute("data-categoria");
-
+        
         if (categoriaId) {
             renderizarProdutosPorCategoria(categoriaId, "todos", false);
         }
 
-        select.onchange = (e) => {
+        select.addEventListener("change", (e) => {
             const valorOpcao = e.target.value;
             if (valorOpcao === "menor-preco") {
                 renderizarProdutosPorCategoria(categoriaId, "todos", true);
             } else {
                 renderizarProdutosPorCategoria(categoriaId, valorOpcao, false);
             }
-        };
+        });
     });
 
-    if (window.location.href.toLowerCase().includes("produto.html")) {
+    if (window.location.href.toLowerCase().includes("produto")) {
         carregarDetalhesDoProduto();
     }
 }
@@ -142,14 +159,15 @@ function carregarDetalhesDoProduto() {
 
     if (produtoId && produtos[produtoId]) {
         const prod = produtos[produtoId];
-
+        
+        // Preenche dados base (Ambas as lojas)
         if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = prod.titulo;
         if (document.getElementById('prod-preco')) document.getElementById('prod-preco').innerText = prod.preco;
         if (document.getElementById('prod-desc')) document.getElementById('prod-desc').innerText = prod.descricao;
 
+        // Bloco de tamanhos (Geralmente na loja principal)
         const blocoTamanhos = document.getElementById("bloco-tamanhos");
         const txtTamanhos = document.getElementById("prod-tamanhos");
-
         if (blocoTamanhos && txtTamanhos) {
             if (prod.tamanhos && prod.tamanhos.trim() !== "") {
                 txtTamanhos.innerText = prod.tamanhos;
@@ -159,12 +177,16 @@ function carregarDetalhesDoProduto() {
             }
         }
 
+        // WhatsApp Link
         const btnZap = document.getElementById('prod-btn-zap');
         if (btnZap) {
-            btnZap.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prod.mensagemZap)}`;
+            btnZap.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prod.mensagemZap || 'Olá, gostei deste produto!')}`;
         }
 
-        const galeriaSlides = document.getElementById("prod-galeria-slides");
+        // --- SISTEMA DE FOTOS ---
+        const galeriaSlides = document.getElementById("prod-galeria-slides"); // Loja Principal
+        const imgPrincipal = document.getElementById("prod-img-principal");   // Loja Feminina
+        
         if (galeriaSlides && prod.fotos) {
             galeriaSlides.innerHTML = "";
             prod.fotos.forEach((foto, index) => {
@@ -186,7 +208,7 @@ function carregarDetalhesDoProduto() {
 
             const btnPrev = document.querySelector(".prod-carousel-btn.prev");
             const btnNext = document.querySelector(".prod-carousel-btn.next");
-
+            
             if (btnPrev && btnNext) {
                 if (slidesProd.length > 1) {
                     btnPrev.onclick = () => mudarSlideProduto(-1);
@@ -198,57 +220,64 @@ function carregarDetalhesDoProduto() {
                     btnNext.style.display = "none";
                 }
             }
+        } else if (imgPrincipal && prod.fotos && prod.fotos.length > 0) {
+            // Se for a página da loja feminina que usa só 1 foto em destaque
+            imgPrincipal.src = prod.fotos[0];
         }
 
+        // Produtos Semelhantes (Opcional - se a grade existir na tela)
         const gridSemelhantes = document.getElementById("produtos-semelhantes-grid");
         if (gridSemelhantes) {
             gridSemelhantes.innerHTML = "";
             const semelhantes = Object.keys(produtos)
                 .map(id => ({ id, ...produtos[id] }))
-                .filter(p => p.categoria === prod.categoria && p.id !== produtoId);
+                .filter(p => p.categoria === prod.categoria && p.id !== produtoId && p.loja === prod.loja);
 
             if (semelhantes.length === 0) {
                 gridSemelhantes.innerHTML = "<p class='txt-muted'>Nenhum produto semelhante encontrado.</p>";
             } else {
                 semelhantes.forEach(p => {
+                    const urlSemelhante = isFeminino ? `produto-feminino.html?id=${p.id}` : `produto.html?id=${p.id}`;
                     const card = document.createElement("div");
                     card.className = "produto-card";
                     card.innerHTML = `
                         <div class="produto-img">
-                            <a href="produto.html?id=${p.id}">
+                            <a href="${urlSemelhante}">
                                 <img src="${p.fotos[0]}" alt="${p.titulo}" loading="lazy" decoding="async">
                             </a>
                         </div>
                         <div class="produto-info">
                             <h4>${p.titulo}</h4>
                             <p class="preco">${p.preco}</p>
-                            <a href="produto.html?id=${p.id}">Ver Detalhes</a>
+                            <a href="${urlSemelhante}">Ver Detalhes</a>
                         </div>
                     `;
                     gridSemelhantes.appendChild(card);
                 });
             }
         }
+
     } else {
         if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = "Produto não encontrado";
     }
 }
 
-// Inicializador principal
-document.addEventListener("DOMContentLoaded", carregarProdutosDoBanco);
-
 // ==========================================
-// OUTROS RECURSOS DA INTERFACE (WHATSAPP, MENU, HERO)
+// INTERAÇÕES DE INTERFACE (UI E DOM)
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
-    // Links WhatsApp
+    
+    // 1. Iniciar Banco
+    carregarProdutosDoBanco();
+
+    // 2. Links Dinâmicos do WhatsApp
     const waLinks = document.querySelectorAll(".wa-link");
     waLinks.forEach(link => {
         const customMsg = link.getAttribute("data-msg") || "Olá! Gostaria de mais informações.";
         link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(customMsg)}`;
     });
 
-    // Menu Mobile
+    // 3. Menu Mobile (Hambúrguer)
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -275,9 +304,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Carrossel Hero
-    const slides = document.querySelectorAll('.hero-carousel .slide');
-    const dots = document.querySelectorAll('.hero-indicators .dot');
+    // 4. Carrossel Principal (Hero - topo da página inicial)
+    const slides = document.querySelectorAll('.hero-carousel .slide, .slide');
+    const dots = document.querySelectorAll('.hero-indicators .dot, .dot');
     const prevBtn = document.querySelector('.hero-prev');
     const nextBtn = document.querySelector('.hero-next');
     let currentSlide = 0;
@@ -289,16 +318,13 @@ document.addEventListener("DOMContentLoaded", function () {
             dots.forEach(dot => dot.classList.remove('active'));
 
             currentSlide = (index + slides.length) % slides.length;
-
             slides[currentSlide].classList.add('active');
             if (dots.length > 0) dots[currentSlide].classList.add('active');
         }
 
         function nextSlide() { showSlide(currentSlide + 1); }
         function prevSlide() { showSlide(currentSlide - 1); }
-
-        function startSlideShow() { slideInterval = setInterval(nextSlide, 5000); }
-        function resetSlideShow() { clearInterval(slideInterval); startSlideShow(); }
+        function resetSlideShow() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); }
 
         if (nextBtn && prevBtn) {
             nextBtn.addEventListener('click', () => { nextSlide(); resetSlideShow(); });
@@ -306,16 +332,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-                resetSlideShow();
-            });
+            dot.addEventListener('click', () => { showSlide(index); resetSlideShow(); });
         });
 
-        startSlideShow();
+        slideInterval = setInterval(nextSlide, 5000);
     }
 
-    // Navegação dos carrosséis universais
+    // 5. Navegação dos Carrosséis de Produtos Universais (Setinhas Laterais)
     const conteineresProdutos = document.querySelectorAll('.carrossel-track, .produtos-grid, .carrossel-container, .produtos-carrossel');
     conteineresProdutos.forEach((grid) => {
         const secaoPai = grid.parentElement;
@@ -330,17 +353,21 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-    
-    if (smartBalloon && balloonText) {
-        setTimeout(() => {
-            const randomMsg = balloonMessages[Math.floor(Math.random() * balloonMessages.length)];
-            balloonText.innerText = randomMsg;
-            smartBalloon.classList.add("show");
-            setTimeout(() => { smartBalloon.classList.remove("show"); }, 6000);
-        }, 3000);
+
+    // 6. Destaque Automático de Categorias (Efeito Sumário da Loja Feminina)
+    const sumarioItems = document.querySelectorAll('.sumario-item');
+    if (sumarioItems.length > 0 && isFeminino) {
+        let currentCatIndex = 0;
+        function alternarDestaqueCategoria() {
+            sumarioItems.forEach(item => item.classList.remove('active'));
+            sumarioItems[currentCatIndex].classList.add('active');
+            currentCatIndex = (currentCatIndex + 1) % sumarioItems.length;
+        }
+        alternarDestaqueCategoria();
+        setInterval(alternarDestaqueCategoria, 1500);
     }
 
-    // Ano atual no Footer
+    // 7. Rodapé com ano dinâmico
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.innerText = new Date().getFullYear();
 });

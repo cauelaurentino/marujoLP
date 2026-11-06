@@ -1,12 +1,11 @@
-/* --- Variáveis de Identidade Visual --- */
 :root {
-    --bg-black: #0F0F0F;
-    --bg-gray-dark: #1A1A1A;
-    --card-bg: #2B2B2B;
+    --bg-main: #FFFFFF;
+    --bg-gray-light: #FAFAFA; /* Um pouco mais claro/suave */
+    --card-bg: #FFFFFF;
     --gold-main: #D4AF37;
-    --gold-light: #F5D67A;
-    --text-white: #FFFFFF;
-    --text-muted: #BBBBBB;
+    --text-dark: #111111;
+    --text-muted: #777777; /* Mais suave */
+    --pink-accent: #E05D84; /* Rosa sofisticado para a aba feminina */
 
     /* Fontes alteradas para Poppins (Sem serifa, visual informal e moderno) */
     --font-heading: 'Poppins', sans-serif;
@@ -27,22 +26,20 @@ html {
 }
 
 body {
-    background-color: var(--bg-black);
-    color: var(--text-white);
+    background-color: var(--bg-main);
+    color: var(--text-dark);
     font-family: var(--font-body);
+    font-weight: 300; /* Mais fina e sofisticada */
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--gold-light);
+    font-weight: 400; /* Tirando o negrito pesado */
+    text-transform: uppercase; /* Cara de marca premium */
+    letter-spacing: 1px; /* Mais respiro entre as letras */
+    color: var(--text-dark);
 }
 
 a {
@@ -60,80 +57,85 @@ ul {
     padding: 0 20px;
 }
 
-/* --- Botões --- */
+/* --- Botões Minimalistas --- */
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    border-radius: 4px;
-    font-weight: 600;
+    border-radius: 2px; /* Menos arredondado, mais editorial */
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
-    border: none;
+    border: 1px solid transparent;
     font-family: var(--font-body);
 }
 
 .btn-gold {
-    background-color: var(--gold-main);
-    color: var(--bg-black);
+    background-color: var(--text-dark);
+    color: var(--gold-main);
 }
 
 .btn-gold:hover {
-    background-color: var(--gold-light);
+    background-color: var(--gold-main);
+    color: var(--text-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); /* Sombra mais sutil */
 }
 
 .btn-gold-outline {
     background-color: transparent;
-    border: 2px solid var(--gold-main);
+    border: 1px solid var(--gold-main);
     color: var(--gold-main);
 }
 
 .btn-gold-outline:hover {
     background-color: var(--gold-main);
-    color: var(--bg-black);
+    color: var(--text-dark);
 }
 
 .btn-block {
     display: block;
     width: 100%;
     background-color: var(--gold-main);
-    color: var(--bg-black);
+    color: var(--text-dark);
     padding: 10px;
 }
 
 .btn-block:hover {
-    background-color: var(--gold-light);
+    background-color: #c09e30;
 }
 
 .btn-large {
     padding: 16px 40px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background-color: var(--gold-main);
-    color: var(--bg-black);
+    color: var(--text-dark);
 }
 
 .btn-large:hover {
-    background-color: var(--gold-light);
-    transform: scale(1.05);
+    background-color: #c09e30;
+    transform: scale(1.02);
 }
 
-/* --- Header --- */
+/* --- Header Minimalista --- */
 .header {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(15, 15, 15, 0.95);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid #F0F0F0; /* Linha mais discreta */
+    transition: var(--transition);
 }
 
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px 20px;
+    padding: 10px 20px; /* Mais fino */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -146,16 +148,18 @@ ul {
 }
 
 .logo img {
-    height: 40px;
+    height: 35px; /* Logo um pouco menor */
 }
 
 .logo-text {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--gold-main);
-    letter-spacing: 1px;
+    font-size: 1.3rem;
+    font-weight: 400; /* Mais fino */
+    letter-spacing: 2px;
+    color: var(--text-dark);
 }
+
+.logo-text i { color: var(--gold-main); }
 
 .nav-menu ul {
     display: flex;
@@ -163,8 +167,12 @@ ul {
 }
 
 .nav-menu a {
-    font-weight: 500;
+    font-weight: 400; /* Fonte mais fina */
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     transition: var(--transition);
+    color: var(--text-dark);
 }
 
 .nav-menu a:hover {
@@ -175,25 +183,37 @@ ul {
     display: none;
     background: none;
     border: none;
-    color: var(--gold-main);
+    color: var(--text-dark);
     font-size: 1.5rem;
     cursor: pointer;
 }
 
-/* --- Hero Section (Altura Automática sem cortes) --- */
+/* --- Tema Feminino (Ativado via JS) --- */
+body.theme-feminino .header {
+    border-bottom: 1px solid var(--pink-accent);
+}
+body.theme-feminino .nav-menu a:hover,
+body.theme-feminino .logo-text {
+    color: var(--pink-accent);
+}
+body.theme-feminino .categoria-bloco h3 {
+    border-left: 2px solid var(--pink-accent); /* Linha mais fina */
+}
+body.theme-feminino .logo-text i {
+    color: var(--pink-accent);
+}
+
+/* --- Hero Section --- */
 .hero {
     position: relative;
     width: 100%;
     height: auto;
-    /* A altura agora é automática, sem cortes */
     overflow: hidden;
-    margin-top: 70px;
-    /* Mantém o espaçamento do menu fixo */
+    margin-top: 60px;
 }
 
 .hero-carousel {
     position: relative;
-    /* Mudou de absolute para relative */
     width: 100%;
     height: auto;
     z-index: 1;
@@ -214,7 +234,6 @@ ul {
     z-index: 2;
 }
 
-/* O "pulo do gato": o primeiro slide dita a altura do banner para o navegador */
 .hero-carousel .slide:first-child {
     position: relative;
 }
@@ -224,7 +243,6 @@ ul {
     display: block;
     width: 100%;
     height: auto;
-    /* Removemos o object-fit. A imagem agora dita a proporção! */
 }
 
 .hero-overlay {
@@ -233,22 +251,8 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(15, 15, 15, 0.05) 0%, rgba(15, 15, 15, 0.15) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.15) 100%);
     z-index: 2;
-}
-
-.hero-content {
-    position: absolute;
-    bottom: 50px;
-    /* Posiciona o botão logo acima dos indicadores */
-    left: 50%;
-    transform: translateX(-50%);
-    /* Mantém o botão perfeitamente centralizado */
-    z-index: 3;
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    text-align: center;
 }
 
 /* Controles do Banner */
@@ -256,13 +260,13 @@ ul {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(212, 175, 55, 0.2);
-    border: 1px solid var(--gold-main);
-    color: var(--gold-main);
-    width: 45px;
-    height: 45px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #EAEAEA;
+    color: var(--text-dark);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     z-index: 4;
     transition: var(--transition);
@@ -270,7 +274,8 @@ ul {
 
 .hero-controls button:hover {
     background: var(--gold-main);
-    color: var(--bg-black);
+    color: #FFF;
+    border-color: var(--gold-main);
 }
 
 .hero-prev {
@@ -288,53 +293,57 @@ ul {
     transform: translateX(-50%);
     z-index: 4;
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .hero-indicators .dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
     cursor: pointer;
     transition: var(--transition);
 }
 
 .hero-indicators .dot.active {
     background-color: var(--gold-main);
+    border-color: var(--gold-main);
     transform: scale(1.2);
 }
 
 /* --- Seções Padrões --- */
 .section-title {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .section-title h2 {
-    font-size: 2.3rem;
+    font-size: 2rem;
     margin-bottom: 10px;
+    letter-spacing: 2px;
 }
 
 .section-title p {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 /* --- Produtos --- */
 .produtos-section {
     padding: 80px 0;
-    background-color: var(--bg-gray-dark);
+    background-color: var(--bg-gray-light);
 }
 
 .categoria-bloco {
-    margin-bottom: 60px;
+    margin-bottom: 70px;
 }
 
 .categoria-bloco h3 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-    border-left: 4px solid var(--gold-main);
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    border-left: 2px solid var(--gold-main); /* Linha mais fina e elegante */
     padding-left: 15px;
 }
 
@@ -346,7 +355,7 @@ ul {
 
 .carrossel-track {
     display: flex;
-    gap: 20px;
+    gap: 15px; /* Espaço menor entre os cards */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
@@ -358,25 +367,28 @@ ul {
     display: none;
 }
 
+/* --- Cards Quadrados e Menores --- */
 .produto-card {
-    flex: 0 0 280px;
+    flex: 0 0 210px; /* Reduzido de 280px para ver mais itens */
     background-color: var(--card-bg);
-    border-radius: 8px;
+    border-radius: 2px;
     overflow: hidden;
     scroll-snap-align: start;
     transition: var(--transition);
-    border: 1px solid transparent;
+    border: 1px solid #F0F0F0; /* Borda bem leve, sem sombra pesada */
+    box-shadow: none; /* Minimalismo */
 }
 
 .produto-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03); /* Sombra super sutil */
+    border-color: #EAEAEA;
 }
 
 .img-container {
-    height: 280px;
-    background-color: #111;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #FDFDFD;
 }
 
 .img-container img {
@@ -386,47 +398,55 @@ ul {
 }
 
 .produto-info {
-    padding: 20px;
+    padding: 15px; /* Reduzido para encaixar na nova proporção */
 }
 
 .produto-info h4 {
-    color: var(--text-white);
-    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-size: 0.9rem; /* Mais refinado */
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     margin-bottom: 5px;
 }
 
-.produto-info p {
-    font-size: 0.9rem;
+.produto-info p.preco {
+    font-size: 1rem;
+    color: var(--gold-main);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.produto-info p:not(.preco) {
+    font-size: 0.8rem;
     color: var(--text-muted);
     margin-bottom: 15px;
 }
 
 /* --- Setas do Carrossel de Produtos --- */
 .carrossel-btn {
-    background-color: rgba(15, 15, 15, 0.85);
-    /* Fundo semi-transparente para não tapar o produto */
-    color: var(--gold-main);
-    border: 1px solid var(--gold-main);
-    width: 40px;
-    height: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark); /* Setas escuras ao invés de douradas */
+    border: 1px solid #EAEAEA;
+    width: 35px; /* Menor e mais delicado */
+    height: 35px;
     border-radius: 50%;
     cursor: pointer;
     position: absolute;
     z-index: 10;
     transition: var(--transition);
-
-    /* Flexbox para garantir que a setinha fique perfeitamente no meio do círculo */
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .carrossel-btn:hover {
     background-color: var(--gold-main);
-    color: var(--bg-black);
+    color: #FFF;
+    border-color: var(--gold-main);
 }
 
-/* Posição padrão (Mobile): Ficam um pouco para dentro para não sumirem da tela */
 .carrossel-btn.prev {
     left: 5px;
 }
@@ -435,26 +455,20 @@ ul {
     right: 5px;
 }
 
-/* Posição Desktop: Jogamos as setas para fora dos cards, já que há mais espaço */
 @media(min-width: 768px) {
-    .carrossel-btn.prev {
-        left: -20px;
-    }
-
-    .carrossel-btn.next {
-        right: -20px;
-    }
+    .carrossel-btn.prev { left: -15px; }
+    .carrossel-btn.next { right: -15px; }
 }
 
 /* --- Diferenciais --- */
 .diferenciais {
     padding: 80px 0;
-    background-color: var(--bg-black);
+    background-color: var(--bg-main);
 }
 
 .diferenciais-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 30px;
     text-align: center;
 }
@@ -462,66 +476,68 @@ ul {
 .dif-card {
     background-color: var(--card-bg);
     padding: 40px 20px;
-    border-radius: 8px;
-    border-bottom: 3px solid var(--gold-main);
+    border-radius: 2px;
     transition: var(--transition);
+    border: 1px solid #F0F0F0;
+    border-bottom: 2px solid var(--gold-main); /* Linha fina de destaque */
 }
 
 .dif-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
 }
 
 .dif-card i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--gold-main);
     margin-bottom: 20px;
 }
 
 .dif-card h4 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin-bottom: 10px;
-    color: var(--text-white);
+    letter-spacing: 1px;
 }
 
 .dif-card p {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 /* --- Localização --- */
 .localizacao {
     padding: 80px 0;
-    background-color: var(--bg-gray-dark);
+    background-color: var(--bg-gray-light);
 }
 
 .loc-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 2px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #F0F0F0;
 }
 
 .loc-info {
     flex: 1;
     min-width: 300px;
-    padding: 50px;
+    padding: 60px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .loc-info i {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--gold-main);
     margin-bottom: 20px;
 }
 
 .loc-info h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-bottom: 15px;
+    letter-spacing: 1px;
 }
 
 .loc-info p {
@@ -538,10 +554,10 @@ ul {
 /* --- CTA Final --- */
 .cta-final {
     padding: 100px 20px;
-    background: linear-gradient(135deg, #0F0F0F 0%, #2B2B2B 100%);
+    background: var(--bg-main);
     text-align: center;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
 }
 
 .cta-content {
@@ -550,20 +566,27 @@ ul {
 }
 
 .cta-content h2 {
-    font-size: 2.3rem;
+    font-size: 2rem;
     margin-bottom: 20px;
+    letter-spacing: 1.5px;
 }
 
 .cta-content p {
     margin-bottom: 40px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
 }
 
 /* --- Footer --- */
 .footer {
-    background-color: var(--bg-black);
+    background-color: #111111;
+    color: #FFFFFF;
     padding: 60px 0 20px;
+}
+
+.footer h3, .footer h4 { 
+    color: #FFFFFF;
+    letter-spacing: 1.5px;
 }
 
 .footer-grid {
@@ -574,26 +597,27 @@ ul {
 }
 
 .footer-brand h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 15px;
 }
 
 .footer-brand p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
+    color: #999999;
+    font-size: 0.85rem;
+    font-weight: 300;
 }
 
 .footer h4 {
     margin-bottom: 20px;
-    color: var(--text-white);
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .footer-contact p,
 .footer-address p {
-    color: var(--text-muted);
+    color: #999999;
     margin-bottom: 10px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 300;
 }
 
 .footer-contact i {
@@ -604,8 +628,8 @@ ul {
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #777777;
     font-size: 0.8rem;
 }
 
@@ -616,51 +640,44 @@ ul {
     right: 30px;
     background-color: #25D366;
     color: #FFF;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    font-size: 1.8rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     transition: var(--transition);
     animation: pulse 2s infinite;
 }
 
 .whatsapp-float:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     background-color: #1ebe57;
 }
 
 @keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
-    }
-
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 .smart-balloon {
     position: fixed;
-    bottom: 100px;
+    bottom: 95px;
     right: 30px;
     background-color: var(--card-bg);
-    border: 1px solid var(--gold-main);
-    color: var(--text-white);
+    border: 1px solid #EAEAEA; /* Sem a borda dourada pesada */
+    border-left: 3px solid var(--gold-main);
+    color: var(--text-dark);
     padding: 12px 20px;
-    border-radius: 20px 20px 0 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 4px; /* Mais quadrado */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     z-index: 999;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 400;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -677,35 +694,27 @@ ul {
    ======================================================== */
 
 .produto-page-section {
-    margin-top: 100px;
-    /* Evita que o menu fixo cubra o conteúdo */
+    margin-top: 80px;
     padding: 40px 20px;
     min-height: 70vh;
-    /* Garante que a página tenha uma altura mínima legal */
 }
 
-/* Estrutura de Grid: Lado a lado no PC, empilhado no celular */
 .produto-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 50px;
     align-items: start;
-    background-color: #1a1a1a;
-    padding: 30px;
-    border-radius: 10px;
+    background-color: #FFFFFF;
+    padding: 0;
     border: none !important;
-    /* Força a remoção da borda */
-    box-shadow: none !important;
-    /* Garante que não é uma sombra perdida */
-    outline: none !important;
 }
 
-/* Coluna 1: Imagem */
 .produto-galeria .img-principal-wrapper {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 2px;
     overflow: hidden;
-    background-color: #0f0f0f;
+    background-color: #FDFDFD;
+    border: 1px solid #F0F0F0;
 }
 
 .produto-galeria img {
@@ -715,40 +724,39 @@ ul {
     object-fit: contain;
 }
 
-/* Coluna 2: Textos e Botões */
 .produto-info-detalhada h1 {
-    font-size: 2rem;
-    color: #ffffff;
+    font-size: 1.8rem;
+    color: var(--text-dark);
     margin-bottom: 10px;
 }
 
 .divisor-ouro {
-    width: 60px;
-    height: 4px;
-    background-color: var(--gold-main, #d4af37);
-    margin: 15px 0 20px 0;
-    border-radius: 2px;
+    width: 40px; /* Menor e mais elegante */
+    height: 2px; /* Mais fino */
+    background-color: var(--gold-main);
+    margin: 15px 0 25px 0;
 }
 
 .preco-destaque {
-    font-size: 1.8rem;
-    color: var(--gold-main, #d4af37);
+    font-size: 1.5rem;
+    color: var(--gold-main);
     margin-bottom: 25px;
 }
 
 .produto-descricao h3 {
-    font-size: 1.1rem;
-    color: #cccccc;
+    font-size: 1rem;
+    color: var(--text-dark);
     margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .produto-descricao p {
-    color: #aaaaaa;
+    color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 30px;
+    font-size: 0.95rem;
 }
 
-/* Botões de Ação */
 .produto-acoes {
     display: flex;
     flex-direction: column;
@@ -757,11 +765,11 @@ ul {
 
 .btn-comprar-zap {
     background-color: #25D366;
-    /* Verde do WhatsApp */
     color: #ffffff !important;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 15px;
+    font-weight: 500;
 }
 
 .btn-comprar-zap:hover {
@@ -771,97 +779,74 @@ ul {
 
 .btn-voltar {
     text-align: center;
-    color: var(--gold-main, #d4af37);
+    color: var(--text-muted);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 10px;
     transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn-voltar:hover {
-    color: #ffffff;
+    color: var(--text-dark);
 }
 
-/* --- Responsividade (Celular e Tablet) --- */
-/* --- Responsividade (Celular e Tablet) --- */
-/* --- Responsividade (Celular e Tablet) --- */
 @media (max-width: 768px) {
-
-    /* Diminui o buraco entre o menu e o produto no celular */
     .produto-page-section {
-        margin-top: 70px;
+        margin-top: 60px;
         padding: 20px 15px;
     }
-
     .produto-grid {
         grid-template-columns: 1fr;
-        /* Coloca tudo em uma coluna só */
-        padding: 15px;
-        gap: 20px;
+        padding: 0;
+        gap: 30px;
     }
-
     .produto-info-detalhada h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
-
     .preco-destaque {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 }
 
-/* --- Responsividade --- */
 @media (max-width: 768px) {
     .nav-menu {
         display: none;
         position: absolute;
-        top: 70px;
+        top: 60px;
         left: 0;
         width: 100%;
-        background-color: var(--bg-black);
+        background-color: #FFFFFF;
         padding: 20px 0;
-        border-bottom: 1px solid var(--gold-main);
+        border-bottom: 1px solid #F0F0F0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
-
     .nav-menu.active {
         display: block;
     }
-
     .nav-menu ul {
         flex-direction: column;
         align-items: center;
         gap: 20px;
     }
-
     .header-cta {
         display: none;
     }
-
     .mobile-toggle {
         display: block;
     }
-
     .hero {
         height: auto;
-        /* Substitua o 50vh por auto */
-        margin-top: 70px;
+        margin-top: 60px;
     }
-
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
     .whatsapp-float {
         bottom: 20px;
         right: 20px;
         width: 50px;
         height: 50px;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
-
     .smart-balloon {
         bottom: 80px;
         right: 20px;
@@ -872,7 +857,6 @@ ul {
    ESTILOS DE FILTROS E NOVAS SEÇÕES
    ======================================================== */
 
-/* Dropdown de Filtros */
 .filtro-container {
     margin-bottom: 25px;
     display: flex;
@@ -881,47 +865,44 @@ ul {
 }
 
 .filtro-container label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     color: var(--text-muted);
 }
 
 .categoria-filtro {
-    background-color: var(--bg-gray-dark);
-    color: var(--text-white);
-    border: 1px solid var(--gold-main);
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    border: 1px solid #EAEAEA; /* Borda leve no lugar de dourado */
     padding: 8px 15px;
-
-    /* Aumentamos o espaço da direita para o texto não encostar na seta */
     padding-right: 40px;
-
-    border-radius: 5px;
+    border-radius: 2px;
     font-family: var(--font-body);
+    font-size: 0.85rem;
     cursor: pointer;
     outline: none;
-
-    /* 1. Remove a setinha padrão grudada do navegador */
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-
-    /* 2. Adiciona a nossa setinha branca personalizada via código SVG */
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23111111%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
     background-size: 10px auto;
-
-    /* 3. Aqui está a mágica! Posicionamos a seta a 15px de distância da borda direita */
     background-position: right 15px center;
 }
 
-/* Novo Carrossel Interno do Produto */
+.categoria-filtro:focus {
+    border-color: var(--gold-main);
+}
+
 .prod-carousel-container {
     position: relative;
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
-    background-color: var(--bg-gray-dark);
-    border-radius: 12px;
-    border: 1px solid #222;
+    background-color: var(--bg-main);
+    border-radius: 2px;
+    border: 1px solid #EAEAEA;
     overflow: hidden;
 }
 
@@ -959,11 +940,11 @@ ul {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(15, 15, 15, 0.7);
-    border: 1px solid var(--gold-main);
-    color: var(--text-white);
-    width: 40px;
-    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #EAEAEA;
+    color: var(--text-dark);
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
@@ -971,35 +952,27 @@ ul {
 }
 
 .prod-carousel-btn:hover {
-    background: var(--gold-main);
-    color: var(--bg-black);
+    border-color: var(--gold-main);
+    color: var(--gold-main);
 }
 
-.prod-carousel-btn.prev {
-    left: 15px;
-}
+.prod-carousel-btn.prev { left: 15px; }
+.prod-carousel-btn.next { right: 15px; }
 
-.prod-carousel-btn.next {
-    right: 15px;
-}
-
-/* Seção de Semelhantes */
 .produtos-semelhantes-section {
     margin-top: 60px;
-    border-top: 1px solid #222;
+    border-top: 1px solid #EAEAEA;
     padding-top: 40px;
 }
 
 .titulo-semelhantes {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     text-align: center;
-    color: var(--text-white);
-    margin-bottom: 10px;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
 }
 
-/* =========================================
-   CARROSSEL MINI (PRODUTOS SEMELHANTES)
-========================================= */
 #produtos-semelhantes-grid {
     display: flex !important;
     gap: 15px !important;
@@ -1012,34 +985,27 @@ ul {
     flex: 0 0 160px !important;
     width: 160px !important;
     background-color: var(--card-bg) !important;
-    border-radius: 8px !important;
+    border-radius: 2px !important;
+    border: 1px solid #F0F0F0 !important;
     display: flex !important;
     flex-direction: column !important;
     overflow: hidden !important;
 }
 
-/* AQUI ESTAVA O ERRO! Agora estamos mirando no .produto-img criado pelo JS */
-/* A Caixa da Imagem */
 #produtos-semelhantes-grid .produto-img {
     width: 100% !important;
-    height: 180px !important;
-    /* Aumentei levemente a altura para a camisa ficar mais imponente */
-    min-height: 180px !important;
-    background-color: var(--card-bg) !important;
-    /* Puxa o mesmo fundo dos cards do index */
+    height: 160px !important;
+    min-height: 160px !important;
+    background-color: #FDFDFD !important;
     display: block !important;
     padding: 0 !important;
-    /* REMOVIDO: Agora a foto vai colar nas bordas */
     overflow: hidden !important;
-    /* Corta qualquer rebarba invisível */
 }
 
-/* Mirando a imagem correta */
 #produtos-semelhantes-grid .produto-img img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    /* O SEGREDO DO INDEX: Preenche a caixa inteira sem sobrar espaço */
     display: block !important;
 }
 
@@ -1050,9 +1016,10 @@ ul {
     flex-grow: 1 !important;
 }
 
-/* O título gerado pelo JS é <h3>, e não <h4>! */
 #produtos-semelhantes-grid .produto-info h3 {
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
+    font-weight: 400 !important;
+    text-transform: uppercase;
     margin: 0 0 5px 0 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
@@ -1060,42 +1027,32 @@ ul {
 }
 
 #produtos-semelhantes-grid .produto-info .preco {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
     color: var(--gold-main) !important;
     margin: 0 0 10px 0 !important;
-    font-weight: bold !important;
-}
-
-#produtos-semelhantes-grid .produto-info p:not(.preco) {
-    display: none !important;
+    font-weight: 500 !important;
 }
 
 #produtos-semelhantes-grid .btn {
     margin-top: auto !important;
     padding: 8px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.75rem !important;
     width: 100% !important;
     text-align: center !important;
 }
 
-/* =========================================
-   SUMÁRIO DE CATEGORIAS (MENU ANIMADO)
-========================================= */
 #categorias,
 #moda-infantil,
+#roupas-femininas,
 #cuecasecarteiras {
     scroll-margin-top: 25px;
-    /* Faz a rolagem parar um pouco antes, dando o espaço do menu fixo */
 }
 
-#blusas,
-#camisas,
-#calcasebermudas {
+#blusas, #camisas, #calcasebermudas {
     scroll-margin-top: 100px;
 }
 
-#oversized,
-#moda-infantil {
+#oversized, #moda-infantil {
     scroll-margin-top: 110px;
 }
 
@@ -1104,144 +1061,59 @@ ul {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    /* Se a tela for pequena, eles caem para a linha de baixo organizados */
     gap: 15px;
-    margin: 0 auto 100px auto;
-    /* Dá um respiro antes de começar as fotos dos produtos */
+    margin: 0 auto 80px auto;
     padding: 0 20px;
     scroll-margin-top: 200px;
 }
 
 .sumario-item {
-    color: var(--text-white);
+    color: var(--text-dark);
     text-decoration: none;
-    font-size: 1.25rem;
-    padding: 14px 32px;
-    font-weight: 600;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 40px;
-    background-color: var(--bg-gray-dark);
+    font-size: 0.85rem;
+    padding: 10px 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid #EAEAEA;
+    border-radius: 30px; /* Estilo pílula minimalista */
+    background-color: var(--bg-main);
     transition: all 0.3s ease;
-
-    /* AUMENTAMOS PARA 12 SEGUNDOS para caber a nova quantidade de botões */
-    animation: pulsarDourado 12s infinite;
 }
 
-/* A fila de espera da animação: agora com espaço para todo mundo! */
-.sumario-item:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.sumario-item:nth-child(2) {
-    animation-delay: 2s;
-}
-
-.sumario-item:nth-child(3) {
-    animation-delay: 4s;
-}
-
-.sumario-item:nth-child(4) {
-    animation-delay: 6s;
-}
-
-/* O seu 4º botão */
-.sumario-item:nth-child(5) {
-    animation-delay: 8s;
-}
-
-/* O seu 5º botão */
-.sumario-item:nth-child(6) {
-    animation-delay: 10s;
-}
-
-/* O seu 6º botão */
-/* Já deixei dois extras prontos aqui caso você decida adicionar mais categorias no futuro 😉 */
-.sumario-item:nth-child(7) {
-    animation-delay: 12s;
-}
-
-.sumario-item:nth-child(8) {
-    animation-delay: 14s;
-}
-
-/* Se o cliente colocar o mouse em cima, o botão fixa aceso e para de piscar */
 .sumario-item:hover {
-    color: var(--bg-black) !important;
-    background-color: var(--gold-main) !important;
-    border-color: var(--gold-main) !important;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-    animation-play-state: paused;
+    color: var(--text-dark) !important;
+    background-color: #F9F9F9 !important;
+    border-color: var(--text-dark) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
 
-/* A Coreografia da Animação */
-@keyframes pulsarDourado {
-
-    0%,
-    100% {
-        color: var(--text-white);
-        background-color: var(--bg-gray-dark);
-        border-color: rgba(255, 255, 255, 0.1);
-        transform: scale(1);
-        box-shadow: none;
-    }
-
-    10%,
-    25% {
-        /* Fica em destaque por 1.5 segundos (cor de fundo dourada, letra preta) */
-        color: var(--bg-black);
-        background-color: var(--gold-main);
-        border-color: var(--gold-main);
-        transform: scale(1.08);
-        /* Dá uma leve "inchada" pra chamar atenção */
-        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        /* Brilho em volta */
-    }
-
-    35% {
-        /* Volta ao normal suavemente e espera o turno dos outros botões */
-        color: var(--text-white);
-        background-color: var(--bg-gray-dark);
-        border-color: rgba(255, 255, 255, 0.1);
-        transform: scale(1);
-        box-shadow: none;
-    }
-}
-
-/* =========================================
-   POLÍTICA DE ENTREGAS
-========================================= */
 .entregas-section {
     margin: 60px 0;
     padding: 0 20px;
     scroll-margin-top: 110px;
-    /* Para caso você crie um link no menu para cá */
 }
 
-/* O título segue o padrão do site */
 .entregas-section .titulo-secao {
     text-align: center;
-    color: var(--gold-main);
-    font-size: 2rem;
+    color: var(--text-dark);
+    font-size: 1.6rem;
+    letter-spacing: 1px;
     margin-bottom: 30px;
 }
 
-/* O Card Principal */
 .entregas-card {
-    background-color: var(--card-bg, #2b2b2b);
-    /* Mesmo fundo da localização */
-    border-radius: 12px;
+    background-color: var(--card-bg);
+    border-radius: 2px;
     max-width: 1000px;
-    /* Limita a largura para não esticar muito em telas gigantes */
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    /* Sombra elegante */
+    border: 1px solid #F0F0F0;
 }
 
-/* As metades do Card */
 .entrega-info {
     flex: 1;
     min-width: 300px;
@@ -1254,52 +1126,111 @@ ul {
 
 .entrega-info h3 {
     color: var(--gold-main);
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
     margin-bottom: 15px;
 }
 
 .entrega-info p {
-    color: var(--text-white, #ffffff);
-    font-size: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
 }
 
-/* Linha divisória entre Correios e Motoboy */
 .entrega-divisor {
     width: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #F0F0F0;
     margin: 20px 0;
 }
 
-/* Faixa de aviso na parte de baixo */
 .frete-aviso {
     width: 100%;
-    background-color: #1a1a1a;
-    /* Um tom mais escuro para destacar do card */
+    background-color: #FAFAFA;
     text-align: center;
     padding: 20px;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-top: 1px solid #F0F0F0;
 }
 
 .frete-aviso p {
     margin: 0;
-    color: var(--gold-main);
-    font-size: 1.05rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
-/* =========================================
-   RESPONSIVIDADE (CELULAR)
-========================================= */
 @media (max-width: 768px) {
-    .entrega-divisor {
-        width: 100%;
-        height: 1px;
-        margin: 0;
-        /* No celular, a linha deita para separar em cima e embaixo */
+    .entrega-divisor { width: 100%; height: 1px; margin: 0; }
+    .entrega-info { padding: 30px 20px; }
+}
+
+/* Ajuste do tamanho dos produtos no carrossel para Mobile (2.5 itens) */
+@media (max-width: 768px) {
+    /* Reduz o espaço entre os produtos para caberem melhor */
+    .carrossel-track {
+        gap: 10px;
+    }
+    
+    /* Define a largura para ocupar cerca de 36% do ecrã (cabe 2 inteiros e metade do 3º) */
+    .produto-card {
+        min-width: 36vw !important;
+        max-width: 36vw !important;
     }
 
-    .entrega-info {
-        padding: 30px 20px;
+    /* Ajusta a altura das imagens para não ficarem esticadas ou gigantes */
+    .produto-card .img-container {
+        height: 160px !important;
     }
+    
+    .produto-card .img-container img,
+    .produto-card img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Reduz ligeiramente as fontes e margens para caber no novo tamanho */
+    .produto-info {
+        padding: 10px !important;
+    }
+
+    .produto-info h4 {
+        font-size: 13px !important;
+        margin-bottom: 5px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .produto-info .preco {
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .produto-info .btn {
+        font-size: 12px !important;
+        padding: 6px 4px !important;
+    }
+}
+
+/* ==========================================
+   CORES DA PÁGINA DE PRODUTO FEMININO
+========================================== */
+
+/* Muda a cor do preço para rosa na loja feminina */
+.theme-feminino .preco-destaque,
+.theme-feminino #prod-preco {
+    color: #cf7888 !important; 
+}
+
+/* Muda a cor do botão de compra para rosa na loja feminina */
+.theme-feminino #prod-btn-zap, 
+.theme-feminino .btn-pink {
+    background-color: #cf7888 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+/* Efeito ao passar o rato (hover) no botão */
+.theme-feminino #prod-btn-zap:hover, 
+.theme-feminino .btn-pink:hover {
+    background-color: #b06271 !important; 
 }
