@@ -74,15 +74,16 @@ ul {
 }
 
 .btn-gold {
-    background-color: var(--text-dark);
-    color: var(--gold-main);
+    background-color: var(--gold-main); /* Fundo dourado */
+    color: var(--text-dark); /* Texto escuro */
+    font-weight: 500; /* Deixa o texto um pouco mais destacado */
 }
 
 .btn-gold:hover {
-    background-color: var(--gold-main);
+    background-color: #c09e30; /* Dourado um pouco mais escuro ao passar o mouse */
     color: var(--text-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); /* Sombra mais sutil */
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); /* Sombra dourada mais aparente */
 }
 
 .btn-gold-outline {
