@@ -100,13 +100,7 @@ function renderizarProdutosPorCategoria(categoriaId, filtroSelecionado = "todos"
 
     listaFiltrada.forEach(p => {
         const imagemCapa = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/300x400?text=Sem+Foto";
-        const tamanhosTexto = (!isFeminino && p.tamanhos) ? ` - ${p.tamanhos}` : "";
-        
         const btnClass = isFeminino ? "btn btn-block btn-pink" : "btn btn-block";
-        
-        // CORREÇÃO AQUI: Removemos a verificação isFeminino para a URL
-        // Como o ficheiro index.html está dentro da pasta feminino,
-        // o link relativo para produto.html funciona para ambas as lojas.
         const urlProduto = `produto.html?id=${p.id}`;
 
         const card = document.createElement("div");
@@ -132,9 +126,46 @@ function inicializarLoja() {
         const categoriaId = select.getAttribute("data-categoria");
         
         if (categoriaId) {
+            
+            // --- INÍCIO DA LÓGICA DE FILTROS DINÂMICOS ---
+            // 1. Pega os produtos desta categoria e loja específica
+            let produtosDestaCategoria = Object.keys(produtos)
+                .map(id => produtos[id])
+                .filter(p => p.categoria === categoriaId);
+            
+            if (isFeminino) {
+                produtosDestaCategoria = produtosDestaCategoria.filter(p => p.loja === "feminina");
+            } else {
+                produtosDestaCategoria = produtosDestaCategoria.filter(p => p.loja !== "feminina");
+            }
+
+            // 2. Extrai todas as tags criadas pelo admin e remove as duplicadas
+            const todasTags = produtosDestaCategoria.flatMap(p => p.filtros || []);
+            const tagsUnicas = [...new Set(todasTags)];
+
+            // 3. Reseta o menu Select HTML (Apaga as opções manuais)
+            select.innerHTML = `
+                <option value="todos">Todos</option>
+                <option value="menor-preco">Menor para o maior valor</option>
+            `;
+
+            // 4. Injeta as tags de forma dinâmica
+            tagsUnicas.forEach(tag => {
+                if (tag && tag.toLowerCase() !== "todos") {
+                    const option = document.createElement("option");
+                    option.value = tag;
+                    // Deixa a primeira letra maiúscula
+                    option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+                    select.appendChild(option);
+                }
+            });
+            // --- FIM DA LÓGICA DE FILTROS DINÂMICOS ---
+
+            // Renderiza os produtos na tela
             renderizarProdutosPorCategoria(categoriaId, "todos", false);
         }
 
+        // Escuta quando o usuário muda a opção no filtro
         select.addEventListener("change", (e) => {
             const valorOpcao = e.target.value;
             if (valorOpcao === "menor-preco") {
@@ -160,12 +191,10 @@ function carregarDetalhesDoProduto() {
     if (produtoId && produtos[produtoId]) {
         const prod = produtos[produtoId];
         
-        // Preenche dados base (Ambas as lojas)
         if (document.getElementById('prod-titulo')) document.getElementById('prod-titulo').innerText = prod.titulo;
         if (document.getElementById('prod-preco')) document.getElementById('prod-preco').innerText = prod.preco;
         if (document.getElementById('prod-desc')) document.getElementById('prod-desc').innerText = prod.descricao;
 
-        // Bloco de tamanhos (Geralmente na loja principal)
         const blocoTamanhos = document.getElementById("bloco-tamanhos");
         const txtTamanhos = document.getElementById("prod-tamanhos");
         if (blocoTamanhos && txtTamanhos) {
@@ -177,15 +206,13 @@ function carregarDetalhesDoProduto() {
             }
         }
 
-        // WhatsApp Link
         const btnZap = document.getElementById('prod-btn-zap');
         if (btnZap) {
             btnZap.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prod.mensagemZap || 'Olá, gostei deste produto!')}`;
         }
 
-        // --- SISTEMA DE FOTOS ---
-        const galeriaSlides = document.getElementById("prod-galeria-slides"); // Loja Principal
-        const imgPrincipal = document.getElementById("prod-img-principal");   // Loja Feminina
+        const galeriaSlides = document.getElementById("prod-galeria-slides"); 
+        const imgPrincipal = document.getElementById("prod-img-principal");   
         
         if (galeriaSlides && prod.fotos) {
             galeriaSlides.innerHTML = "";
@@ -221,11 +248,9 @@ function carregarDetalhesDoProduto() {
                 }
             }
         } else if (imgPrincipal && prod.fotos && prod.fotos.length > 0) {
-            // Se for a página da loja feminina que usa só 1 foto em destaque
             imgPrincipal.src = prod.fotos[0];
         }
 
-        // Produtos Semelhantes (Opcional - se a grade existir na tela)
         const gridSemelhantes = document.getElementById("produtos-semelhantes-grid");
         if (gridSemelhantes) {
             gridSemelhantes.innerHTML = "";
@@ -267,17 +292,14 @@ function carregarDetalhesDoProduto() {
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
     
-    // 1. Iniciar Banco
     carregarProdutosDoBanco();
 
-    // 2. Links Dinâmicos do WhatsApp
     const waLinks = document.querySelectorAll(".wa-link");
     waLinks.forEach(link => {
         const customMsg = link.getAttribute("data-msg") || "Olá! Gostaria de mais informações.";
         link.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(customMsg)}`;
     });
 
-    // 3. Menu Mobile (Hambúrguer)
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -304,7 +326,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 4. Carrossel Principal (Hero - topo da página inicial)
     const slides = document.querySelectorAll('.hero-carousel .slide, .slide');
     const dots = document.querySelectorAll('.hero-indicators .dot, .dot');
     const prevBtn = document.querySelector('.hero-prev');
@@ -338,7 +359,6 @@ document.addEventListener("DOMContentLoaded", function () {
         slideInterval = setInterval(nextSlide, 5000);
     }
 
-    // 5. Navegação dos Carrosséis de Produtos Universais (Setinhas Laterais)
     const conteineresProdutos = document.querySelectorAll('.carrossel-track, .produtos-grid, .carrossel-container, .produtos-carrossel');
     conteineresProdutos.forEach((grid) => {
         const secaoPai = grid.parentElement;
@@ -354,7 +374,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 6. Destaque Automático de Categorias (Efeito Sumário da Loja Feminina)
     const sumarioItems = document.querySelectorAll('.sumario-item');
     if (sumarioItems.length > 0 && isFeminino) {
         let currentCatIndex = 0;
@@ -367,7 +386,6 @@ document.addEventListener("DOMContentLoaded", function () {
         setInterval(alternarDestaqueCategoria, 1500);
     }
 
-    // 7. Rodapé com ano dinâmico
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.innerText = new Date().getFullYear();
 });
