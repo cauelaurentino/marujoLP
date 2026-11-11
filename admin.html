@@ -501,6 +501,58 @@
             color: #fff;
             /* Texto que o admin digita em branco */
         }
+
+        /* ==========================================
+           ESTILOS DO ACORDEON DAS LOJAS (ADMIN)
+           ========================================== */
+        .loja-accordion {
+            margin-bottom: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.4); /* Borda com a cor dourada transparente */
+            border-radius: 8px;
+            background-color: var(--bg-card, #2a2a2a); 
+        }
+        .loja-accordion-header {
+            padding: 15px 20px;
+            background-color: rgba(212, 175, 55, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .loja-accordion-header:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+        .loja-accordion-header.active {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .loja-accordion-header i.fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        .loja-accordion-header.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        /* Animação suave usando CSS Grid */
+        .loja-accordion-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s ease-out;
+        }
+        .loja-accordion-content.active {
+            grid-template-rows: 1fr;
+        }
+        .loja-accordion-inner {
+            overflow: hidden;
+        }
+        .loja-accordion-inner-padding {
+            padding: 20px;
+        }
     </style>
 </head>
 
@@ -953,6 +1005,25 @@
             }
         }
 
+        // ==========================================
+        // LISTAGEM, EDIÇÃO, EXCLUSÃO E ORDENAÇÃO
+        // ==========================================
+        
+        // Memória para guardar quais sanfonas estão abertas durante os recarregamentos
+        if (typeof window.estadoAcordeon === 'undefined') {
+            window.estadoAcordeon = { 'acc-masc': true, 'acc-fem': false };
+        }
+
+        window.toggleAccordion = function(idAcordeon, element) {
+            // Anima a abertura/fechamento
+            element.classList.toggle('active');
+            const content = document.getElementById(idAcordeon);
+            content.classList.toggle('active');
+            
+            // Salva na memória para não fechar sozinho ao mover um produto
+            window.estadoAcordeon[idAcordeon] = element.classList.contains('active');
+        };
+
         function renderizarListaProdutosAdmin() {
             const carrosseisDiv = document.getElementById("carrosseis-admin");
             carrosseisDiv.innerHTML = "";
@@ -962,70 +1033,113 @@
                 return;
             }
 
-            const categoriasFiltro = {
+            // Definição das categorias por loja
+            const categoriasPrincipal = {
                 "camisas": "Camisas",
                 "blusas": "Casacos e Blusas",
                 "calcasebermudas": "Calças e Bermudas",
                 "moda-infantil": "Moda Infantil",
-                "roupas-femininas": "Roupas Femininas",
-                "academia": "Academia (Fem)",
-                "vestidos": "Vestidos (Fem)",
-                "conjuntos": "Conjuntos (Fem)",
-                "calcas": "Calças (Fem)",
-                "saias": "Saias e Shorts (Fem)"
+                "roupas-femininas": "Roupas Femininas (Legado)"
             };
 
-            Object.keys(categoriasFiltro).forEach(catId => {
-                const produtosCategoria = produtosCarregados.filter(p => p.categoria === catId);
+            const categoriasFeminina = {
+                "academia": "Academia",
+                "blusas": "Blusas",
+                "vestidos": "Vestidos",
+                "conjuntos": "Conjuntos",
+                "calcas": "Calças",
+                "saias": "Saias e Shorts"
+            };
 
-                if (produtosCategoria.length > 0) {
-                    const sec = document.createElement("div");
-                    sec.className = "categoria-section";
+            // Função auxiliar que constrói a sanfona (acordeon) e injeta os produtos dentro
+            function gerarHTMLAcordeon(tituloLoja, produtosLoja, mapaCategorias, idAcordeon) {
+                let conteudoHTML = "";
+                let temProduto = false;
 
-                    let cardsHTML = produtosCategoria.map((p, index) => {
-                        const imagemCapa = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/200x200?text=Sem+Foto";
-                        const tituloProd = p.titulo || "Sem título";
-                        const precoProd = p.preco || "R$ 0,00";
-                        const badge = p.loja === "feminina"
-                            ? '<span class="badge-loja badge-fem">Feminina</span>'
-                            : '<span class="badge-loja badge-masc">Principal</span>';
+                Object.keys(mapaCategorias).forEach(catId => {
+                    const produtosCategoria = produtosLoja.filter(p => p.categoria === catId);
 
-                        return `
-                        <div class="admin-card">
-                            <img src="${imagemCapa}" alt="${tituloProd}" loading="lazy">
-                            <div class="admin-card-info">
-                                <h4>${tituloProd}</h4>
-                                <p>${precoProd} ${badge}</p>
+                    if (produtosCategoria.length > 0) {
+                        temProduto = true;
+                        let cardsHTML = produtosCategoria.map((p, index) => {
+                            const imagemCapa = (p.fotos && p.fotos.length > 0) ? p.fotos[0] : "https://via.placeholder.com/200x200?text=Sem+Foto";
+                            const tituloProd = p.titulo || "Sem título";
+                            const precoProd = p.preco || "R$ 0,00";
+                            const badge = p.loja === "feminina"
+                                ? '<span class="badge-loja badge-fem">Feminina</span>'
+                                : '<span class="badge-loja badge-masc">Principal</span>';
+
+                            return `
+                            <div class="admin-card">
+                                <img src="${imagemCapa}" alt="${tituloProd}" loading="lazy">
+                                <div class="admin-card-info">
+                                    <h4>${tituloProd}</h4>
+                                    <p>${precoProd} ${badge}</p>
+                                </div>
+                                <div class="admin-card-acoes">
+                                    <button type="button" class="btn-acao btn-editar" onclick="carregarParaEdicao('${p.id}')">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn-acao btn-excluir" onclick="deletarProduto('${p.id}')" title="Excluir">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <div class="admin-card-ordem">
+                                    <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', -1)" ${index === 0 ? 'disabled style="opacity: 0.2"' : ''} title="Mover para esquerda">
+                                        <i class="fa-solid fa-arrow-left"></i>
+                                    </button>
+                                    <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', 1)" ${index === produtosCategoria.length - 1 ? 'disabled style="opacity: 0.2"' : ''} title="Mover para direita">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="admin-card-acoes">
-                                <button type="button" class="btn-acao btn-editar" onclick="carregarParaEdicao('${p.id}')">
-                                    <i class="fas fa-edit"></i> Editar
-                                </button>
-                                <button type="button" class="btn-acao btn-excluir" onclick="deletarProduto('${p.id}')" title="Excluir">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                            <div class="admin-card-ordem">
-                                <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', -1)" ${index === 0 ? 'disabled style="opacity: 0.2"' : ''} title="Mover para esquerda">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                </button>
-                                <button type="button" onclick="moverPosicaoProdutoLocal('${p.id}', 1)" ${index === produtosCategoria.length - 1 ? 'disabled style="opacity: 0.2"' : ''} title="Mover para direita">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
+                            `;
+                        }).join('');
+
+                        conteudoHTML += `
+                        <div class="categoria-section">
+                            <h3 style="margin-top: 10px; margin-bottom: 15px;">${mapaCategorias[catId]}</h3>
+                            <div class="admin-carrossel">
+                                ${cardsHTML}
                             </div>
                         </div>
-                    `;
-                    }).join('');
+                        `;
+                    }
+                });
 
-                    sec.innerHTML = `
-                    <h3>${categoriasFiltro[catId]}</h3>
-                    <div class="admin-carrossel">
-                        ${cardsHTML}
-                    </div>
-                `;
-                    carrosseisDiv.appendChild(sec);
+                if (!temProduto) {
+                    conteudoHTML = '<div style="padding: 20px; text-align: center; color: #888;">Nenhum produto cadastrado nesta loja.</div>';
                 }
-            });
+
+                // Recupera se essa sanfona deve estar aberta ou fechada com base na memória
+                const isActive = window.estadoAcordeon[idAcordeon];
+                const activeClass = isActive ? 'active' : '';
+
+                return `
+                <div class="loja-accordion">
+                    <div class="loja-accordion-header ${activeClass}" onclick="toggleAccordion('${idAcordeon}', this)">
+                        <span><i class="fa-solid fa-store"></i> ${tituloLoja}</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="loja-accordion-content ${activeClass}" id="${idAcordeon}">
+                        <div class="loja-accordion-inner">
+                            <div class="loja-accordion-inner-padding">
+                                ${conteudoHTML}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+
+            // Separa os produtos pelas Lojas
+            const produtosMasculina = produtosCarregados.filter(p => p.loja !== "feminina");
+            const produtosFeminina = produtosCarregados.filter(p => p.loja === "feminina");
+
+            // Junta os dois HTMLs renderizados e injeta no DOM
+            carrosseisDiv.innerHTML = 
+                gerarHTMLAcordeon("Loja Principal (Masculina e Unissex)", produtosMasculina, categoriasPrincipal, "acc-masc") +
+                gerarHTMLAcordeon("Loja Feminina", produtosFeminina, categoriasFeminina, "acc-fem");
         }
 
         window.moverPosicaoProdutoLocal = function (produtoId, direcao) {
