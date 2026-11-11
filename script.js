@@ -1,7 +1,7 @@
 // ==========================================
 // CONFIGURAÇÕES DA LOJA E FIREBASE
 // ==========================================
-const whatsappNumber = "5512988168291";
+const whatsappNumber = "5512988288291";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
