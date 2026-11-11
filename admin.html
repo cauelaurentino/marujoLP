@@ -507,10 +507,12 @@
            ========================================== */
         .loja-accordion {
             margin-bottom: 25px;
-            border: 1px solid rgba(212, 175, 55, 0.4); /* Borda com a cor dourada transparente */
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            /* Borda com a cor dourada transparente */
             border-radius: 8px;
-            background-color: var(--bg-card, #2a2a2a); 
+            background-color: var(--bg-card, #2a2a2a);
         }
+
         .loja-accordion-header {
             padding: 15px 20px;
             background-color: rgba(212, 175, 55, 0.1);
@@ -524,32 +526,40 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
+
         .loja-accordion-header:hover {
             background-color: rgba(212, 175, 55, 0.2);
         }
+
         .loja-accordion-header.active {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
+
         .loja-accordion-header i.fa-chevron-down {
             transition: transform 0.3s ease;
         }
+
         .loja-accordion-header.active i.fa-chevron-down {
             transform: rotate(180deg);
         }
+
         /* Animação suave usando CSS Grid */
         .loja-accordion-content {
             display: grid;
             grid-template-rows: 0fr;
             transition: grid-template-rows 0.4s ease-out;
         }
+
         .loja-accordion-content.active {
             grid-template-rows: 1fr;
         }
+
         .loja-accordion-inner {
             overflow: hidden;
         }
+
         .loja-accordion-inner-padding {
             padding: 20px;
         }
@@ -688,7 +698,7 @@
     </div>
 
     <!-- SCRIPT FIREBASE & LÓGICA DO PAINEL -->
-<script type="module">
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -812,7 +822,7 @@
         // ==========================================
         btnAddFoto.addEventListener("click", () => fotosInput.click());
 
-        function compressAndConvertToBase64(file, maxWidth = 600, quality = 0.6) {
+        function compressAndConvertToBase64(file, maxWidth = 500, quality = 0.4) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
@@ -834,7 +844,16 @@
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, width, height);
 
-                        resolve(canvas.toDataURL('image/webp', quality));
+                        // Gera a imagem em WebP com qualidade reduzida
+                        let base64 = canvas.toDataURL('image/webp', quality);
+
+                        // Trava de segurança: se a imagem gerada ainda tiver mais de ~180kb (para garantir que 5 caibam em 1MB)
+                        // Ele faz uma segunda compressão forçada no formato JPEG
+                        if (base64.length > 180000) {
+                            base64 = canvas.toDataURL('image/jpeg', 0.2);
+                        }
+
+                        resolve(base64);
                     };
                     img.onerror = () => reject(new Error("Erro ao processar imagem."));
                 };
@@ -1008,18 +1027,18 @@
         // ==========================================
         // LISTAGEM, EDIÇÃO, EXCLUSÃO E ORDENAÇÃO
         // ==========================================
-        
+
         // Memória para guardar quais sanfonas estão abertas durante os recarregamentos
         if (typeof window.estadoAcordeon === 'undefined') {
             window.estadoAcordeon = { 'acc-masc': true, 'acc-fem': false };
         }
 
-        window.toggleAccordion = function(idAcordeon, element) {
+        window.toggleAccordion = function (idAcordeon, element) {
             // Anima a abertura/fechamento
             element.classList.toggle('active');
             const content = document.getElementById(idAcordeon);
             content.classList.toggle('active');
-            
+
             // Salva na memória para não fechar sozinho ao mover um produto
             window.estadoAcordeon[idAcordeon] = element.classList.contains('active');
         };
@@ -1137,7 +1156,7 @@
             const produtosFeminina = produtosCarregados.filter(p => p.loja === "feminina");
 
             // Junta os dois HTMLs renderizados e injeta no DOM
-            carrosseisDiv.innerHTML = 
+            carrosseisDiv.innerHTML =
                 gerarHTMLAcordeon("Loja Principal (Masculina e Unissex)", produtosMasculina, categoriasPrincipal, "acc-masc") +
                 gerarHTMLAcordeon("Loja Feminina", produtosFeminina, categoriasFeminina, "acc-fem");
         }
